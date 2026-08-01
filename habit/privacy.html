@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy — Habit Now</title>
+<meta name="description" content="What Habit Now stores, what leaves your device, who else touches it, and how to get rid of all of it.">
+<meta name="theme-color" content="#BEDDF4">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="preload" href="assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<a class="skiplink" href="#main">Skip to content</a>
+
+<div class="sky" aria-hidden="true">
+  <div class="sky__layer is-lit" data-sky="0"></div>
+  <div class="clouds">
+    <i style="--y:12%; --s:1.1; --d:210s; --o:.7"></i>
+    <i style="--y:44%; --s:.8;  --d:280s; --o:.45"></i>
+  </div>
+</div>
+
+<header class="topbar">
+  <a class="wordmark" href="index.html">
+    <img src="assets/icon.png" alt="" width="32" height="32">
+    <span>Habit&nbsp;Now</span>
+  </a>
+  <nav class="topnav">
+    <a href="support.html">Support</a>
+    <a class="topnav__cta" href="index.html#get">Get the app</a>
+  </nav>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+
+    <header class="page__head">
+      <div class="pagepet" data-pet="bird_pink" aria-hidden="true"></div>
+      <h1>Privacy policy</h1>
+      <p class="page__stamp">Habit Now · Last updated 29 July 2026</p>
+    </header>
+
+    <!-- ────────────────────────────────────────────────────────────────────
+         The data practices below are drawn from the app's own source: the
+         Supabase schema (supabase/schema.sql), the auth service, the coach
+         packet, and the purchase and sprite-download services. Keep them in
+         step if any of that changes.
+         ──────────────────────────────────────────────────────────────── -->
+
+    <nav class="toc" aria-label="Sections">
+      <ol>
+        <li><a href="#short">The short version</a></li>
+        <li><a href="#who">Who runs this</a></li>
+        <li><a href="#device">Kept on your device</a></li>
+        <li><a href="#account">If you make an account</a></li>
+        <li><a href="#coach">The AI coach</a></li>
+        <li><a href="#purchases">Purchases</a></li>
+        <li><a href="#art">Downloading the tree</a></li>
+        <li><a href="#notifications">Reminders</a></li>
+        <li><a href="#notcollected">What is never collected</a></li>
+        <li><a href="#rights">Your choices</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#legal">Legal basis and storage</a></li>
+        <li><a href="#changes">Changes</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+
+      <h2 id="short">1. The short version</h2>
+      <p>
+        Habit Now works entirely on your device unless you choose otherwise.
+        Your habits, completions and tree live in a database on your phone. You
+        do not need an account, and without one nothing you record ever leaves
+        the device.
+      </p>
+      <p>
+        If you sign in, your habit data is copied to a private row in the app's
+        database so a second device can see it. If you subscribe to Pro and use
+        the coach, a summary of your habit history is sent to an AI provider so
+        it can write your weekly note. Those are the two moments your data
+        travels, and both are things you switch on yourself.
+      </p>
+      <div class="prose__note">
+        <p>
+          <strong>There is no advertising, no analytics SDK, no crash reporter
+          and no tracking of any kind in this app.</strong> Nothing about you is
+          sold, rented, or shared with anyone for marketing.
+        </p>
+      </div>
+
+      <h2 id="who">2. Who runs this</h2>
+      <p>
+        Habit Now is made and operated by an independent solo developer. There
+        is no company, no data team and no third party with access to the
+        database beyond the service providers named in this policy.
+      </p>
+      <p>
+        For anything in this policy, including requests to see or delete your
+        data, write to
+        <a href="mailto:contact.appsnow@gmail.com">contact.appsnow@gmail.com</a>.
+      </p>
+
+      <h2 id="device">3. What is kept on your device</h2>
+      <p>Stored locally, in an app-private database and settings store:</p>
+      <ul>
+        <li>Your habits — name, icon, colour, whether it is a habit you're building or one you're quitting, its target, and its schedule</li>
+        <li>Which habits you completed on which days, and counts for count-type habits</li>
+        <li>Your experience points, tree stage and the ledger of which habit-days have already paid out</li>
+        <li>Achievements you've unlocked and the ornaments they placed on your tree</li>
+        <li>Watering cans used, and on which days</li>
+        <li>Reminder times, your chosen background, week-start day and other settings</li>
+        <li>Optionally your age and gender, if you enter them — used only to soften the coach's tone</li>
+      </ul>
+      <p>
+        Deleting the app deletes all of it. There is no hidden copy left behind
+        on the device.
+      </p>
+
+      <h2 id="account">4. If you make an account</h2>
+      <p>
+        Accounts are optional and exist for one reason: to move your habits
+        between your own devices. Authentication and storage are handled by
+        <strong>Supabase</strong>, which acts as the app's database and
+        authentication provider.
+      </p>
+      <p>When you sign in, Supabase holds:</p>
+      <ul>
+        <li>Your email address, and a hashed password if you signed up with one</li>
+        <li>If you used Sign in with Apple or Google: the email and basic profile the provider returned. Apple's private-relay addresses work fine and are never resolved</li>
+        <li>A display name and avatar, if you set them</li>
+        <li>Your habits, completions, achievements, watering cans and experience-point records — the same rows described in section 3</li>
+      </ul>
+      <p>
+        Every row is tied to your user id and protected by row-level security,
+        so one account cannot read another's data. Signing out stops the copying;
+        the data already on the server stays until you delete your account.
+      </p>
+
+      <h2 id="coach">5. The AI coach</h2>
+      <p>
+        Pro subscribers get a weekly note written by the tree. To write it, the
+        app sends a compact summary of your recent history to
+        <strong>Bitmesh</strong>, an AI proxy that forwards the request to a
+        large language model.
+      </p>
+      <p>What goes in that summary:</p>
+      <ul>
+        <li>Your habit names, exactly as you typed them</li>
+        <li>Whether each is a build or quit habit, its target and its schedule</li>
+        <li>Derived statistics — completion rates, streak lengths, which weekdays go best and worst, the times of day you usually complete things</li>
+        <li>Your tree's current level and health</li>
+        <li>Your age and gender, if you entered them</li>
+      </ul>
+      <p>
+        What does not go in it: your email, your name, your account id, your
+        device identifiers, or your location. The note comes back, is stored on
+        your device, and that is the end of it.
+      </p>
+      <div class="prose__note">
+        <p>
+          <strong>Habit names are free text, so they are the one field where you
+          control what the model sees.</strong> If a habit concerns your health,
+          your beliefs or anything else you would rather not send anywhere,
+          either name it something only you understand, or leave the coach off —
+          the rest of the app is unaffected by that choice.
+        </p>
+      </div>
+
+      <h2 id="purchases">6. Purchases</h2>
+      <p>
+        Pro subscriptions are sold by Apple and Google, not by this app. Payment
+        details never reach the developer, and never pass through the app at
+        all.
+      </p>
+      <p>
+        <strong>RevenueCat</strong> is used to check whether your subscription
+        is currently valid. It receives an anonymous purchase identifier and the
+        receipt the store issued. It does not receive your habits.
+      </p>
+
+      <h2 id="art">7. Downloading the tree</h2>
+      <p>
+        The first two tree stages ship inside the app. Later stages are
+        downloaded from a Cloudflare content-delivery network the first time you
+        reach them, then cached on your device. Like any file download this
+        involves your device's IP address reaching Cloudflare's servers, which
+        keep standard, short-lived request logs. The request contains no account
+        information and says nothing about you beyond which picture of a tree
+        was fetched.
+      </p>
+
+      <h2 id="notifications">8. Reminders</h2>
+      <p>
+        Habit reminders are scheduled by your phone's own operating system and
+        fire locally, on time, with no server involved. No push notifications
+        are sent to you from anywhere.
+      </p>
+
+      <h2 id="notcollected">9. What is never collected</h2>
+      <ul>
+        <li>Location, in any form, coarse or fine</li>
+        <li>Contacts, calendar, photos, microphone or camera</li>
+        <li>Advertising identifiers, and no ad network is present in the app</li>
+        <li>Behavioural analytics — no session recording, funnels, heatmaps or event tracking</li>
+        <li>Crash or performance telemetry sent to a third party</li>
+        <li>Health-kit or fitness data from your device</li>
+      </ul>
+
+      <h2 id="rights">10. Your choices, and getting your data out</h2>
+      <ul>
+        <li><strong>Use it without an account.</strong> Everything except sync works in guest mode, and nothing leaves the device.</li>
+        <li><strong>Turn the coach off.</strong> No summaries are sent, and the rest of Pro is unaffected.</li>
+        <li><strong>See what's stored.</strong> Email the address below and you'll get a copy of everything held against your account.</li>
+        <li><strong>Delete everything.</strong> In the app, <strong>Profile → Delete account</strong> does it immediately. Without the app, use the <a href="delete-account.php">deletion request form</a> or email the address below. Either way your account and every row belonging to it is erased — a deletion, not a flag, so the rows are gone. Deleting the app removes the local copy.</li>
+        <li><strong>Correct something.</strong> Most of it you can edit directly in the app; for anything you can't, write in.</li>
+      </ul>
+      <p>
+        Requests are handled personally and normally answered within a few days.
+        If you're in the UK or EU, this covers your rights of access,
+        rectification, erasure, restriction, portability and objection under the
+        UK GDPR and GDPR; if you're in California, your rights to know, delete
+        and to opt out of sale — noting that no data is ever sold, so there is
+        nothing to opt out of.
+      </p>
+
+      <h2 id="children">11. Children</h2>
+      <p>
+        Habit Now is not directed at children under 13, and no account should be
+        created for one. If you believe a child has created an account, write in
+        and it will be deleted.
+      </p>
+
+      <h2 id="legal">12. Legal basis and storage</h2>
+      <p>
+        Where the GDPR applies, data is processed on the basis of performing the
+        service you asked for — syncing what you asked to sync, writing the note
+        you asked for — and, for optional fields like age and gender, on your
+        consent, which you can withdraw by clearing them.
+      </p>
+      <p>
+        Account data is kept on Supabase infrastructure and may be processed in
+        the region where that project is hosted. Data is retained for as long as
+        your account exists, and deleted when you ask for it to be.
+      </p>
+
+      <h2 id="changes">13. Changes</h2>
+      <p>
+        If this policy changes, the date at the top changes with it, and any
+        change that affects what leaves your device will be announced in the app
+        before it takes effect. Continuing to use Habit Now after that means the
+        updated policy applies.
+      </p>
+
+      <h2 id="contact">14. Contact</h2>
+      <p>
+        <a href="mailto:contact.appsnow@gmail.com">contact.appsnow@gmail.com</a>
+        — for privacy questions, data requests, deletion, or to tell me
+        something here is wrong.
+      </p>
+
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__mark"><img src="assets/icon.png" alt="" width="28" height="28"> Habit Now</p>
+    <nav class="foot__nav">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="delete-account.php">Delete account</a>
+      <a href="mailto:contact.appsnow@gmail.com">contact.appsnow@gmail.com</a>
+    </nav>
+    <p class="foot__note">Made by one developer. The tree does the rest.</p>
+  </div>
+</footer>
+
+<script src="js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+  "stages": {
+    "1": "assets/tree/stage-1.webp",
+    "2": "assets/tree/stage-2.webp",
+    "3": "assets/tree/stage-3.webp",
+    "4": "assets/tree/stage-4.webp",
+    "5": "assets/tree/stage-5.webp",
+    "6": "assets/tree/stage-6.webp",
+    "7": "assets/tree/stage-7.webp",
+    "8": "assets/tree/stage-8.webp",
+    "9": "assets/tree/stage-9.webp",
+    "10": "assets/tree/stage-10.webp"
+  },
+  "ornaments": [
+    {
+      "name": "bird_blue",
+      "kind": "bird",
+      "x": 0.62,
+      "y": 0.34,
+      "src": "assets/orn/bird_blue.webp"
+    },
+    {
+      "name": "bird_yellow",
+      "kind": "bird",
+      "x": 0.28,
+      "y": 0.42,
+      "src": "assets/orn/bird_yellow.webp"
+    },
+    {
+      "name": "butterfly_pink",
+      "kind": "flit",
+      "x": 0.74,
+      "y": 0.55,
+      "src": "assets/orn/butterfly_pink.webp"
+    },
+    {
+      "name": "butterfly_purple",
+      "kind": "flit",
+      "x": 0.19,
+      "y": 0.61,
+      "src": "assets/orn/butterfly_purple.webp"
+    },
+    {
+      "name": "clover",
+      "kind": "ground",
+      "x": 0.38,
+      "y": 0.82,
+      "src": "assets/orn/clover.webp"
+    },
+    {
+      "name": "cherry_blossom",
+      "kind": "ground",
+      "x": 0.68,
+      "y": 0.85,
+      "src": "assets/orn/cherry_blossom.webp"
+    },
+    {
+      "name": "squirrel_red",
+      "kind": "bird",
+      "x": 0.45,
+      "y": 0.5,
+      "src": "assets/orn/squirrel_red.webp"
+    },
+    {
+      "name": "snail_purple",
+      "kind": "ground",
+      "x": 0.24,
+      "y": 0.86,
+      "src": "assets/orn/snail_purple.webp"
+    },
+    {
+      "name": "owl",
+      "kind": "page",
+      "x": 0.0,
+      "y": 0.0,
+      "src": "assets/orn/owl.webp"
+    },
+    {
+      "name": "bird_pink",
+      "kind": "page",
+      "x": 0.0,
+      "y": 0.0,
+      "src": "assets/orn/bird_pink.webp"
+    },
+    {
+      "name": "butterfly_yellow",
+      "kind": "page",
+      "x": 0.0,
+      "y": 0.0,
+      "src": "assets/orn/butterfly_yellow.webp"
+    }
+  ]
+}

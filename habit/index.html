@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habit Now — a habit tracker with a tree in it</title>
+<meta name="description" content="Keep a habit and the tree grows. Skip too many days and it wilts. Ten stages, about fifty days to the top. Free on iOS and Android.">
+<meta name="theme-color" content="#BEDDF4">
+
+<meta property="og:title" content="Habit Now — a habit tracker with a tree in it">
+<meta property="og:description" content="Keep a habit and the tree grows. Skip too many days and it wilts.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/tree/stage-7.webp">
+
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<link rel="preload" href="assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/tree/stage-2.webp" as="image" fetchpriority="high">
+<!-- The preload scanner starts this well before the deferred script could. The
+     media query keeps it from spending 555 KB on a reader who has already said
+     they don't want the animation — they keep the still above. -->
+<link rel="preload" href="assets/tree/idle-2.webp" as="image"
+      media="(prefers-reduced-motion: no-preference)">
+<link rel="stylesheet" href="css/site.css">
+
+<!-- Without script the tree never grows, so the scroll cue would over-promise.
+     The hero itself is fine: it stays on the still it starts with. -->
+<noscript><style>.scrollcue { display: none; }</style></noscript>
+</head>
+<body>
+
+<a class="skiplink" href="#main">Skip to content</a>
+
+<!-- The sky runs one day across the page: the hero is morning, the last act is
+     dusk. Layers cross-fade on scroll; site.js switches which one is lit. -->
+<div class="sky" aria-hidden="true">
+  <div class="sky__layer is-lit" data-sky="0"></div>
+  <div class="sky__layer" data-sky="1"></div>
+  <div class="sky__layer" data-sky="2"></div>
+  <div class="sky__layer" data-sky="3"></div>
+  <div class="sky__layer" data-sky="4"></div>
+  <div class="sky__layer" data-sky="5"></div>
+  <div class="clouds">
+    <i style="--y:8%;  --s:1.15; --d:190s; --o:.85"></i>
+    <i style="--y:19%; --s:.7;  --d:260s; --o:.6"></i>
+    <i style="--y:34%; --s:1.4; --d:150s; --o:.5"></i>
+    <i style="--y:58%; --s:.9;  --d:300s; --o:.45"></i>
+    <i style="--y:72%; --s:1.2; --d:220s; --o:.35"></i>
+  </div>
+</div>
+
+<header class="topbar">
+  <a class="wordmark" href="index.html">
+    <img src="assets/icon.png" alt="" width="32" height="32">
+    <span>Habit&nbsp;Now</span>
+  </a>
+  <nav class="topnav">
+    <a href="support.html">Support</a>
+    <a class="topnav__cta" href="#get">Get the app</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────
+       The tree arrives already alive: the app's stage-2 idle loop, 25 real
+       frames, breathing from the moment the page settles. -->
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="eyebrow eyebrow--asis">Habit tracker · iOS &amp; Android</p>
+      <h1 class="say say--xl">I only grow when&nbsp;you&nbsp;do.</h1>
+      <p class="lede">
+        Habit&nbsp;Now is a habit tracker with a tree living in it. Keep a habit and
+        it grows. Skip too many days and it wilts. Ten stages, about fifty days
+        to the top.
+      </p>
+
+      <!-- TODO: replace both `#` hrefs with the real store URLs at launch.
+           The same pair repeats once more at #get, near the bottom. -->
+      <div class="stores">
+        <a class="store" href="#" data-store="ios">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span><small>Download on the</small>App Store</span>
+        </a>
+        <a class="store" href="#" data-store="android">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.2 2.6a1 1 0 0 0-.7.96v16.88a1 1 0 0 0 1.53.85l13.9-8.44a1 1 0 0 0 0-1.7L5.03 2.7a1 1 0 0 0-.83-.1z"/></svg>
+          <span><small>Get it on</small>Google Play</span>
+        </a>
+      </div>
+
+      <p class="fineprint">
+        Free to use. The tree, all ten stages, the health system and every
+        achievement cost nothing.
+      </p>
+    </div>
+
+    <div class="hero__tree">
+      <!-- Two layers. The still is 35 KB and paints immediately; the 25-frame
+           idle loop is 555 KB and crossfades in once it has decoded, so the
+           hero is never an empty box waiting on a sprite sheet. -->
+      <div class="tree" id="heroTree" data-phase="still" role="img"
+           aria-label="A small tree with a face, standing on a floating green island.">
+        <div class="tree__sprite tree__sprite--still"></div>
+        <div class="tree__sprite tree__sprite--idle"></div>
+      </div>
+      <div class="tree__shadow" aria-hidden="true"></div>
+    </div>
+
+    <p class="scrollcue" aria-hidden="true">
+      <span>Keep going — I'm only a sprout</span>
+    </p>
+  </section>
+
+
+  <!-- ── The four acts ────────────────────────────────────────────────────
+       The tree pins in place and grows a stage at a time while the copy
+       scrolls past it, the way it pins to the top of the app's Today screen
+       (lib/widgets/sticky_hero.dart). -->
+  <section class="acts" id="acts">
+
+    <div class="acts__stage">
+      <!-- Mobile only. The stage has to be opaque or the copy scrolls visibly
+           through the tree, but an opaque panel over a changing sky is a white
+           box. So it carries its own copy of the sky, pinned to the viewport,
+           which lines up pixel-for-pixel with the real one behind it. -->
+      <div class="acts__skin" aria-hidden="true">
+        <div class="sky__layer is-lit" data-sky="0"></div>
+        <div class="sky__layer" data-sky="1"></div>
+        <div class="sky__layer" data-sky="2"></div>
+        <div class="sky__layer" data-sky="3"></div>
+        <div class="sky__layer" data-sky="4"></div>
+        <div class="sky__layer" data-sky="5"></div>
+      </div>
+
+      <div class="stagetree" id="actTree">
+        <img class="stagetree__img is-on" id="treeA" src="assets/tree/stage-1.webp" alt="" width="640" height="640" decoding="async">
+        <img class="stagetree__img" id="treeB" src="" alt="" width="640" height="640" decoding="async">
+        <div class="orns" id="orns" aria-hidden="true"></div>
+        <div class="burst" id="burst" aria-hidden="true"></div>
+      </div>
+
+      <!-- Ten notches because the tree really has ten stages. -->
+      <div class="rail" aria-hidden="true">
+        <div class="rail__track"><span class="rail__fill" id="railFill"></span></div>
+        <p class="rail__read"><small>Level</small><b id="railLevel">1</b></p>
+      </div>
+    </div>
+
+    <div class="acts__flow">
+
+      <article class="act" data-frames="1,2,3,4" data-sky="1">
+        <p class="eyebrow">Experience points</p>
+        <h2 class="say">Every habit you keep is one day of&nbsp;sun.</h2>
+        <p>
+          One completion, one point. Five in a day is an ordinary day, and an
+          ordinary day is enough. Each habit pays out once per day and once
+          only — there's no farming it by unchecking and checking again.
+        </p>
+      </article>
+
+      <article class="act" data-frames="5,5-h50,5-h25,5-h50,5" data-sky="2">
+        <p class="eyebrow">Health</p>
+        <h2 class="say">When you stop, I&nbsp;notice.</h2>
+        <p>
+          Miss enough days and the colour goes out of me. Nothing is deleted and
+          nobody gets a lecture — the tree just shows how the last two weeks
+          actually went. Come back and it comes back.
+        </p>
+      </article>
+
+      <article class="act" data-frames="5,6,7" data-sky="3" data-orn="yes">
+        <p class="eyebrow">Achievements</p>
+        <h2 class="say">Stay a while and things move&nbsp;in.</h2>
+        <p>
+          Twenty-four achievements, each one a bird, a flower, a squirrel that
+          takes up residence in the branches. They're cosmetic, and they aren't
+          for sale at any price. Earning them is the only way in.
+        </p>
+      </article>
+
+      <article class="act" data-frames="8,9,10" data-sky="4">
+        <p class="eyebrow">Stage ten</p>
+        <h2 class="say">Fifty days. Look at&nbsp;me.</h2>
+        <p>
+          Ten stages at an ordinary pace. Nothing waits at the end except a tree
+          you'd rather not let wilt — which, as motivation goes, has held up
+          better than a number going up.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ── The app itself ───────────────────────────────────────────────────
+       Facts, so this whole block is set in the sans face. -->
+  <section class="slab" id="app">
+    <div class="wrap">
+      <header class="slab__head">
+        <p class="eyebrow">Under the tree</p>
+        <h2>A habit tracker that holds up on its own</h2>
+        <p class="slab__sub">
+          The tree is the reason people come back. This is the part that has to
+          be worth coming back to.
+        </p>
+      </header>
+
+      <div class="showcase">
+        <!-- A live rebuild of the app's Today list, not a screenshot. -->
+        <div class="phone" id="phone">
+          <div class="phone__screen">
+            <p class="phone__greet">Good evening</p>
+            <p class="phone__streak">23 day streak 🔥</p>
+
+            <div class="hcard" data-fill="34">
+              <span class="hcard__icon" style="--c1:#2DD4BF;--c2:#14B8A6">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2s6 6.4 6 10.3a6 6 0 0 1-12 0C6 9.6 12 3.2 12 3.2z"/></svg>
+              </span>
+              <span class="hcard__body">
+                <b>Drink water</b>
+                <span class="hcard__meta"><i class="hcard__n">1</i> / 3 glasses <em class="pill pill--flame">🔥 12</em></span>
+                <span class="hcard__bar"><i style="--c:#14B8A6"></i></span>
+              </span>
+              <button class="hcard__btn" type="button" tabindex="-1" aria-hidden="true">✓</button>
+            </div>
+
+            <div class="hcard" data-fill="34">
+              <span class="hcard__icon" style="--c1:#FB923C;--c2:#F97316">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6C10 5.1 7.6 4.7 4.6 5.1v12.5c3-.4 5.4 0 7.4 1.5 2-1.5 4.4-1.9 7.4-1.5V5.1c-3-.4-5.4 0-7.4 1.5z"/><path d="M12 6.6v12.5"/></svg>
+              </span>
+              <span class="hcard__body">
+                <b>Read</b>
+                <span class="hcard__meta"><i class="hcard__n">1</i> / 3 pages <em class="pill pill--flame">🔥 6</em></span>
+                <span class="hcard__bar"><i style="--c:#F97316"></i></span>
+              </span>
+              <button class="hcard__btn" type="button" tabindex="-1" aria-hidden="true">✓</button>
+            </div>
+
+            <div class="hcard hcard--quit">
+              <span class="hcard__icon" style="--c1:#F87171;--c2:#EF4444">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6 4.6 5.4v6.1c0 4.4 3.1 8.2 7.4 9.9 4.3-1.7 7.4-5.5 7.4-9.9V5.4L12 2.6z"/></svg>
+              </span>
+              <span class="hcard__body">
+                <b>No smoking</b>
+                <span class="hcard__meta"><em class="pill pill--clean">9 days clean</em></span>
+              </span>
+              <button class="hcard__btn" type="button" tabindex="-1" aria-hidden="true">✓</button>
+            </div>
+          </div>
+        </div>
+
+        <ul class="facts">
+          <li>
+            <h3>Habits to build, habits to quit</h3>
+            <p>Tick a box or count to a target. Quit habits track days clean instead of streaks, and they get their own warmer palette so the two never blur together.</p>
+          </li>
+          <li>
+            <h3>Reminders, uncapped</h3>
+            <p>Every habit can carry a reminder, on the free tier too. Capping notifications was considered and rejected — a habit tracker that won't remind you is a list.</p>
+          </li>
+          <li>
+            <h3>Streaks, heatmaps, real history</h3>
+            <p>Per-habit calendars and completion trends. Streaks are computed from your history, never stored, so they can't drift out of sync with what you actually did.</p>
+          </li>
+          <li>
+            <h3>Watering cans</h3>
+            <p>A day off that doesn't cost you the streak. One a month free, three on Pro, applied automatically to the day you missed.</p>
+          </li>
+          <li>
+            <h3>A home screen widget</h3>
+            <p>Your tree and today's list, without opening anything.</p>
+          </li>
+          <li>
+            <h3>Works offline, syncs when asked</h3>
+            <p>Everything lives on the device first. Sign in and Pro keeps it mirrored across your phones.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── The coach ────────────────────────────────────────────────────────
+       The tree writes; the note is set in the tree's face. -->
+  <section class="letter">
+    <div class="wrap letter__grid">
+      <div class="letter__intro">
+        <p class="eyebrow">The coach · Pro</p>
+        <h2 class="say">On Sundays I write to&nbsp;you.</h2>
+        <p>
+          One thing noticed, not a summary of your week. It reads your actual
+          history and looks for the pattern you're too close to see — then, only
+          when the note calls for it, offers the one change that would follow
+          from it.
+        </p>
+      </div>
+
+      <figure class="note">
+        <blockquote>
+          You almost always end up reading on the days you get out for a morning
+          walk. Could be the fresh air, or that once you start moving you keep
+          going. It's a nice pairing — your walks are quietly making your
+          evenings stick.
+        </blockquote>
+        <figcaption>
+          A real note from the app's coach, unedited, written about an example
+          user with two habits: <b>Read</b> and <b>Morning walk</b>.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- ── Pricing ──────────────────────────────────────────────────────── -->
+  <section class="slab slab--tiers" id="pricing">
+    <div class="wrap">
+      <header class="slab__head">
+        <p class="eyebrow">Pricing</p>
+        <h2>Free, and Pro</h2>
+        <p class="slab__sub">
+          The loop that makes the app worth having — habits, the tree, its
+          health, achievements — stays free. Pro buys room, history and
+          convenience.
+        </p>
+      </header>
+
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free</h3>
+          <ul>
+            <li>Up to 5 active habits</li>
+            <li>All ten tree stages, growth and health</li>
+            <li>All 24 achievements and their ornaments</li>
+            <li>Unlimited reminders</li>
+            <li>Streaks and the current week's stats</li>
+            <li>One watering can a month</li>
+          </ul>
+        </div>
+        <div class="tier tier--pro">
+          <h3>Pro</h3>
+          <ul>
+            <li>Unlimited habits</li>
+            <li>All 13 backgrounds</li>
+            <li>Full stats history, heatmaps and trends</li>
+            <li>Cloud sync across devices</li>
+            <li>Home screen widgets</li>
+            <li>Weekly and monthly schedules</li>
+            <li>Three watering cans a month</li>
+            <li>The Sunday note from your tree</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Second call to action ────────────────────────────────────────── -->
+  <section class="get" id="get">
+    <div class="wrap get__inner">
+      <img class="get__tree" src="assets/tree/stage-10.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+      <h2 class="say">Plant it tonight.</h2>
+      <p>Tomorrow morning you'll have something to keep alive.</p>
+
+      <!-- TODO: same two store URLs as the hero. -->
+      <div class="stores stores--center">
+        <a class="store" href="#" data-store="ios">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span><small>Download on the</small>App Store</span>
+        </a>
+        <a class="store" href="#" data-store="android">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.2 2.6a1 1 0 0 0-.7.96v16.88a1 1 0 0 0 1.53.85l13.9-8.44a1 1 0 0 0 0-1.7L5.03 2.7a1 1 0 0 0-.83-.1z"/></svg>
+          <span><small>Get it on</small>Google Play</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__mark"><img src="assets/icon.png" alt="" width="28" height="28"> Habit Now</p>
+    <nav class="foot__nav">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="delete-account.php">Delete account</a>
+      <a href="mailto:contact.appsnow@gmail.com">contact.appsnow@gmail.com</a>
+    </nav>
+    <p class="foot__note">Made by one developer. The tree does the rest.</p>
+  </div>
+</footer>
+
+<script src="js/site.js" defer></script>
+</body>
+</html>
