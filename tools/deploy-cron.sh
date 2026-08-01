@@ -6,7 +6,7 @@
 # from cron every minute, and when it sees the flag it consumes it and pulls.
 #
 # Install (cron, every minute):
-#   * * * * * /home/shababhs/nowapps-subapps/tools/deploy-cron.sh >/dev/null 2>&1
+#   * * * * * /home/shababhs/nowapps.cc/websites/tools/deploy-cron.sh >/dev/null 2>&1
 #
 # Everything lives inside main() on purpose: bash reads a script lazily, so a
 # `git pull` that rewrites this very file mid-run could corrupt execution. A
@@ -14,11 +14,21 @@
 
 set -uo pipefail
 
-REPO_DIR="${REPO_DIR:-/home/shababhs/nowapps-subapps}"
+REPO_DIR="${REPO_DIR:-/home/shababhs/nowapps.cc/websites}"
 BRANCH="${BRANCH:-master}"
-FLAG_FILE="${FLAG_FILE:-/home/shababhs/nowapps-subapps.deploy.request}"
-LOCK_FILE="${LOCK_FILE:-/home/shababhs/nowapps-subapps.deploy.lock}"
-LOG_FILE="${LOG_FILE:-/home/shababhs/nowapps-subapps.deploy.log}"
+
+# Sidecars live in the home root, not next to the checkout: the checkout is the
+# docroot, and its parent may be served too. Keep them where nothing can GET them.
+FLAG_FILE="${FLAG_FILE:-/home/shababhs/nowapps-websites.deploy.request}"
+LOCK_FILE="${LOCK_FILE:-/home/shababhs/nowapps-websites.deploy.lock}"
+LOG_FILE="${LOG_FILE:-/home/shababhs/nowapps-websites.deploy.log}"
+
+# Cron has no terminal. If git ever decided to ask for a credential it would
+# hang forever holding the lock, and every later deploy would silently stall.
+# Fail the pull instead — the reason lands in the log.
+export GIT_TERMINAL_PROMPT=0
+export GIT_ASKPASS=/bin/true
+export GIT_SSH_COMMAND="${GIT_SSH_COMMAND:-ssh -o BatchMode=yes}"
 
 main() {
     [[ -f "$FLAG_FILE" ]] || exit 0

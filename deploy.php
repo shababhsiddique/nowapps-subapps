@@ -19,7 +19,7 @@
 */
 
 // ---- Configuration ----------------------------------------------------
-$flagFile = '/home/shababhs/nowapps-subapps.deploy.request'; // outside the repo, keeps tree clean
+$flagFile = '/home/shababhs/nowapps-websites.deploy.request'; // outside the repo, keeps tree clean
 $branch   = 'master';
 $envPath  = __DIR__ . '/.env';
 
