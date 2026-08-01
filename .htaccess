@@ -1,0 +1,16 @@
+# The git checkout is also the document root, so anything the repo carries that
+# is not a web page has to be denied explicitly.
+
+# Secrets, VCS metadata, dotfiles in general.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+RedirectMatch 404 /\.git
+
+# Shell scripts and the build/deploy tooling are not web content.
+<FilesMatch "\.(sh|py|log|md)$">
+    Require all denied
+</FilesMatch>
+
+RedirectMatch 404 /tools/
