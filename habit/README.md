@@ -31,6 +31,24 @@ python3 -m http.server 8000
 
 ---
 
+## After editing css/site.css — bump the version
+
+Every page links the stylesheet as `css/site.css?v=YYYYMMDD`. **Change that
+date whenever you change the CSS**, in all five pages, or your edit will not
+reach anyone who has already loaded the site.
+
+Cloudflare serves the assets with `cache-control: public, max-age=604800` and
+holds them at the edge for a week — a deploy alone does not dislodge them. It
+does *not* cache the HTML (`cf-cache-status: DYNAMIC`), so a changed query
+string is fetched fresh the minute the deploy cron pulls, which is what makes
+this work. Without the bump the only remedy is a manual purge in the
+Cloudflare dashboard, and a browser that already has the file keeps its copy
+for the full seven days regardless.
+
+`js/site.js` is still unversioned and carries the same risk.
+
+---
+
 ## Before launch — one thing to fill in
 
 Search for `TODO` and you will find it.
