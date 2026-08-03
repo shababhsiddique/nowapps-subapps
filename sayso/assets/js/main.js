@@ -49,7 +49,7 @@
       R.classList.remove("is-live", "is-shown");
 
       // 1. they speak
-      at(260, function () {
+      at(180, function () {
         paint(L, x.said, x.from + " · " + x.code);
         L.classList.add("is-live", "is-shown");
       });
@@ -65,11 +65,12 @@
 
       at(4400, function () { R.classList.remove("is-live"); });
 
-      // 4. next exchange
-      at(5900, function () {
+      // 4. next exchange. Keep the changeover short — stacked on a phone the
+      //    panel is tall, and a long blank there reads as a broken widget.
+      at(5600, function () {
         L.classList.remove("is-shown");
         R.classList.remove("is-shown");
-        at(500, play);
+        at(320, play);
       });
     }
 
