@@ -236,11 +236,24 @@ h1, h2, h3, h4 {
   font-stretch: 118%;
   font-weight: 800;
   letter-spacing: -0.038em;
-  margin-block: 1.1rem 0;
+  margin-block: 0;
   text-transform: uppercase;
 }
 .hero h1 span { display: block; }
 .hero h1 .l2 { color: var(--sub); }
+
+/* Lives inside the h1 so the heading itself names what Sayso is, while
+   reading as the same small utility label it was before. */
+.hero__eyebrow {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-stretch: normal;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+  color: var(--sub);
+  margin-bottom: 1.1rem;
+}
 
 .hero__sub {
   color: var(--sub);
