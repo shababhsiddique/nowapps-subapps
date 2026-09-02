@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Guard — Know what's still under warranty</title>
+<meta name="description" content="Product Guard keeps every warranty you own in one place: scan the receipt, get reminded before cover ends, and draft the claim when something breaks. Reading your receipts happens on your phone.">
+<link rel="canonical" href="https://productguard.nowapps.cc/">
+<meta property="og:title" content="Product Guard — Know what's still under warranty">
+<meta property="og:description" content="Every warranty you own, with the clock showing. Receipts read on your phone, reminders before cover ends, claims drafted for you.">
+<meta property="og:url" content="https://productguard.nowapps.cc/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#EDF0F7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2.5 4.5 7v10.2C4.5 24 9.6 28.6 16 30c6.4-1.4 11.5-6 11.5-12.8V7L16 2.5Z' fill='%234F46E5'/%3E%3Cpath d='m10.5 16.2 3.9 3.8 7.1-7.4' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@300..800&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 2.5 4.5 7v10.2C4.5 24 9.6 28.6 16 30c6.4-1.4 11.5-6 11.5-12.8V7L16 2.5Z" fill="#4F46E5"/>
+        <path d="m10.5 16.2 3.9 3.8 7.1-7.4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Product Guard
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#capture">Adding things</a>
+      <a href="#on-device">Privacy</a>
+      <a href="#breaks">Claims</a>
+      <a href="#plans">Plans</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn btn--solid btn--sm" href="mailto:contact.appsnow@gmail.com?subject=Product%20Guard%20early%20access">Get early access</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero: the thesis is the clock, so the clock is the hero. -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="display">Half the things you own are <em>still covered</em>.</h1>
+        <p class="lede">You just can't prove which half. Product Guard keeps the receipt, the serial number and the expiry date for everything you buy — and tells you before the cover runs out, not after.</p>
+        <div class="hero-cta">
+          <a class="btn btn--solid" href="mailto:contact.appsnow@gmail.com?subject=Product%20Guard%20early%20access">Get early access</a>
+          <a class="btn btn--line" href="#capture">See how it works</a>
+        </div>
+        <p class="hero-note">iPhone &middot; iOS 18 and later &middot; No account, no sign-up</p>
+      </div>
+
+      <div class="ledger" id="ledger">
+        <div class="ledger-head">
+          <span>Your coverage</span>
+          <span><b>5</b> items</span>
+        </div>
+
+        <div class="ledger-row is-warn" style="--d:0s">
+          <div class="ledger-name">Sony WH-1000XM5</div>
+          <div class="ledger-sub mono">Bought 12 Aug 2024 &middot; 2 yr</div>
+          <div class="ledger-count">5 days left</div>
+          <div class="ledger-bar"><i style="--left:3%"></i></div>
+        </div>
+
+        <div class="ledger-row is-warn" style="--d:.07s">
+          <div class="ledger-name">iPhone 14 Pro</div>
+          <div class="ledger-sub mono">Bought 25 Aug 2025 &middot; 1 yr</div>
+          <div class="ledger-count">18 days left</div>
+          <div class="ledger-bar"><i style="--left:6%"></i></div>
+        </div>
+
+        <div class="ledger-row is-warn" style="--d:.14s">
+          <div class="ledger-name">Dell XPS 13</div>
+          <div class="ledger-sub mono">Bought 4 Sep 2025 &middot; 1 yr</div>
+          <div class="ledger-count">28 days left</div>
+          <div class="ledger-bar"><i style="--left:9%"></i></div>
+        </div>
+
+        <div class="ledger-row is-ok" style="--d:.21s">
+          <div class="ledger-name">Apple Watch Ultra 2</div>
+          <div class="ledger-sub mono">Bought 3 Apr 2026 &middot; 2 yr</div>
+          <div class="ledger-count">579 days left</div>
+          <div class="ledger-bar"><i style="--left:79%"></i></div>
+        </div>
+
+        <div class="ledger-row is-warn" style="--d:.28s" id="expiring-row">
+          <div class="ledger-name">Nespresso Vertuo Next</div>
+          <div class="ledger-sub mono">Bought 2 Sep 2024 &middot; 2 yr</div>
+          <div class="ledger-count" id="expiring-count">1 day left</div>
+          <div class="ledger-bar"><i style="--left:2%" id="expiring-bar"></i></div>
+        </div>
+
+        <div class="ledger-foot">
+          <span class="pulse" id="foot-dot" hidden></span>
+          <span id="foot-text">Reminders set for 30, 14, 7 and 1 days before each date.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why this exists. Three plain facts, not a value-prop trio. -->
+  <section class="band--tight">
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact">
+          <div class="fact-fig">The receipt</div>
+          <p>Thermal paper fades in about a year. Most warranties last two. The proof dies before the cover does.</p>
+        </div>
+        <div class="fact">
+          <div class="fact-fig">The date</div>
+          <p>Nobody remembers that the washing machine was bought in March. The manufacturer will ask.</p>
+        </div>
+        <div class="fact">
+          <div class="fact-fig">The claim</div>
+          <p>By the time something breaks, you have three days left and no serial number to hand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capture. A list of doors, not a sequence — so no numbering. -->
+  <section class="band rule-top" id="capture">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Adding things</p>
+        <h2 class="display">Six ways in. All of them end in the same form.</h2>
+        <p class="lede">Point the camera at whatever you have — the box, the receipt, the thing itself — and the details come out filled in. Nothing is saved until you tap Save.</p>
+      </div>
+
+      <div class="tiles reveal">
+        <article class="tile">
+          <span class="tile-tag">Camera</span>
+          <h3>Scan the product</h3>
+          <p>Barcode, QR or serial. The code becomes a brand, a model number and a typical warranty length.</p>
+        </article>
+        <article class="tile">
+          <span class="tile-tag">Camera</span>
+          <h3>Scan the receipt</h3>
+          <p>Edge-detected capture, then the shop, the date, the price and the item are read off it. On a long receipt it picks the expensive thing you'd actually claim on.</p>
+        </article>
+        <article class="tile">
+          <span class="tile-tag">Camera</span>
+          <h3>Photograph it</h3>
+          <p>Take a picture of the product. The background is cut away and what's left becomes its photo in your list.</p>
+        </article>
+        <article class="tile">
+          <span class="tile-tag">Library</span>
+          <h3>Choose a photo</h3>
+          <p>Already took a picture of the receipt months ago? Pick it, and the app spots that it's a receipt and reads it.</p>
+        </article>
+        <article class="tile">
+          <span class="tile-tag">Files</span>
+          <h3>Import a document</h3>
+          <p>A warranty card, an emailed invoice, a PDF. Or paste the link to the product page you bought from.</p>
+        </article>
+        <article class="tile">
+          <span class="tile-tag">Safari</span>
+          <h3>Share from the shop</h3>
+          <p>Share any product page to Product Guard the moment you order. It reads the page and starts the record for you.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- The one loud colour field. This is the differentiator, so it gets the block. -->
+  <section class="band guard" id="on-device">
+    <div class="wrap">
+      <div class="guard-head reveal">
+        <div class="band-head">
+          <p class="eyebrow">Where your data goes</p>
+          <h2 class="display">Your receipts never leave the phone.</h2>
+          <p class="lede">Reading a receipt, filling the form, sorting things into categories, writing a claim — all of it runs on your device using Apple's on-device models. There is no account to create and no database of users anywhere.</p>
+        </div>
+        <img class="guard-mascot" src="assets/shield.png" alt="" width="420" height="534">
+      </div>
+
+      <div class="guard-grid reveal">
+        <div class="split split--on">
+          <h3>Stays on your phone</h3>
+          <p class="split-note">Always. No setting to get wrong.</p>
+          <ul>
+            <li>Receipt images and product photos</li>
+            <li>What you paid, where, and when</li>
+            <li>Serial numbers</li>
+            <li>Claim drafts and the faults you describe</li>
+            <li>Search across your own products</li>
+          </ul>
+        </div>
+
+        <div class="split">
+          <h3>Leaves only if you ask</h3>
+          <p class="split-note">Off by default &middot; One switch in Settings</p>
+          <ul>
+            <li>A brand and model you're looking up</li>
+            <li>The question you type into the assistant</li>
+            <li>A product page you chose to share</li>
+            <li>Your records to your own private iCloud, if you're signed in</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="guard-foot">The assistant is switched off until you turn it on, and its consent screen names every field that leaves. <a href="privacy.html">Read the privacy policy</a>.</p>
+    </div>
+  </section>
+
+  <!-- The other half of the job: the day it breaks. -->
+  <section class="band" id="breaks">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">When something breaks</p>
+        <h2 class="display">The bit everyone gets wrong is the letter.</h2>
+        <p class="lede">You have the cover, you have the dates, and then you sit staring at a support form. Product Guard writes the first draft using what it already knows about the purchase.</p>
+      </div>
+
+      <div class="duo reveal">
+        <div class="panel">
+          <h3>Told before, not after</h3>
+          <p>Reminders arrive on your schedule, at a time you choose. They're scheduled by your phone — no server, no push, works with the plane on.</p>
+          <div class="schedule">
+            <span class="chip mono">30 days</span>
+            <span class="chip mono">14 days</span>
+            <span class="chip mono">7 days</span>
+            <span class="chip mono">1 day</span>
+            <span class="chip mono">On the day</span>
+            <span class="chip chip--muted mono">09:00</span>
+          </div>
+          <p class="panel-note mono">Change a date and every pending reminder is rebuilt, so what the screen shows is what your phone will actually deliver.</p>
+        </div>
+
+        <div class="panel">
+          <h3>A claim, already written</h3>
+          <p>Describe the fault in a sentence. Out comes a claim message with the model, the serial, the retailer and the purchase date already in it. Edit it, copy it, send it yourself — the app never sends anything for you.</p>
+          <p class="quote mono">Dear Sony Support, I am writing regarding my WH-1000XM5 headphones (serial S5X-8841-QP), purchased from Currys on 12 August 2024 and covered until 12 August 2026. The right earcup has stopped producing sound<span class="cursor"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans. No prices — say so rather than inventing them. -->
+  <section class="band rule-top" id="plans">
+    <div class="wrap">
+      <div class="band-head reveal">
+        <p class="eyebrow">Plans</p>
+        <h2 class="display">Free covers the whole job.</h2>
+        <p class="lede">Tracking warranties, getting reminded and drafting claims are the point of the app, so they are not the paywall. Pro is for people with a lot of things and a reason to look them up.</p>
+      </div>
+
+      <div class="plans reveal">
+        <div class="plan">
+          <p class="plan-name">Free</p>
+          <p class="plan-price mono">Price to be announced</p>
+          <ul>
+            <li>Track your warranties, with reminders</li>
+            <li>Scan receipts, barcodes, photos and documents</li>
+            <li>Receipt reading and smart fill, on your device</li>
+            <li>Claim drafting and coverage summaries</li>
+            <li>iCloud sync across your own devices</li>
+            <li>Export everything as JSON, whenever</li>
+          </ul>
+          <a class="btn btn--line" href="mailto:contact.appsnow@gmail.com?subject=Product%20Guard%20early%20access">Get early access</a>
+        </div>
+
+        <div class="plan plan--pro">
+          <p class="plan-name">Pro</p>
+          <p class="plan-price mono">Price to be announced</p>
+          <ul>
+            <li>Everything in Free</li>
+            <li>The product assistant, with sources under every answer</li>
+            <li>“What's it worth?” — live listings for things you own</li>
+            <li>Unlimited product and image lookups</li>
+            <li>Attach warranty documents and manuals to any product</li>
+          </ul>
+          <a class="btn btn--solid" href="mailto:contact.appsnow@gmail.com?subject=Product%20Guard%20Pro%20—%20tell%20me%20when%20it%20launches">Tell me when Pro lands</a>
+        </div>
+      </div>
+
+      <p class="plans-note">Pricing isn't set yet. When it is, it will be on this page before it is in the app.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-in">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 2.5 4.5 7v10.2C4.5 24 9.6 28.6 16 30c6.4-1.4 11.5-6 11.5-12.8V7L16 2.5Z" fill="#4F46E5"/>
+          <path d="m10.5 16.2 3.9 3.8 7.1-7.4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Product Guard
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="index.html#capture">Adding things</a>
+        <a href="index.html#on-device">Privacy</a>
+        <a href="index.html#plans">Plans</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms of use</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="foot-legal">Product Guard is a personal record-keeping tool. Reminders are calculated from what you enter and do not extend any manufacturer's warranty. &copy; 2026 Product Guard.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* The ledger is the page's argument: a warranty is a countdown, and one of
+     yours is always about to run out. Play it once, on load. */
+  var ledger = document.getElementById('ledger');
+  var row    = document.getElementById('expiring-row');
+  var count  = document.getElementById('expiring-count');
+  var bar    = document.getElementById('expiring-bar');
+  var dot    = document.getElementById('foot-dot');
+  var text   = document.getElementById('foot-text');
+
+  function expire() {
+    row.classList.remove('is-warn');
+    row.classList.add('is-dead');
+    count.textContent = 'Expired';
+    bar.style.setProperty('--left', '0%');
+    dot.hidden = false;
+    text.textContent = 'Cover ended today. You had 30 days’ notice.';
+  }
+
+  if (reduced) {
+    expire();
+  } else if (ledger) {
+    requestAnimationFrame(function () { ledger.classList.add('play'); });
+    setTimeout(expire, 2600);
+  }
+
+  /* Section headings settle in as you reach them. One effect, used once. */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
