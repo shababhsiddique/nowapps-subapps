@@ -4,3 +4,11 @@
 # Account deletion requests written at runtime by habit/delete-account.php
 habit/data/*
 !habit/data/.htaccess
+deploy_secrets.txt
+
+# Host-generated per-site config (cPanel writes these into each subdomain's
+# docroot). Top level of each site folder only, so the root .htaccess and
+# habit/data/.htaccess stay tracked.
+/*/.htaccess
+/*/.user.ini
+/*/php.ini
