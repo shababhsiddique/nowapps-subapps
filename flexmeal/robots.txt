@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flexmeal.nowapps.cc/sitemap.xml
