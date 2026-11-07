@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://easycaption.nowapps.cc/sitemap.xml

@@ -3,8 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DripRoom: AI Outfit Try-On — Virtual Try-On for iOS</title>
-  <meta name="description" content="DripRoom: AI Outfit Try-On — see outfits on yourself instantly. Upload your portrait, pick clothes, and get AI try-on previews saved to your wardrobe." />
+<title>DripRoom: AI Outfit Try-On — Virtual Try-On App for iPhone</title>
+<meta name="description" content="See outfits on yourself before you buy. Upload a portrait, pick clothes, and DripRoom generates an AI try-on preview in seconds. Free credits on the App Store.">
+<link rel="canonical" href="https://driproom.nowapps.cc/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#F8F4EF">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DripRoom: AI Outfit Try-On">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="DripRoom: AI Outfit Try-On — Virtual Try-On App for iPhone">
+<meta property="og:description" content="See outfits on yourself before you buy. Upload a portrait, pick clothes, and DripRoom generates an AI try-on preview in seconds. Free credits on the App Store.">
+<meta property="og:url" content="https://driproom.nowapps.cc/">
+<meta property="og:image" content="https://driproom.nowapps.cc/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DripRoom — see the outfit on you before you buy it. AI outfit try-on for iPhone.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DripRoom: AI Outfit Try-On — Virtual Try-On App for iPhone">
+<meta name="twitter:description" content="See outfits on yourself before you buy. Upload a portrait, pick clothes, and DripRoom generates an AI try-on preview in seconds. Free credits on the App Store.">
+<meta name="twitter:image" content="https://driproom.nowapps.cc/images/og.jpg">
+<meta name="twitter:image:alt" content="DripRoom — see the outfit on you before you buy it. AI outfit try-on for iPhone.">
+<meta name="apple-itunes-app" content="app-id=6762542615">
+<link rel="icon" href="images/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Shabab Haider Siddique",
+      "email": "contact.appsnow@gmail.com",
+      "@id": "https://driproom.nowapps.cc/#publisher",
+      "url": "https://driproom.nowapps.cc/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://driproom.nowapps.cc/#website",
+      "url": "https://driproom.nowapps.cc/",
+      "name": "DripRoom: AI Outfit Try-On",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://driproom.nowapps.cc/#publisher"
+      }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://driproom.nowapps.cc/#app",
+      "name": "DripRoom: AI Outfit Try-On",
+      "url": "https://driproom.nowapps.cc/",
+      "downloadUrl": "https://apps.apple.com/app/driproom-ai-outfit-try-on/id6762542615",
+      "installUrl": "https://apps.apple.com/app/driproom-ai-outfit-try-on/id6762542615",
+      "applicationCategory": "LifestyleApplication",
+      "applicationSubCategory": "Fashion",
+      "operatingSystem": "iOS",
+      "image": "https://driproom.nowapps.cc/images/og.jpg",
+      "description": "DripRoom uses AI to put any clothing on your own photo in seconds. Upload a portrait, pick a piece of clothing and see the fit, then save looks to your wardrobe.",
+      "featureList": [
+        "AI virtual try-on from your own portrait photo",
+        "Paste or upload any clothing image",
+        "Wardrobe to save portraits, clothes and generated looks",
+        "Free try-on credits on every device",
+        "No account required"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@id": "https://driproom.nowapps.cc/#publisher"
+      },
+      "publisher": {
+        "@id": "https://driproom.nowapps.cc/#publisher"
+      }
+    }
+  ]
+}
+</script>
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* Home-only layout */
@@ -590,13 +666,13 @@
       <div class="outfit-stage">
         <div class="outfit-slider" aria-label="Outfit previews" aria-live="polite">
           <div class="outfit-slide active" data-label="Look 1">
-            <img src="images/hero.png" alt="Try-on look 1" />
+            <img src="images/hero.webp" alt="DripRoom AI outfit try-on preview, first look" />
           </div>
           <div class="outfit-slide" data-label="Look 2">
-            <img src="images/hero-outfit2.JPG" alt="Try-on look 2" />
+            <img src="images/hero-outfit2.webp" alt="DripRoom AI outfit try-on preview, second look" />
           </div>
           <div class="outfit-slide" data-label="Look 3">
-            <img src="images/hero-outfit3.JPG" alt="Try-on look 3" />
+            <img src="images/hero-outfit3.webp" alt="DripRoom AI outfit try-on preview, third look" />
           </div>
         </div>
         <div class="outfit-controls">
@@ -608,16 +684,16 @@
           <span class="outfit-label" id="outfit-label">Look 1</span>
         </div>
         <div class="outfit-thumbs" aria-hidden="true">
-          <button type="button" class="outfit-thumb active" data-index="0"><img src="images/hero.png" alt="" /></button>
-          <button type="button" class="outfit-thumb" data-index="1"><img src="images/hero-outfit2.JPG" alt="" /></button>
-          <button type="button" class="outfit-thumb" data-index="2"><img src="images/hero-outfit3.JPG" alt="" /></button>
+          <button type="button" class="outfit-thumb active" data-index="0"><img loading="lazy" decoding="async" src="images/hero.webp" alt="" /></button>
+          <button type="button" class="outfit-thumb" data-index="1"><img loading="lazy" decoding="async" src="images/hero-outfit2.webp" alt="" /></button>
+          <button type="button" class="outfit-thumb" data-index="2"><img loading="lazy" decoding="async" src="images/hero-outfit3.webp" alt="" /></button>
         </div>
       </div>
 
       <div class="phone-float">
         <div class="phone-shell">
           <div class="phone-screen">
-            <img src="images/ui-screenshot.PNG" alt="DripRoom: AI Outfit Try-On app screenshot" />
+            <img loading="lazy" decoding="async" src="images/ui-screenshot.webp" alt="DripRoom: AI Outfit Try-On app screenshot" />
           </div>
         </div>
       </div>
@@ -644,16 +720,16 @@
         </div>
         <p style="font-size: 13px; font-weight: 600; color: var(--ink-muted); margin-top: 20px; margin-bottom: 8px;">Same model · different AI looks</p>
         <div class="mini-outfits" aria-hidden="true">
-          <img src="images/hero.png" alt="" class="active-thumb" />
-          <img src="images/hero-outfit2.JPG" alt="" />
-          <img src="images/hero-outfit3.JPG" alt="" />
+          <img loading="lazy" decoding="async" src="images/hero.webp" alt="" class="active-thumb" />
+          <img loading="lazy" decoding="async" src="images/hero-outfit2.webp" alt="" />
+          <img loading="lazy" decoding="async" src="images/hero-outfit3.webp" alt="" />
         </div>
       </div>
       <div class="preview-phone-wrap">
         <div class="preview-phone">
           <div class="phone-shell">
             <div class="phone-screen">
-              <img src="images/ui-screenshot.PNG" alt="DripRoom: AI Outfit Try-On wardrobe and try-on screens" />
+              <img loading="lazy" decoding="async" src="images/ui-screenshot.webp" alt="DripRoom: AI Outfit Try-On wardrobe and try-on screens" />
             </div>
           </div>
         </div>
