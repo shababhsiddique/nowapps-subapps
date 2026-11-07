@@ -286,7 +286,7 @@
     <a class="back" href="index.html">Back to Don't Touch: Phone Alarm</a>
 
     <h1>Privacy Policy</h1>
-    <p class="effective-date">Last Updated: July 28, 2026</p>
+    <p class="effective-date">Last Updated: November 7, 2026</p>
     <p class="intro">This Privacy Policy explains how <strong>Don't Touch: Phone Alarm</strong> collects, uses, stores, and shares information when you use the mobile app and related services (the "Service").</p>
 
     <div class="summary">
@@ -299,10 +299,11 @@
       <p>We collect the information needed to provide device protection, alarm, purchase, and support features. Depending on which features you use, this may include:</p>
       <ul>
         <li><strong>Security settings:</strong> selected alarm sounds, feature preferences, arming state, sensitivity settings, onboarding state, premium state, and similar app preferences.</li>
-        <li><strong>Passcode information:</strong> your Guard passcode is stored on your device using the iOS Keychain. We do not receive or store your passcode on our servers.</li>
+        <li><strong>Passcode information:</strong> your Guard passcode is stored on your device in the app's local preferences (UserDefaults), not in the iOS Keychain. We do not receive or store your passcode on our servers.</li>
         <li><strong>Biometric authentication result:</strong> if you enable Face ID or Touch ID to disarm the alarm, authentication is handled by Apple on your device. We receive only whether authentication succeeded or failed.</li>
         <li><strong>Device signals:</strong> motion, proximity, battery, charging, audio level, and notification events used to trigger app features. These signals are used for app functionality and are not used for advertising profiling.</li>
-        <li><strong>Camera and microphone access:</strong> camera access may be used for security-related photo or flashlight features where available, and microphone access is used for sound-based detection such as Clap to Find when you enable it.</li>
+        <li><strong>Camera and microphone access:</strong> camera access may be used for security-related photo features such as thief-face capture where available, and microphone access is used for sound-based detection such as Clap to Find when you enable it.</li>
+        <li><strong>Bluetooth accessories:</strong> if you use Bluetooth Finder, the app scans for nearby Bluetooth Low Energy accessories that are advertising and shows their names, an identifier assigned by your iPhone, and signal strength while you use it. If an accessory does not advertise a name, the app reads the manufacturer and service information it broadcasts to show a best guess at its brand or type, such as "Garmin device". If you save a device, its name, any name you give it, that best guess, that identifier, the times it was saved, last seen, and last connected, and your monitoring choice are stored on your device. They are not uploaded to us or sold. The app does not collect your location through this feature. Devices you do not save are held only in memory.</li>
         <li><strong>Purchase information:</strong> Apple and RevenueCat may process subscription status, product identifiers, receipts, renewal state, entitlement state, anonymous app user identifiers, device details, and transaction metadata.</li>
         <li><strong>Support information:</strong> if you contact us, we may receive your email address and the information you choose to include in your message.</li>
       </ul>
@@ -312,7 +313,7 @@
     <section>
       <p>We use information to:</p>
       <ul>
-        <li>provide alarms, motion detection, charging alerts, battery alerts, clap detection, Apple Watch controls, Control Center controls, and other security features;</li>
+        <li>provide alarms, motion detection, charging alerts, battery alerts, clap detection, Bluetooth Finder, Apple Watch controls, Control Center controls, and other security features;</li>
         <li>save your preferences and keep the app working across launches;</li>
         <li>verify premium access, process purchases, manage subscriptions, and restore purchases;</li>
         <li>send local notifications you request or allow;</li>
@@ -323,17 +324,22 @@
 
     <h2>3. On-Device Data</h2>
     <section>
-      <p>Many app settings are stored locally on your device through iOS storage such as UserDefaults, Keychain, and app group storage used by app extensions. Local data may remain on your device until you change settings, delete the data, or uninstall the app.</p>
+      <p>Many app settings are stored locally on your device through iOS storage such as UserDefaults and app group storage used by app extensions. Local data may remain on your device until you change settings, delete the data, or uninstall the app.</p>
+      <p>Saved Bluetooth devices are kept in this local storage. Removing a device, or clearing all saved devices, deletes what the app stored about it, and deleting the app clears the whole list. As with other app data, this local storage may be included in an iCloud or computer backup of your iPhone if you have set one up.</p>
       <p>Face ID and Touch ID are handled by iOS. We do not receive your face scan, fingerprint, biometric template, or Apple Account credentials.</p>
     </section>
 
-    <h2>4. Photos, Microphone, Motion, and Notifications</h2>
+    <h2>4. Camera, Flashlight, Microphone, Motion, Bluetooth, and Notifications</h2>
     <section>
       <p>The app asks for sensitive permissions only when needed for app features:</p>
       <div class="split">
         <div class="mini-card">
           <h3>Camera</h3>
-          <p>Used for supported security photo or flashlight features. Do not enable these features on a device you are not authorized to protect.</p>
+          <p>Used for supported security photo features such as thief-face capture. Do not enable these features on a device you are not authorized to protect.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Flashlight</h3>
+          <p>The alarm can flash the device's flashlight. Do not enable alarm features on a device you are not authorized to protect.</p>
         </div>
         <div class="mini-card">
           <h3>Microphone</h3>
@@ -341,11 +347,15 @@
         </div>
         <div class="mini-card">
           <h3>Motion and Proximity</h3>
-          <p>Used to detect movement, pocket state, or touch-related activity for alarm features.</p>
+          <p>Used to detect movement, pocket state, or touch-related activity for alarm features. On the Bluetooth signal screen, the phone's orientation is also used on your device to estimate a device's direction. It is not stored or sent anywhere.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Bluetooth</h3>
+          <p>Used to find nearby Bluetooth Low Energy accessories when you scan and, if you opt in for a saved device, to connect to it and tell you when it disconnects, including while the app is in the background. iOS asks for this permission the first time you scan. You can turn the feature off in the app's Settings.</p>
         </div>
         <div class="mini-card">
           <h3>Notifications</h3>
-          <p>Used to alert you about armed features, security events, and app status when notifications are enabled.</p>
+          <p>Used to alert you about armed features, security events, disconnected Bluetooth devices you chose to monitor, and app status when notifications are enabled. Bluetooth alerts are created on your device and can show the device's name.</p>
         </div>
       </div>
     </section>
@@ -354,12 +364,12 @@
     <section>
       <p>The Service may use third-party tools and platform services to operate purchases, billing, subscriptions, diagnostics, analytics, hosting, support, or app distribution. These providers may process information under their own privacy policies.</p>
       <ul>
-        <li><strong>Apple App Store, StoreKit, iCloud, system notifications, and device frameworks:</strong> used for app distribution, purchase sheets, subscriptions, restores, refunds, device permissions, local notifications, Keychain, and biometric authentication. See <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple Privacy Policy</a>.</li>
+        <li><strong>Apple App Store, StoreKit, iCloud, system notifications, and device frameworks:</strong> used for app distribution, purchase sheets, subscriptions, restores, refunds, device permissions, local notifications, and biometric authentication. See <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple Privacy Policy</a>.</li>
         <li><strong>RevenueCat:</strong> used to manage subscriptions, purchase status, product offerings, entitlement state, and purchase restoration. See <a href="https://www.revenuecat.com/privacy/" rel="noopener">RevenueCat Privacy Policy</a>.</li>
         <li><strong>Analytics or crash reporting providers:</strong> if enabled in a current or future app version, these services may receive diagnostic data such as device model, operating system version, app version, crash logs, usage events, and performance data to improve reliability.</li>
         <li><strong>Email and hosting providers:</strong> used to receive support requests and host public policy or support pages.</li>
       </ul>
-      <p>We do not sell your personal information. We do not use camera, microphone, passcode, Face ID, Touch ID, or motion data for third-party advertising profiling.</p>
+      <p>We do not sell your personal information. We do not use camera, microphone, passcode, Face ID, Touch ID, motion, or Bluetooth data for third-party advertising profiling.</p>
     </section>
 
     <h2>6. Log Data and Diagnostics</h2>
@@ -385,7 +395,7 @@
 
     <h2>10. Security</h2>
     <section>
-      <p>We use reasonable technical and organizational measures to protect information, including Apple platform protections such as Keychain for passcode storage. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
+      <p>We use reasonable technical and organizational measures to protect information, including the app sandbox and data protection provided by iOS for information stored on your device. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
     </section>
 
     <h2>11. Children's Privacy</h2>
@@ -397,7 +407,7 @@
     <section>
       <p>You can control many privacy choices from iOS Settings and inside the app:</p>
       <ul>
-        <li>disable camera, microphone, motion, Face ID, or notification permissions in iOS Settings;</li>
+        <li>disable camera, microphone, motion, Bluetooth, Face ID, or notification permissions in iOS Settings;</li>
         <li>change security settings and alarm preferences in the app;</li>
         <li>manage or cancel subscriptions in Apple Account subscription settings;</li>
         <li>delete the app to remove locally stored app data, except data retained by Apple, RevenueCat, or other providers under their policies;</li>
@@ -418,7 +428,7 @@
     <h2>15. Contact</h2>
     <div class="contact-section">
       <p>Questions or privacy requests? Email <a href="mailto:contact.appsnow@gmail.com">contact.appsnow@gmail.com</a>.</p>
-      <p>See also: <a href="terms_conditions.html">Terms of Use</a> &middot; <a href='support.html'>Support</a></p>
+      <p>See also: <a href="terms_conditions.html">Terms of Use</a> &middot; <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Apple Standard EULA</a> &middot; <a href="support.html">Support</a></p>
     </div>
   </div>
 </body>
