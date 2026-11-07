@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support | Don't Touch My Phone</title>
+  <meta name="description" content="Get help with Don't Touch My Phone. Email our support team and we'll get back to you.">
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --surface: #FFFFFF;
+      --surface-soft: #FBF0CE;
+      --ink: #1A1814;
+      --muted: #8B847B;
+      --line: rgba(26, 24, 20, 0.10);
+      --gold: #A37C0F;
+      --warm: #E5564B;
+      --lavender: #7C5CE0;
+      --lavender-soft: rgba(225, 210, 252, 0.35);
+      --shadow: 0 18px 42px rgba(26, 24, 20, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(251, 240, 206, 0.95), transparent 320px),
+        radial-gradient(circle at top right, rgba(225, 210, 252, 0.5), transparent 380px),
+        linear-gradient(180deg, #FAF7F2 0%, #FFFFFF 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: var(--warm); text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+
+    .legal-container {
+      width: min(100%, 720px);
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 22px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .back:hover { text-decoration: none; }
+
+    h1, h2, h3 { line-height: 1.12; margin: 0; letter-spacing: 0; }
+
+    h1 {
+      max-width: 620px;
+      margin-top: 22px;
+      font-size: clamp(40px, 7vw, 68px);
+      font-weight: 900;
+    }
+
+    .intro {
+      max-width: 640px;
+      margin: 18px 0 28px;
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 520;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: #111111;
+      background: var(--lavender-soft);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .badge::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--lavender);
+      box-shadow: 0 0 0 4px rgba(124, 92, 224, 0.12);
+    }
+
+    .support-card {
+      margin-top: 8px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .support-card .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      margin-bottom: 18px;
+      border-radius: 22px;
+      background: rgba(229, 86, 75, 0.10);
+      font-size: 34px;
+    }
+
+    .support-card h2 { font-size: clamp(24px, 4vw, 32px); font-weight: 850; }
+    .support-card p { margin: 12px auto 0; max-width: 460px; color: var(--muted); font-size: 17px; }
+
+    .email {
+      display: inline-flex;
+      margin-top: 20px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 26px;
+      padding: 15px 30px;
+      border-radius: 999px;
+      color: #FFFFFF;
+      background: var(--ink);
+      font-weight: 850;
+      font-size: 17px;
+      box-shadow: 0 14px 30px rgba(26, 24, 20, 0.22);
+      transition: transform 0.15s ease;
+    }
+
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+
+    .hint { margin-top: 16px; color: var(--muted); font-size: 14px; }
+
+    .contact-section {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #111111;
+      color: rgba(255, 255, 255, 0.72);
+      text-align: center;
+    }
+
+    .contact-section a { color: #FFFFFF; }
+
+    @media (max-width: 460px) {
+      .legal-container { padding: 16px 14px 40px; }
+      .support-card { padding: 24px; }
+      h1 { font-size: 38px; }
+    }
+  </style>
+</head>
+<body class="legal-page">
+  <div class="legal-container">
+    <a class="back" href="index.html">Back to Don't Touch My Phone</a>
+
+    <span class="badge">Support</span>
+    <h1>We're here to help</h1>
+    <p class="intro">Having trouble with an alarm, a subscription, or a feature? Send us an email and our team will get back to you as soon as we can.</p>
+
+    <div class="support-card">
+      <div class="icon">📧</div>
+      <h2>Email our support team</h2>
+      <p>Tap the button below to open your mail app with a message addressed to our support inbox.</p>
+      <span class="email">contact.appsnow@gmail.com</span>
+      <br>
+      <a class="btn" href="mailto:contact.appsnow@gmail.com?subject=Don't%20Touch%20My%20Phone%20-%20Support%20Request">Email Support</a>
+      <p class="hint">Please include your device model, iOS version, and a short description of the issue.</p>
+    </div>
+
+    <div class="contact-section">
+      <p>See also: <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms_conditions.html">Terms of Use</a></p>
+    </div>
+  </div>
+</body>
+</html>

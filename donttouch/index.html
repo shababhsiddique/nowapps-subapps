@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Don't Touch My Phone — Anti-Theft Alarm for iPhone</title>
+  <meta name="description" content="Don't Touch My Phone turns your iPhone into a smart anti-theft alarm. Motion detection, pocket alarm, charger alerts, clap to find, and more.">
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --surface: #FFFFFF;
+      --surface-soft: #FBF0CE;
+      --ink: #1A1814;
+      --muted: #8B847B;
+      --line: rgba(26, 24, 20, 0.10);
+      --gold: #A37C0F;
+      --warm: #E5564B;
+      --warm-soft: rgba(229, 86, 75, 0.10);
+      --lavender: #7C5CE0;
+      --lavender-soft: rgba(225, 210, 252, 0.35);
+      --green: #10B981;
+      --blue: #3B82F6;
+      --shadow: 0 18px 42px rgba(26, 24, 20, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(251, 240, 206, 0.95), transparent 380px),
+        radial-gradient(circle at top right, rgba(225, 210, 252, 0.5), transparent 420px),
+        linear-gradient(180deg, #FAF7F2 0%, #FFFFFF 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: var(--warm); text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(250, 247, 242, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 66px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 17px;
+      color: var(--ink);
+    }
+
+    .brand:hover { text-decoration: none; }
+
+    .brand .logo {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--warm);
+      box-shadow: 0 6px 16px rgba(229, 86, 75, 0.32);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a:not(.btn) {
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .nav-links a.btn-primary { color: #FFFFFF; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 15px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+
+    .btn-primary {
+      color: #FFFFFF;
+      background: var(--ink);
+      box-shadow: 0 12px 26px rgba(26, 24, 20, 0.22);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.82);
+      border-color: var(--line);
+    }
+
+    .nav .btn { padding: 10px 18px; }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 48px;
+      align-items: center;
+      padding: 72px 0 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: #111111;
+      background: var(--lavender-soft);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .badge::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--lavender);
+      box-shadow: 0 0 0 4px rgba(124, 92, 224, 0.12);
+    }
+
+    h1 {
+      margin: 18px 0 0;
+      font-size: clamp(42px, 6.4vw, 74px);
+      font-weight: 900;
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+    }
+
+    h1 .accent { color: var(--warm); }
+
+    .lead {
+      max-width: 540px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      font-weight: 520;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .trust span { display: inline-flex; align-items: center; gap: 8px; }
+    .trust .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--green); }
+
+    /* PHONE FRAME */
+    .phone-hero {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .phone-hero::before {
+      content: "";
+      position: absolute;
+      inset: -6% 10% 10%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229, 86, 75, 0.16), transparent 70%);
+      filter: blur(6px);
+      z-index: 0;
+    }
+
+    .phone {
+      position: relative;
+      z-index: 1;
+      width: 288px;
+      max-width: 78vw;
+      padding: 12px;
+      border-radius: 52px;
+      background: #111111;
+      box-shadow: 0 40px 80px rgba(26, 24, 20, 0.28), inset 0 0 0 2px rgba(255,255,255,0.06);
+    }
+
+    .phone img {
+      display: block;
+      width: 100%;
+      border-radius: 42px;
+    }
+
+    /* SECTION HELPERS */
+    section { scroll-margin-top: 80px; }
+
+    .section-head {
+      max-width: 640px;
+      margin: 0 auto 44px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--warm);
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4.4vw, 46px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .section-head p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 520;
+    }
+
+    .band { padding: 64px 0; }
+    .band-soft {
+      background: rgba(255, 255, 255, 0.55);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* FEATURES GRID */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(26, 24, 20, 0.05);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(26, 24, 20, 0.1);
+    }
+
+    .feature .icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 { margin: 0 0 6px; font-size: 20px; font-weight: 850; line-height: 1.2; }
+    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .i-warm { background: var(--warm-soft); }
+    .i-peach { background: rgba(247, 205, 165, 0.4); }
+    .i-lav { background: var(--lavender-soft); }
+    .i-blue { background: rgba(59, 130, 246, 0.12); }
+    .i-red { background: rgba(229, 86, 75, 0.12); }
+    .i-green { background: rgba(16, 185, 129, 0.12); }
+
+    /* SHOWCASE (screenshots) */
+    .showcase {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .shot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .shot .frame {
+      width: 100%;
+      max-width: 240px;
+      padding: 8px;
+      border-radius: 38px;
+      background: #111111;
+      box-shadow: 0 24px 50px rgba(26, 24, 20, 0.16);
+    }
+
+    .shot .frame img { display: block; width: 100%; border-radius: 30px; }
+
+    .shot h3 { margin: 20px 0 4px; font-size: 18px; font-weight: 850; }
+    .shot p { margin: 0; color: var(--muted); font-size: 14px; max-width: 260px; }
+
+    /* HIGHLIGHT split */
+    .split-highlight {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .checklist { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .checklist li::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      color: #FFFFFF;
+      background: var(--green);
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .checklist small { display: block; color: var(--muted); font-weight: 500; font-size: 14px; }
+
+    .sounds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .sound-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #FFFFFF;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    /* PRICING */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .plan {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(26, 24, 20, 0.05);
+    }
+
+    .plan.featured {
+      border-color: rgba(163, 124, 15, 0.4);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E8 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #FFFFFF;
+      background: var(--gold);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .plan h3 { margin: 0; font-size: 20px; font-weight: 850; }
+    .plan .price { margin: 12px 0 2px; font-size: 40px; font-weight: 900; }
+    .plan .price span { font-size: 16px; font-weight: 700; color: var(--muted); }
+    .plan .price-note { color: var(--muted); font-size: 14px; font-weight: 600; }
+    .plan ul { list-style: none; margin: 20px 0 24px; padding: 0; display: grid; gap: 10px; }
+    .plan li { display: flex; gap: 10px; font-size: 15px; font-weight: 600; }
+    .plan li::before { content: "✓"; color: var(--green); font-weight: 900; }
+    .plan .btn { width: 100%; margin-top: auto; }
+
+    .pricing-note {
+      max-width: 720px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CTA */
+    .cta-band {
+      margin: 24px 0;
+      padding: 56px 32px;
+      border-radius: 32px;
+      text-align: center;
+      color: #FFFFFF;
+      background: radial-gradient(circle at top, rgba(229, 86, 75, 0.5), transparent 60%), #17140f;
+      box-shadow: var(--shadow);
+    }
+    .cta-band h2 { color: #FFFFFF; }
+    .cta-band p { max-width: 520px; margin: 14px auto 28px; color: rgba(255,255,255,0.74); font-size: 18px; }
+    .cta-band .btn-primary { background: #FFFFFF; color: var(--ink); }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0 40px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
+    .footer-links a { color: var(--ink); font-size: 15px; font-weight: 700; }
+    .copyright { color: var(--muted); font-size: 13px; margin-top: 22px; text-align: center; }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 48px; }
+      .hero .badge, .cta-row, .trust { margin-left: auto; margin-right: auto; }
+      .hero .badge { display: inline-flex; }
+      .lead { margin-left: auto; margin-right: auto; }
+      .cta-row, .trust { justify-content: center; }
+      .split-highlight { grid-template-columns: 1fr; text-align: center; }
+      .checklist { text-align: left; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .sounds { justify-content: center; }
+      .features, .showcase, .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links a:not(.btn) { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .features, .showcase, .plans { grid-template-columns: 1fr; }
+      .cta-band { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo">🚨</span>
+        Don't Touch My Phone
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="support.html">Support</a>
+        <a href="#pricing">Pricing</a>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Get the App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div id="top"></div>
+  <section class="container hero">
+    <div>
+      <span class="badge">Anti-theft alarm for iPhone</span>
+      <h1>Nobody touches your phone. <span class="accent">Not without you knowing.</span></h1>
+      <p class="lead">Turn your iPhone into a smart security system. The moment someone moves it, unplugs the charger, or slips it from your pocket — a loud alarm goes off.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Download on the App Store</a>
+        <a class="btn btn-ghost" href="#features">See how it works</a>
+      </div>
+      <div class="trust">
+        <span><span class="dot"></span> Works fully offline</span>
+        <span><span class="dot"></span> Face ID protected</span>
+        <span><span class="dot"></span> No account needed</span>
+      </div>
+    </div>
+    <div class="phone-hero">
+      <div class="phone">
+        <img src="Home armed.PNG" alt="Don't Touch My Phone armed home screen">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="band band-soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Protection modes</span>
+        <h2>Six ways to keep your phone safe</h2>
+        <p>Pick the alarms that fit how you carry your phone. Arm one or arm them all.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="icon i-red">🚨</div>
+          <h3>Motion Detection</h3>
+          <p>Arm the alarm and any movement instantly triggers a loud siren.</p>
+        </div>
+        <div class="feature">
+          <div class="icon i-peach">📱</div>
+          <h3>Pocket Alarm</h3>
+          <p>Sound the alarm the instant your phone is taken from your pocket.</p>
+        </div>
+        <div class="feature">
+          <div class="icon i-lav">✈️</div>
+          <h3>Airplane Alarm</h3>
+          <p>Get alerted the moment someone switches on airplane mode to hide the device.</p>
+        </div>
+        <div class="feature">
+          <div class="icon i-blue">🔋</div>
+          <h3>Battery Alarm</h3>
+          <p>Be notified as soon as your battery reaches a full charge.</p>
+        </div>
+        <div class="feature">
+          <div class="icon i-warm">🔌</div>
+          <h3>Charger Alarm</h3>
+          <p>An alert fires the second someone unplugs the charger.</p>
+        </div>
+        <div class="feature">
+          <div class="icon i-green">👏</div>
+          <h3>Clap to Find</h3>
+          <p>Misplaced your phone? Just clap your hands and it answers back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS SHOWCASE -->
+  <section id="screens" class="band">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Take a look</span>
+        <h2>Simple, beautiful, and instant</h2>
+        <p>Everything is one slide away. Arm, disarm, and switch alarm sounds in seconds.</p>
+      </div>
+      <div class="showcase">
+        <div class="shot">
+          <div class="frame"><img src="Security Modes.PNG" alt="Security features list"></div>
+          <h3>All modes in one place</h3>
+          <p>Browse every protection mode from a single, tidy dashboard.</p>
+        </div>
+        <div class="shot">
+          <div class="frame"><img src="Pocket Alarm.PNG" alt="Pocket Alarm screen"></div>
+          <h3>Slide to activate</h3>
+          <p>Turn any mode on with a satisfying swipe — no menus, no clutter.</p>
+        </div>
+        <div class="shot">
+          <div class="frame"><img src="Clap to Find.PNG" alt="Clap to Find screen"></div>
+          <h3>Find it with a clap</h3>
+          <p>Lost it in the couch cushions? A clap brings it back to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT: sounds + security -->
+  <section class="band band-soft">
+    <div class="container split-highlight">
+      <div class="phone-hero">
+        <div class="phone" style="width: 260px;">
+          <img src="Airplane Mode.PNG" alt="Airplane Alarm screen">
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Loud &amp; secure</span>
+        <h2>Alarms they can't ignore. Access only you control.</h2>
+        <ul class="checklist">
+          <li><div>Pick from bold alarm sounds
+            <small>Police, Siren 2, Air Horn, Ship Horn, Car Horn and more.</small>
+          </div></li>
+          <li><div>Disarm with Face ID or Touch ID
+            <small>Only you can silence the alarm once it's triggered.</small>
+          </div></li>
+          <li><div>Passcode stored safely on-device
+            <small>Your Guard passcode lives in the iOS Keychain — never on a server.</small>
+          </div></li>
+          <li><div>Control from Apple Watch &amp; Control Center
+            <small>Arm and disarm without unlocking your phone.</small>
+          </div></li>
+        </ul>
+        <div class="sounds">
+          <span class="sound-pill">🚓 Police</span>
+          <span class="sound-pill">🚨 Siren 2</span>
+          <span class="sound-pill">📯 Air Horn</span>
+          <span class="sound-pill">🚢 Ship Horn</span>
+          <span class="sound-pill">🚗 Car Horn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="band">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Premium</span>
+        <h2>Unlock the full arsenal</h2>
+        <p>Start free. Go premium for unlimited alarm sounds, every alert type, and thief-face capture.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Weekly</h3>
+          <div class="price">$2.99 <span>/ week</span></div>
+          <p class="price-note">Auto-renews weekly. Cancel anytime.</p>
+          <ul>
+            <li>All security modes</li>
+            <li>Unlimited alarm sounds</li>
+            <li>All alert types</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Start Weekly</a>
+        </div>
+        <div class="plan featured">
+          <span class="tag">Best Value</span>
+          <h3>Lifetime</h3>
+          <div class="price">$24.99 <span>once</span></div>
+          <p class="price-note">One-time purchase. Yours forever.</p>
+          <ul>
+            <li>Everything in Weekly &amp; Monthly</li>
+            <li>Thief-face capture</li>
+            <li>All future updates</li>
+            <li>Pay once, no renewals</li>
+          </ul>
+          <a class="btn btn-primary" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Get Lifetime</a>
+        </div>
+        <div class="plan">
+          <h3>Monthly</h3>
+          <div class="price">$9.99 <span>/ month</span></div>
+          <p class="price-note">Auto-renews monthly. Cancel anytime.</p>
+          <ul>
+            <li>All security modes</li>
+            <li>Unlimited alarm sounds</li>
+            <li>All alert types</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Start Monthly</a>
+        </div>
+      </div>
+      <p class="pricing-note">Prices shown are US storefront prices and may vary by region. Taxes and renewal terms are shown in the App Store purchase sheet before you confirm. Subscriptions auto-renew unless cancelled at least 24 hours before renewal. See our <a href="terms_conditions.html">Terms of Use</a> for details.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="download" class="container">
+    <div class="cta-band">
+      <h2>Ready to guard your phone?</h2>
+      <p>Download Don't Touch My Phone and arm your first alarm in under a minute.</p>
+      <a class="btn btn-primary" href="https://apps.apple.com/us/app/dont-touch-my-iphone-alarm/id6783889805" target="_blank" rel="noopener">Download on the App Store</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a class="brand" href="#top">
+          <span class="logo">🚨</span>
+          Don't Touch My Phone
+        </a>
+        <nav class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms_conditions.html">Terms of Use</a>
+          <a href="support.html">Support</a>
+        </nav>
+      </div>
+      <p class="copyright">© 2026 Don't Touch My Phone. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

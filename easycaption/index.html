@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Easy Caption — AI Caption & Video Editor</title>
+  <meta name="description" content="Easy Caption is the #1 AI caption generator for iOS. Auto-generate captions with live timing, custom themes, multi-language translation, and a full video editor — all in one app." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #04030a;
+      --card:       rgba(255,255,255,.045);
+      --card-hov:   rgba(255,255,255,.075);
+      --border:     rgba(255,255,255,.08);
+      --border-hov: rgba(160,100,255,.40);
+      --purple:     #9b3ff5;
+      --blue:       #3b7bf5;
+      --accent:     #c084fc;
+      --text:       #f0eeff;
+      --text-sec:   #8b82b8;
+      --text-mut:   #4a4468;
+      --r:          20px;
+      --r-sm:       12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* noise grain */
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .022;
+    }
+
+    /* blobs */
+    .blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+    .b1 { width: 700px; height: 700px; background: rgba(100,30,210,.17); top: -200px; right: -200px; }
+    .b2 { width: 550px; height: 550px; background: rgba(30,70,230,.13); bottom: -160px; left: -160px; }
+    .b3 { width: 400px; height: 400px; background: rgba(160,50,255,.08); top: 55%; left: 50%; transform: translateX(-50%); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(4,3,10,.72);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1060px; margin: 0 auto;
+      padding: 0 28px;
+      height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo img { width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 0 18px rgba(140,60,255,.5); }
+    .logo-text { font-size: 16px; font-weight: 800; letter-spacing: -.25px; color: var(--text); }
+
+    .nav-links { display: flex; gap: 2px; }
+    .nav-links a {
+      color: var(--text-sec); text-decoration: none;
+      font-size: 13.5px; font-weight: 500;
+      padding: 7px 14px; border-radius: 20px;
+      border: 1px solid transparent;
+      transition: all .2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); background: rgba(255,255,255,.06); border-color: var(--border); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, #9b3ff5, #3b7bf5);
+      color: #fff !important;
+      border: none !important;
+      font-weight: 700 !important;
+      padding: 8px 18px !important;
+      box-shadow: 0 4px 16px rgba(100,50,230,.35);
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(100,50,230,.45) !important; }
+
+    /* ── WRAP ── */
+    .wrap { position: relative; z-index: 1; max-width: 1060px; margin: 0 auto; padding: 0 28px 100px; }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 80px 0 72px;
+    }
+
+    .hero-left { display: flex; flex-direction: column; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+      font-size: 11.5px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(192,132,252,.10); border: 1px solid rgba(192,132,252,.25);
+      border-radius: 20px; padding: 5px 14px; margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 900; letter-spacing: -1.2px; line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .grad {
+      background: linear-gradient(130deg, #d8b4fe, #a78bfa 45%, #60a5fa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 17px; line-height: 1.7; color: var(--text-sec);
+      max-width: 440px; margin-bottom: 36px;
+    }
+
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: linear-gradient(135deg, #9b3ff5, #3b7bf5);
+      color: #fff; font-size: 15px; font-weight: 700;
+      padding: 14px 28px; border-radius: 50px; text-decoration: none;
+      box-shadow: 0 10px 30px rgba(110,50,230,.38), 0 2px 8px rgba(0,0,0,.35);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(110,50,230,.48); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.06); border: 1px solid var(--border);
+      color: var(--text); font-size: 15px; font-weight: 600;
+      padding: 14px 24px; border-radius: 50px; text-decoration: none;
+      transition: background .2s, border-color .2s, transform .18s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18); transform: translateY(-2px); }
+
+    /* stats row */
+    .stats { display: flex; gap: 28px; margin-top: 40px; }
+    .stat-item { display: flex; flex-direction: column; gap: 3px; }
+    .stat-val {
+      font-size: 26px; font-weight: 900; letter-spacing: -.5px;
+      background: linear-gradient(130deg, #d8b4fe, #818cf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-lbl { font-size: 12px; font-weight: 500; color: var(--text-mut); }
+
+    /* hero image */
+    .hero-right { position: relative; display: flex; justify-content: center; }
+
+    .hero-img-wrap {
+      position: relative; width: 100%;
+      border-radius: 28px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(100,40,220,.30), 0 8px 24px rgba(0,0,0,.5);
+      border: 1px solid rgba(160,100,255,.18);
+    }
+    .hero-img-wrap img { width: 100%; display: block; }
+
+    .hero-glow {
+      position: absolute; inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(140,60,255,.22), transparent 65%);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 64px 0; }
+
+    /* ── SECTION HEADER ── */
+    .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase;
+      background: linear-gradient(130deg, #c084fc, #818cf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 12px;
+    }
+    h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; letter-spacing: -.5px; margin-bottom: 12px; }
+    .section-sub { font-size: 16px; color: var(--text-sec); line-height: 1.65; margin-bottom: 48px; max-width: 520px; }
+
+    /* ── FEATURE ROWS ── */
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+
+    .feature-text { display: flex; flex-direction: column; gap: 16px; }
+
+    .feature-tag {
+      display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+      font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      border-radius: 20px; padding: 5px 13px;
+    }
+    .tag-purple { color: #c084fc; background: rgba(192,132,252,.10); border: 1px solid rgba(192,132,252,.22); }
+    .tag-blue   { color: #60a5fa; background: rgba(96,165,250,.10);  border: 1px solid rgba(96,165,250,.22); }
+    .tag-green  { color: #34d399; background: rgba(52,211,153,.10);  border: 1px solid rgba(52,211,153,.22); }
+
+    .feature-text h3 { font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; letter-spacing: -.4px; line-height: 1.2; }
+    .feature-text p  { font-size: 15.5px; line-height: 1.75; color: var(--text-sec); }
+
+    .feature-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .feature-bullets li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14.5px; color: var(--text-sec); line-height: 1.5;
+    }
+    .bullet-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+      background: linear-gradient(135deg, #c084fc, #818cf8);
+    }
+
+    .feature-img {
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(80,30,200,.24), 0 6px 18px rgba(0,0,0,.45);
+      border: 1px solid rgba(160,100,255,.15);
+    }
+    .feature-img img { width: 100%; display: block; }
+
+    /* ── SCREENSHOT STRIP ── */
+    .strip-section { margin-bottom: 80px; }
+
+    .screenshot-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .strip-card {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(80,30,200,.15), 0 4px 12px rgba(0,0,0,.4);
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+      cursor: default;
+    }
+    .strip-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 20px 52px rgba(120,50,230,.25), 0 6px 18px rgba(0,0,0,.4);
+      border-color: rgba(160,100,255,.32);
+    }
+    .strip-card img { width: 100%; display: block; }
+
+    /* ── FEATURES GRID ── */
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 80px;
+    }
+
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 20px;
+      backdrop-filter: blur(8px);
+      transition: border-color .22s, transform .22s, background .22s, box-shadow .22s;
+    }
+    .feat-card:hover {
+      background: var(--card-hov);
+      border-color: var(--border-hov);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(120,60,240,.12);
+    }
+    .feat-card-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 14px;
+    }
+    .feat-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 7px; }
+    .feat-card p  { font-size: 13px; line-height: 1.65; color: var(--text-sec); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(90,20,180,.28), rgba(20,50,180,.22));
+      border: 1px solid rgba(160,100,255,.22);
+      border-radius: 30px; padding: 60px 48px;
+      text-align: center; position: relative; overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .cta-banner::before {
+      content: ""; position: absolute; top: -120px; right: -120px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(160,80,255,.20), transparent 70%);
+    }
+    .cta-banner::after {
+      content: ""; position: absolute; bottom: -100px; left: -100px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(60,120,255,.16), transparent 70%);
+    }
+    .cta-banner img {
+      width: 76px; height: 76px; border-radius: 20px;
+      margin: 0 auto 20px; display: block;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 16px 40px rgba(120,40,220,.45);
+    }
+    .cta-banner h2 { font-size: clamp(26px, 3vw, 38px); margin-bottom: 12px; }
+    .cta-banner p  { color: var(--text-sec); font-size: 16px; margin-bottom: 32px; line-height: 1.65; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* App Store badge */
+    .appstore-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: #000;
+      font-size: 14px; font-weight: 700;
+      padding: 13px 24px; border-radius: 14px; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .appstore-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.4); }
+    .appstore-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      max-width: 1060px; margin: 0 auto;
+      padding: 28px 28px;
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 9px; }
+    .footer-logo img { width: 26px; height: 26px; border-radius: 7px; }
+    .footer-logo span { font-size: 13px; font-weight: 700; color: var(--text-sec); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .footer-links a { color: var(--text-mut); text-decoration: none; font-size: 12.5px; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 12px; color: var(--text-mut); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 52px 0 48px; }
+      .hero-right { order: -1; }
+      .feature-row { grid-template-columns: 1fr; gap: 28px; }
+      .feature-row.reverse { direction: ltr; }
+      .screenshot-strip { grid-template-columns: 1fr 1fr; }
+      .stats { gap: 20px; }
+      .cta-banner { padding: 44px 24px; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .screenshot-strip { grid-template-columns: 1fr; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .nav-links .hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <img src="images/icon.png" alt="Easy Caption" />
+      <span class="logo-text">Easy Caption</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="support.html" class="hide-sm">Support</a>
+      <a href="privacy.html" class="hide-sm">Privacy</a>
+      <a href="terms.html" class="hide-sm">Terms</a>
+      <a href="support.html#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="badge">✦ #1 Caption Generator for iOS</div>
+      <h1>The Only<br><span class="grad">Captions App</span><br>You Need</h1>
+      <p class="hero-sub">Auto-generate perfectly timed captions, apply cinematic themes, translate into 50+ languages, and export watermark-free — all inside one editor.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://apps.apple.com/us/app/easy-caption-speech-to-text/id6762548669">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download Free
+        </a>
+        <a class="btn-ghost" href="#features">See Features ↓</a>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-val">98%</span>
+          <span class="stat-lbl">Accuracy</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">50+</span>
+          <span class="stat-lbl">Languages</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">AI</span>
+          <span class="stat-lbl">Powered</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-glow"></div>
+      <div class="hero-img-wrap">
+        <img src="images/hero-marketing.png" alt="Easy Caption App" />
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── FEATURES (alternating rows) ── -->
+  <div id="features">
+    <p class="eyebrow">Core Features</p>
+    <h2>Everything you need<br>to caption perfectly</h2>
+    <p class="section-sub">From auto-transcription to export — Easy Caption handles every step of the workflow inside one beautiful editor.</p>
+  </div>
+
+  <!-- Feature 1 -->
+  <div class="feature-row">
+    <div class="feature-text">
+      <div class="feature-tag tag-purple">✦ Caption Engine</div>
+      <h3>Auto captions<br>with live timing</h3>
+      <p>Easy Caption listens to your video and generates frame-accurate subtitles automatically. Edit any word, shift timing with drag handles, and re-sync the full transcript in one tap.</p>
+      <ul class="feature-bullets">
+        <li><span class="bullet-dot"></span>On-device + cloud speech recognition</li>
+        <li><span class="bullet-dot"></span>Word-level timestamp editing</li>
+        <li><span class="bullet-dot"></span>Live subtitle preview while editing</li>
+        <li><span class="bullet-dot"></span>Non-destructive until export</li>
+      </ul>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-captions-timing.png" alt="Auto captions with live timing" />
+    </div>
+  </div>
+
+  <!-- Feature 2 -->
+  <div class="feature-row reverse">
+    <div class="feature-text">
+      <div class="feature-tag tag-purple">✦ Caption Engine</div>
+      <h3>Detect, sync &<br>generate in seconds</h3>
+      <p>A three-step pipeline — detect speech, align to timeline, generate styled captions — runs in the background while you review. No manual syncing, no waiting.</p>
+      <ul class="feature-bullets">
+        <li><span class="bullet-dot"></span>Automatic speech detection</li>
+        <li><span class="bullet-dot"></span>Timeline alignment with waveform</li>
+        <li><span class="bullet-dot"></span>AI-generated caption text</li>
+        <li><span class="bullet-dot"></span>Instant re-generation on edits</li>
+      </ul>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-captions-workflow.png" alt="Caption workflow" />
+    </div>
+  </div>
+
+  <!-- Feature 3 -->
+  <div class="feature-row">
+    <div class="feature-text">
+      <div class="feature-tag tag-blue">🎨 Theme Stack</div>
+      <h3>Theme captions<br>for short-form video</h3>
+      <p>Switch between Bold, Cinematic, and Soft subtitle styles inside the same editor. Every theme is designed for modern short-form content — TikTok, Reels, Shorts — and looks great out of the box.</p>
+      <ul class="feature-bullets">
+        <li><span class="bullet-dot"></span>Bold, Cinematic & Soft presets</li>
+        <li><span class="bullet-dot"></span>Custom font import (.ttf / .otf)</li>
+        <li><span class="bullet-dot"></span>Colour, size & position controls</li>
+        <li><span class="bullet-dot"></span>Save unlimited custom themes (Pro)</li>
+      </ul>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-themes-editor.png" alt="Caption themes editor" />
+    </div>
+  </div>
+
+  <!-- Feature 4 -->
+  <div class="feature-row reverse">
+    <div class="feature-text">
+      <div class="feature-tag tag-green">✂️ Unified Editor</div>
+      <h3>Edit video, stickers,<br>text & music together</h3>
+      <p>One timeline. One canvas. Overlays, stickers, text panels, audio tracks, and captions all live in the same shared workflow — no switching between tools, no re-importing.</p>
+      <ul class="feature-bullets">
+        <li><span class="bullet-dot"></span>Multi-layer canvas with drag & drop</li>
+        <li><span class="bullet-dot"></span>Built-in audio & music library</li>
+        <li><span class="bullet-dot"></span>Sticker & text overlay panels</li>
+        <li><span class="bullet-dot"></span>One-tap export to camera roll</li>
+      </ul>
+    </div>
+    <div class="feature-img">
+      <img src="images/feature-editor-canvas.png" alt="Unified video editor" />
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── SCREENSHOT STRIP ── -->
+  <div class="strip-section">
+    <p class="eyebrow">App Screenshots</p>
+    <h2>See it in action</h2>
+    <p class="section-sub">Real screens from the app — what you see is exactly what you get.</p>
+
+    <div class="screenshot-strip">
+      <div class="strip-card">
+        <img src="images/feature-captions-timing.png" alt="Caption timing screen" />
+      </div>
+      <div class="strip-card">
+        <img src="images/feature-themes-minimal.png" alt="Theme selector screen" />
+      </div>
+      <div class="strip-card">
+        <img src="images/feature-editor-dark.png" alt="Unified editor screen" />
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── FEATURE GRID ── -->
+  <div>
+    <p class="eyebrow">Everything Included</p>
+    <h2>Packed with powerful tools</h2>
+    <p class="section-sub">Every feature you need to create professional captioned videos — free to start, Pro to unlock everything.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(192,132,252,.12);">🎙️</div>
+      <h4>AI Transcription</h4>
+      <p>98% accurate speech-to-text, powered by on-device and cloud AI models.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(96,165,250,.12);">🌐</div>
+      <h4>50+ Languages</h4>
+      <p>Auto-translate captions into over 50 languages with one tap.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(52,211,153,.12);">🎨</div>
+      <h4>Custom Themes</h4>
+      <p>Choose from presets or build your own theme with custom fonts and colours.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(251,191,36,.12);">🎵</div>
+      <h4>Audio Library</h4>
+      <p>Browse royalty-free tracks and add background music directly in the editor.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(248,113,113,.12);">✂️</div>
+      <h4>Video Trimming</h4>
+      <p>Drag trim handles on the timeline to cut your video to the perfect length.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(167,139,250,.12);">📤</div>
+      <h4>Watermark-Free Export</h4>
+      <p>Export clean, high-quality video with no logo — available with Pro.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(34,211,238,.12);">🖼️</div>
+      <h4>Photos to Video</h4>
+      <p>Turn a set of photos into a captioned slideshow video in seconds.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-icon" style="background:rgba(74,222,128,.12);">🗂️</div>
+      <h4>Draft Manager</h4>
+      <p>Save multiple projects, pick up where you left off, and manage all your drafts from one screen.</p>
+    </div>
+  </div>
+
+  <!-- ── CTA BANNER ── -->
+  <div class="cta-banner">
+    <img src="images/icon.png" alt="Easy Caption" />
+    <h2>Start captioning<br><span class="grad">for free today</span></h2>
+    <p>Download Easy Caption on the App Store.<br>Free to use — upgrade to Pro for unlimited access.</p>
+    <div class="cta-btns">
+      <a class="appstore-btn" href="https://apps.apple.com/us/app/easy-caption-speech-to-text/id6762548669">
+        <svg viewBox="0 0 24 24" fill="black"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+      <a class="btn-ghost" href="support.html">Get Support →</a>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="images/icon.png" alt="Easy Caption" />
+    <span>Easy Caption</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:contact.appsnow@gmail.com">Contact</a>
+  </div>
+  <span class="footer-copy">© 2025 Easy Caption. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
