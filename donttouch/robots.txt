@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://donttouchmyiphone.nowapps.cc/sitemap.xml
+Sitemap: https://donttouch.nowapps.cc/sitemap.xml
