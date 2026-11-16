@@ -1,0 +1,76 @@
+/* Guide pages (haiku, love poem, sonnet generators). Loaded after site.css,
+   which supplies the tokens, the bar, the footer and .page. */
+
+.g-hero {
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(2rem, 6vw, 5rem); align-items: center;
+}
+.g-hero h1 {
+  font-weight: 500; font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.25rem);
+  line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 1.1rem; text-wrap: balance;
+}
+.g-hero .lead { margin: 0 0 1.75rem; color: var(--ink-soft); font-size: 1.1875rem; max-width: 36rem; text-wrap: pretty; }
+.g-hero .note { margin: 0.9rem 0 0; color: var(--ink-faint); font-size: 0.9375rem; }
+.g-hero__art { margin: 0; justify-self: center; }
+.g-hero__art img { width: min(100%, 17rem); height: auto; filter: drop-shadow(0 16px 20px rgba(70, 50, 80, 0.2)); }
+@media (max-width: 760px) {
+  .g-hero { grid-template-columns: 1fr; }
+  .g-hero__art { display: none; }
+}
+
+.g-body { max-width: 44rem; margin-top: clamp(3.5rem, 8vw, 6rem); }
+.g-body h2 {
+  font-weight: 500; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem);
+  letter-spacing: -0.02em; line-height: 1.15; margin: 3.5rem 0 0.9rem; text-wrap: balance;
+}
+.g-body h2:first-child { margin-top: 0; }
+.g-body h3 { font-weight: 600; font-size: 1.0625rem; margin: 1.75rem 0 0.35rem; }
+.g-body p, .g-body li { color: #463E49; }
+.g-body p { margin: 0 0 1rem; }
+.g-body ul, .g-body ol { margin: 0 0 1.25rem; padding-left: 1.2rem; }
+.g-body li { margin-bottom: 0.45rem; padding-left: 0.2rem; }
+.g-body li::marker { color: var(--violet); }
+.g-body a { color: var(--violet); }
+.g-body strong { color: var(--ink); font-weight: 600; }
+
+/* a poem on a sheet of paper, as in the app */
+.verse {
+  margin: 1.5rem 0 2rem; padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--sheet); border-radius: var(--r-sheet); box-shadow: var(--shadow);
+}
+.verse__title { margin: 0 0 0.2rem !important; font-family: var(--f-verse); font-weight: 500; font-size: 1.5rem; line-height: 1.2; color: var(--ink) !important; }
+.verse__meta { margin: 0 0 1.25rem !important; font-size: 0.875rem; color: var(--ink-faint) !important; }
+.verse__lines { margin: 0 !important; font-family: var(--f-verse); font-size: 1.1875rem; line-height: 1.6; color: var(--ink) !important; }
+.verse__lines + .verse__lines { margin-top: 1rem !important; }
+.verse__count { display: inline-block; min-width: 2.2rem; margin-left: 0.6rem; font-family: var(--f-sans); font-size: 0.8125rem; color: var(--ink-faint); }
+.verses { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.verses .verse { margin: 0; }
+.verses .verse__lines { font-size: 1.0625rem; }
+
+.steps { list-style: none; padding: 0 !important; counter-reset: s; display: grid; gap: 0.75rem; }
+.steps li {
+  counter-increment: s; position: relative; margin: 0 !important;
+  padding: 1rem 1.1rem 1rem 3.4rem !important; border-radius: 14px; background: var(--paper-2);
+}
+.steps li::before {
+  content: counter(s); position: absolute; left: 1rem; top: 1rem;
+  width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: var(--paper); font-size: 0.875rem; font-weight: 500;
+}
+.steps strong { display: block; }
+
+.ideas { columns: 2; column-gap: 2rem; }
+.ideas li { break-inside: avoid; }
+@media (max-width: 560px) { .ideas { columns: 1; } }
+
+.g-cta {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem); padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--r-sheet); background: var(--night); color: var(--night-ink);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.g-cta h2 { margin: 0 0 0.4rem; font-weight: 500; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem); letter-spacing: -0.02em; line-height: 1.15; }
+.g-cta p { margin: 0; color: var(--night-soft); max-width: 34rem; }
+
+.related { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; font-size: 0.975rem; }
+.related span { color: var(--ink-faint); }
+.related a { color: var(--violet); font-weight: 500; }

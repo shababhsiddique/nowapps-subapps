@@ -3,19 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Poem Writer: AI Poems for iPhone and iPad</title>
-<meta name="description" content="Tell Poem Writer how you feel and it writes the poem, in 30 forms and 33 tones, paints a cover for it and reads it aloud.">
-<meta name="robots" content="index, follow">
+<title>Poem Writer: AI Poem Generator for iPhone and iPad</title>
+<meta name="description" content="Poem Writer is an AI poem generator for iPhone and iPad. Tell it how you feel and it writes the poem in 30 forms and 33 tones, paints a cover and reads it aloud.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://poem.nowapps.cc/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Poem Writer">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Poem Writer: AI poems from a feeling">
 <meta property="og:description" content="Some feelings only fit in a poem. Poem Writer turns yours into one, paints its cover and reads it back to you.">
 <meta property="og:url" content="https://poem.nowapps.cc/">
 <meta property="og:image" content="https://poem.nowapps.cc/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Poem Writer: a watercolour quill, inkpot and flowers beside a written poem">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Poem Writer: AI poems from a feeling">
+<meta name="twitter:description" content="Some feelings only fit in a poem. Poem Writer turns yours into one, paints its cover and reads it back to you.">
+<meta name="twitter:image" content="https://poem.nowapps.cc/share.jpg">
 <meta name="theme-color" content="#F7F2EB">
 <meta name="apple-itunes-app" content="app-id=6754861385">
 <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
@@ -26,18 +31,57 @@
 <link rel="stylesheet" href="css/scrollcraft.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/landing.css">
+<link rel="preload" as="image" href="img/quill-440.webp" imagesrcset="img/quill-440.webp 440w, img/quill.webp 798w" imagesizes="(max-width: 860px) 120px, (max-width: 1047px) 220px, (max-width: 1714px) 21vw, 360px" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "Poem Writer",
-  "operatingSystem": "iOS, iPadOS",
-  "applicationCategory": "LifestyleApplication",
-  "description": "Write poems from a feeling or a topic in 30 forms and 33 tones, with generated cover artwork, translation and read-aloud.",
-  "url": "https://poem.nowapps.cc/",
-  "downloadUrl": "https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@type": "Organization", "name": "Bitmesh" }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://poem.nowapps.cc/#org",
+      "name": "Bitmesh",
+      "url": "https://bitmesh.ai/",
+      "email": "contact.appsnow@gmail.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://poem.nowapps.cc/#website",
+      "url": "https://poem.nowapps.cc/",
+      "name": "Poem Writer",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://poem.nowapps.cc/#org" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://poem.nowapps.cc/#webpage",
+      "url": "https://poem.nowapps.cc/",
+      "name": "Poem Writer: AI Poem Generator for iPhone and iPad",
+      "description": "Poem Writer is an AI poem generator for iPhone and iPad. Tell it how you feel and it writes the poem in 30 forms and 33 tones, paints a cover and reads it aloud.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://poem.nowapps.cc/#website" },
+      "about": { "@id": "https://poem.nowapps.cc/#app" },
+      "primaryImageOfPage": "https://poem.nowapps.cc/share.jpg"
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://poem.nowapps.cc/#app",
+      "name": "Poem Writer",
+      "alternateName": "Poem Writer: AI Poetry Writing",
+      "operatingSystem": "iOS 18.0 or later, iPadOS 18.0 or later",
+      "applicationCategory": "LifestyleApplication",
+      "description": "An AI poem generator that writes poems from a feeling or a topic in 30 forms and 33 tones, checks fixed forms against their rules, paints cover artwork, translates and reads poems aloud.",
+      "url": "https://poem.nowapps.cc/",
+      "downloadUrl": "https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385",
+      "installUrl": "https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385",
+      "image": "https://poem.nowapps.cc/img/apple-touch-icon.png",
+      "screenshot": "https://poem.nowapps.cc/share.jpg",
+      "softwareVersion": "2.0.0",
+      "featureList": "30 poem forms including haiku, sonnet, villanelle and sestina; 33 tones; 184 languages; generated cover artwork in six styles; read-aloud with line highlighting; translation; drafts stored on device",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3", "bestRating": "5", "worstRating": "1" },
+      "publisher": { "@id": "https://poem.nowapps.cc/#org" }
+    }
+  ]
 }
 </script>
 </head>
@@ -64,7 +108,7 @@
         <p class="cover__sub">Tell Poem Writer what&rsquo;s on your mind. It writes the poem, paints a cover for it and reads it back to you.</p>
         <div class="cover__act">
           <a class="get" href="https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385">Get Poem Writer</a>
-          <span class="cover__note">Free on the App Store for iPhone and iPad</span>
+          <span class="cover__note">A free AI poem generator on the App Store for iPhone and iPad</span>
         </div>
       </div>
 
@@ -77,7 +121,7 @@
       </div>
 
       <img class="pl pl--lavender" src="img/lavender.webp" alt="" width="212" height="572" data-sc-parallax="-2.4">
-      <img class="pl pl--quill" src="img/quill.webp" alt="" width="798" height="958" data-sc-parallax="-3.2">
+      <img class="pl pl--quill" src="img/quill-440.webp" srcset="img/quill-440.webp 440w, img/quill.webp 798w" sizes="(max-width: 860px) 120px, (max-width: 1047px) 220px, (max-width: 1714px) 21vw, 360px" alt="" width="798" height="958" fetchpriority="high" data-sc-parallax="-3.2">
       <img class="pl pl--inkpot" src="img/inkpot.webp" alt="" width="362" height="442" data-sc-parallax="-2.8">
       <div class="cover__floor" aria-hidden="true"></div>
     </div>
@@ -132,7 +176,7 @@
       <div class="index__rail" data-sc-pan="0.04">
         <div class="index__lead">
           <h2 class="h2">Thirty forms, from three lines to thirty&#8209;nine.</h2>
-          <p class="lede">Choose a form, or leave it open and let the poem find its own shape. Fixed forms are checked against their rules before you see them, so a haiku comes back as three lines and a sestina as thirty&#8209;nine.</p>
+          <p class="lede">Choose a form, or leave it open and let the poem find its own shape. Fixed forms are checked against their rules before you see them, so a <a href="ai-haiku-generator.html">haiku</a> comes back as three lines, a <a href="sonnet-generator.html">sonnet</a> as fourteen and a sestina as thirty&#8209;nine.</p>
         </div>
 
         <div class="index__page">
@@ -249,7 +293,7 @@
           <div class="cover-card__lines" data-poem-lines data-max="2"></div>
           <p class="cover-card__by">Poem Writer</p>
         </div>
-        <img class="covers__polaroid" src="img/polaroid-pair.webp" alt="Two watercolour cover prints of a city at dusk, a moon over the rooftops" width="470" height="508" loading="lazy">
+        <img class="covers__polaroid" src="img/polaroid-pair-260.webp" srcset="img/polaroid-pair-260.webp 260w, img/polaroid-pair.webp 470w" sizes="(max-width: 860px) 10rem, 240px" alt="Two watercolour cover prints of a city at dusk, a moon over the rooftops" width="470" height="508" loading="lazy">
       </figure>
 
       <div class="covers__text" data-sc-in data-sc-stagger="70">
@@ -265,7 +309,7 @@
   <!-- COLOPHON. Resolve. Small type, one sentence, the download. -->
   <section class="colophon" id="get" data-sc-act="flow" data-chapter="Colophon">
     <div class="colophon__in" data-sc-in data-sc-stagger="80">
-      <img class="colophon__box" src="img/keepsake-box.webp" alt="A violet keepsake box of poem cards, tied with a heart" width="560" height="654" loading="lazy">
+      <img class="colophon__box" src="img/keepsake-box-320.webp" srcset="img/keepsake-box-320.webp 320w, img/keepsake-box.webp 560w" sizes="(max-width: 640px) 9rem, 13rem" alt="A violet keepsake box of poem cards, tied with a heart" width="560" height="654" loading="lazy">
       <div class="colophon__text">
         <p class="colophon__line">Your next feeling has a poem in it. Every one you keep stays in Drafts on your device, ready to read again, translate or share.</p>
         <div class="colophon__act">
@@ -283,6 +327,9 @@
   <div class="foot__in">
     <a class="mark" href="index.html"><img src="img/icon-96.webp" alt="" width="30" height="30">Poem Writer</a>
     <nav aria-label="Footer">
+      <a href="ai-haiku-generator.html">Haiku generator</a>
+      <a href="love-poem-generator.html">Love poem generator</a>
+      <a href="sonnet-generator.html">Sonnet generator</a>
       <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms of Use</a>

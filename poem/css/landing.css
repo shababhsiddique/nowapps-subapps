@@ -22,6 +22,14 @@
 body { background: var(--paper); transition: background-color 700ms var(--ease); }
 .cover__stage, .desk, .covers, .colophon, .foot { background: var(--paper); transition: background-color 700ms var(--ease); }
 
+/* Pinned acts own span x 100vh of scroll. scrollcraft.js writes that height
+   inline once it runs; setting it here first keeps everything below from
+   jumping down after load (that jump was a CLS of 1.0). Keep in step with
+   each section's data-sc-span. */
+#top    { height: 155vh; }
+#forms  { height: 300vh; }
+#listen { height: 340vh; }
+
 /* shared type */
 .h2 {
   font-weight: 500;

@@ -1,0 +1,21 @@
+# Poem Writer
+
+> Poem Writer is an AI poem generator for iPhone and iPad, published by Bitmesh (bitmesh.ai). You type a topic or a feeling, choose a form and a tone, and it writes the poem, checks fixed forms against their rules, paints a cover for it and reads it aloud.
+
+- App Store: https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385 (listed as "Poem Writer: AI Poetry Writing")
+- Price: free to download, with a free plan that includes a limited number of poems and downloads, a starter set of forms (including haiku, Shakespearean sonnet, love poem, limerick, couplet, ode and free verse), a starter set of tones and six languages. Poem Writer Pro is an auto-renewing subscription that unlocks unlimited poems, every form, tone, length and language, every artwork style and more reading voices; prices are shown in the app.
+- Platforms: iPhone and iPad, iOS 18 or later.
+- 30 poem forms, 33 tones, 3 lengths, 184 languages to write in or translate into. Six cover artwork styles: watercolour, cinematic, minimal, fantasy, vintage, nature.
+- Fixed forms (haiku, tanka, sonnets, villanelle, sestina, pantoum and others) are checked for line count, stanzas, refrains, syllables and rhyme before the poem is shown; failures are sent back to be rewritten. Syllable and rhyme checks run on English poems.
+- Read-aloud uses the voices on the device, with the spoken line highlighted.
+- No account. Poems and drafts are stored on the device.
+
+## Pages
+
+- [Home](https://poem.nowapps.cc/): what the app does: a poem from a feeling, the same topic in five tones, all 30 forms, reading mode, cover artwork, and the free and Pro plans
+- [AI haiku generator](https://poem.nowapps.cc/ai-haiku-generator.html): 5-7-5 haiku with syllable checking, sample haiku, haiku ideas
+- [AI love poem generator](https://poem.nowapps.cc/love-poem-generator.html): writing a love poem for a particular person, which forms and tones to use, sample poems
+- [AI sonnet generator](https://poem.nowapps.cc/sonnet-generator.html): Shakespearean and Petrarchan sonnets, rhyme schemes, the turn at line 9, a sample sonnet
+- [Contact](https://poem.nowapps.cc/contact.html): contact.appsnow@gmail.com
+- [Privacy Policy](https://poem.nowapps.cc/privacy.html)
+- [Terms of Use](https://poem.nowapps.cc/terms.html)
