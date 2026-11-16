@@ -17,3 +17,6 @@ deploy_secrets.txt
 # Design-kit build state and screenshots (novel/ build tooling, not site files)
 /*/.taste-skill/
 /*/shots/
+
+# scroll-craft build notes (BRIEF.md), not site files
+/*/.scrollcraft/

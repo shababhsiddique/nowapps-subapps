@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact: Poem Writer</title>
+<meta name="description" content="Email the Poem Writer team about the app, Poem Writer Pro, a poem that went wrong or anything else.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://poem.nowapps.cc/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Poem Writer">
+<meta property="og:title" content="Contact: Poem Writer">
+<meta property="og:description" content="Email the Poem Writer team.">
+<meta property="og:url" content="https://poem.nowapps.cc/contact.html">
+<meta property="og:image" content="https://poem.nowapps.cc/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F2EB">
+<meta name="apple-itunes-app" content="app-id=6754861385">
+<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Outfit:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="bar__in">
+    <a class="mark" href="index.html"><img src="img/icon-96.webp" alt="" width="30" height="30">Poem Writer</a>
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="get get--sm" href="https://apps.apple.com/us/app/forteller-ai-poem-writer/id6754861385">Get Poem Writer</a>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="page__head">
+    <h1>Write to us.</h1>
+    <p>Questions about the app, Poem Writer Pro or a poem that came out wrong. We read every email and reply from this address.</p>
+  </div>
+
+  <div class="contact">
+    <div class="letter">
+      <p class="letter__to">Email</p>
+      <p class="letter__addr"><a href="mailto:contact.appsnow@gmail.com?subject=Poem%20Writer">contact.appsnow@gmail.com</a></p>
+      <div class="letter__actions">
+        <a class="get" href="mailto:contact.appsnow@gmail.com?subject=Poem%20Writer">Email us</a>
+        <button class="copy" type="button" data-copy="contact.appsnow@gmail.com">Copy address</button>
+      </div>
+      <p class="letter__note" role="status" data-status>If a poem came out wrong, paste it into your email with the form and tone you chose. It helps us fix it.</p>
+    </div>
+
+    <div>
+      <img class="contact__art" src="img/inkpot.webp" alt="" width="362" height="442">
+      <ul class="asks">
+        <li><strong>Poem Writer Pro and billing</strong><span>Apple handles payments. To cancel, open Settings, tap your name, then Subscriptions. Refunds go through reportaproblem.apple.com.</span></li>
+        <li><strong>Restoring a purchase</strong><span>In the app, open the Pro screen and tap Restore. Use the same Apple Account you bought with.</span></li>
+        <li><strong>Missing poems</strong><span>Drafts are kept on your device only, so a deleted app or a new phone starts empty unless you restored from a backup.</span></li>
+        <li><strong>Everything else</strong><span>Ideas, a form you wish we had, a language that reads oddly. All welcome.</span></li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <a class="mark" href="index.html"><img src="img/icon-96.webp" alt="" width="30" height="30">Poem Writer</a>
+    <nav aria-label="Footer">
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Apple EULA</a>
+    </nav>
+    <small>&copy; 2026 Bitmesh</small>
+  </div>
+</footer>
+<script>
+  (function () {
+    var b = document.querySelector('[data-copy]');
+    var status = document.querySelector('[data-status]');
+    if (!b || !navigator.clipboard) { if (b) b.hidden = true; return; }
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function () {
+        b.textContent = 'Copied';
+        b.setAttribute('data-done', '');
+        setTimeout(function () { b.textContent = 'Copy address'; b.removeAttribute('data-done'); }, 2200);
+      }, function () { status.textContent = 'Copy failed. Select the address above and copy it by hand.'; });
+    });
+  })();
+</script>
+</body>
+</html>

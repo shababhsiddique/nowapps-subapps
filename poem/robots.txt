@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://poem.nowapps.cc/sitemap.xml
