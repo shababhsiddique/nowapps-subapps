@@ -1,0 +1,25 @@
+New Website 
+
+poem. use folder /poem on this workspace. 
+
+final url once up will be poem.nowapps.cc
+
+
+pages required. 
+- landing
+- contact . a basic contact page with email and linked mailto: button. use email contact.appsnow@gmail.com
+- terms of use
+- privacy
+
+footer link to apple eula is required.
+
+build the landign page using the best you can getting inpsiration from the app and what it does. no AI slop no generic hero.
+maintain a taste and color theme that goes with the concept.
+
+
+use /frontend-design skill to get the website structure and extra pages (except landing)
+
+use /scroll-craft to build the landing page
+
+before finalizing use /impeccable to audit your design and fix visibility issues
+

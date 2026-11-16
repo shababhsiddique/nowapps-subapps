@@ -20,3 +20,7 @@ deploy_secrets.txt
 
 # scroll-craft build notes (BRIEF.md), not site files
 /*/.scrollcraft/
+
+# scroll-craft workspace: build briefs, fingerprint registry, screenshots and
+# test tooling (node_modules). Not site files.
+/scrollcraft/
