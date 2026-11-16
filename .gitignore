@@ -1,6 +1,7 @@
 # Deploy secrets — DEPLOY_TOKEN, GITHUB_WEBHOOK_SECRET
 .env
 
+
 # Account deletion requests written at runtime by habit/delete-account.php
 habit/data/*
 !habit/data/.htaccess
