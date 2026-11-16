@@ -12,3 +12,7 @@ deploy_secrets.txt
 /*/.htaccess
 /*/.user.ini
 /*/php.ini
+
+# Design-kit build state and screenshots (novel/ build tooling, not site files)
+/*/.taste-skill/
+/*/shots/
