@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="software" data-radius="round" data-ground="sand" data-buttons="tonal" data-motion>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -22,6 +22,7 @@
 <meta name="twitter:description" content="Stories and books from one spoken idea, each with its own cover. Free on the App Store.">
 <meta name="twitter:image" content="https://novelai.nowapps.cc/share.jpg">
 <meta name="apple-itunes-app" content="app-id=6756558328">
+<meta name="theme-color" content="#0f1230">
 <link rel="icon" href="images/icon.png" type="image/png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <script type="application/ld+json">
@@ -41,9 +42,7 @@
    "url": "https://novelai.nowapps.cc/",
    "name": "Novel AI",
    "inLanguage": "en",
-   "publisher": {
-    "@id": "https://novelai.nowapps.cc/#publisher"
-   }
+   "publisher": { "@id": "https://novelai.nowapps.cc/#publisher" }
   },
   {
    "@type": "MobileApplication",
@@ -61,623 +60,317 @@
     "https://novelai.nowapps.cc/images/reader-light.webp",
     "https://novelai.nowapps.cc/images/reader-dark.webp"
    ],
-   "inLanguage": [
-    "en",
-    "es",
-    "fr",
-    "de",
-    "ja",
-    "ko",
-    "zh",
-    "ar",
-    "ru",
-    "sv",
-    "fi"
-   ],
+   "inLanguage": ["en", "es", "fr", "de", "ja", "ko", "zh", "ar", "ru", "sv", "fi"],
    "contentRating": "4+",
-   "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-   },
-   "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "ratingCount": "10",
-    "bestRating": "5",
-    "worstRating": "1"
-   },
-   "publisher": {
-    "@id": "https://novelai.nowapps.cc/#publisher"
-   }
+   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "10", "bestRating": "5", "worstRating": "1" },
+   "publisher": { "@id": "https://novelai.nowapps.cc/#publisher" }
   },
   {
    "@type": "WebPage",
    "@id": "https://novelai.nowapps.cc/#webpage",
    "url": "https://novelai.nowapps.cc/",
    "name": "Novel AI: AI Story Generator & Book Writer for iPhone",
-   "isPartOf": {
-    "@id": "https://novelai.nowapps.cc/#website"
-   },
-   "about": {
-    "@id": "https://novelai.nowapps.cc/#app"
-   },
+   "isPartOf": { "@id": "https://novelai.nowapps.cc/#website" },
+   "about": { "@id": "https://novelai.nowapps.cc/#app" },
    "primaryImageOfPage": "https://novelai.nowapps.cc/share.jpg",
    "inLanguage": "en"
   }
  ]
 }
 </script>
-<meta name="theme-color" content="#fdf8f2">
-<meta name="site-kind" content="software">
-<meta name="page-type" content="software">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- one bundle of the kit stylesheets in their order: system, ui/cards, motion, backgrounds, layout, icons, ui/base, then the window, doc, chat and voice fragments -->
-<link rel="stylesheet" href="assets/site.css">
-<style>
-:root {
-  --p-bg: #fdf8f2; --p-surface: #f4ece0; --p-ink: #171619; --p-muted: #656362;
-  --p-accent: #c4501a; --p-accent-ink: #ffffff; --p-action: #c4501a; --p-action-ink: #ffffff;
-  --p-inv-bg: #171619; --p-inv-surface: #242325; --p-inv-ink: #fdf8f2; --p-inv-muted: #9c9997;
-  --p-inv-accent: #c4501a; --p-inv-accent-ink: #ffffff; --p-inv-action: #c4501a; --p-inv-action-ink: #ffffff;
-  --font-display: "Funnel Display", system-ui, sans-serif;
-  --font-text: "Funnel Sans", system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --display-weight: 400;
-  --display-tracking: -0.03em;
-  --display-tracking-xl: -0.04em;
-  --ly-scale: 0.98;
-}
-</style>
-<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
-<script src="assets/backgrounds/backgrounds.js"></script>
-<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
-<link rel="modulepreload" href="assets/moments/moments.js">
-<link rel="modulepreload" href="assets/moments/lib.js">
-<link rel="modulepreload" href="assets/moments/letters-assemble/moment.js">
-<link rel="modulepreload" href="assets/moments/iris-opens/moment.js">
-<style>
-  /* the logo: the app's own icon beside the name */
-  .nav__logo .logo-icon { width: 28px; height: 28px; border-radius: 7px; flex: none; }
-
-  /* ---------- hero: the key art, the Create screen on a phone over it ---------- */
-  .hero--split .hero__media > img { object-position: var(--ly-pos); }
-  .device {
-    position: absolute; z-index: 1; right: 40px; top: 50%; translate: 0 -50%;
-    width: 288px; aspect-ratio: 288 / 600; border-radius: 46px; padding: 9px;
-    background: #121114; box-shadow: 0 30px 60px -20px rgba(10, 8, 20, .55), inset 0 0 0 1.5px #3a3840;
-  }
-  .device__screen {
-    position: relative; height: 100%; overflow: hidden; border-radius: 38px; background: #fdf8f2; color: #171619;
-    font-family: var(--font-text); display: flex; flex-direction: column; padding: 14px 16px 12px; gap: 12px;
-  }
-  .device__status { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 500; padding: 0 8px; }
-  .device__status::after { content: ""; position: absolute; left: 50%; top: 10px; translate: -50% 0; width: 86px; height: 24px; border-radius: 14px; background: #121114; }
-  .device__status i { display: inline-block; width: 22px; height: 10px; border-radius: 3px; border: 1.5px solid #171619; }
-  .cr-title { font: 400 28px/1 "Funnel Display", sans-serif; letter-spacing: -0.03em; margin-top: 6px; }
-  .cr-seg { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 12px; background: #efe7da; font-size: 13px; font-weight: 500; text-align: center; }
-  .cr-seg span { padding: 7px 0; border-radius: 9px; color: #656362; }
-  .cr-seg .is-on { background: #fff; color: #171619; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-  .cr-box { background: #fff; border: 1px solid #ece4d6; border-radius: 16px; padding: 14px; display: grid; gap: 14px; }
-  .cr-box p { margin: 0; font-size: 15px; line-height: 1.45; }
-  .cr-box__foot { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #67635e; }
-  .cr-mic { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: linear-gradient(140deg, #f68a3c, #c4501a); box-shadow: 0 0 0 6px rgba(246, 138, 60, .18); }
-  .cr-mic svg { width: 20px; height: 20px; }
-  .cr-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .cr-chip { font-size: 12px; padding: 6px 10px; border-radius: 999px; background: #fff; border: 1px solid #ece4d6; }
-  .cr-chip.is-on { border-color: #c4501a; color: #a3410f; }
-  .cr-cast { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-  .cr-cast img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
-  .cr-cast span { color: #656362; font-size: 12px; display: block; }
-  .cr-go { margin-top: auto; border-radius: 14px; padding: 13px; text-align: center; font-size: 15px; font-weight: 500; color: #fff; background: linear-gradient(100deg, #f68a3c, #c4501a); }
-  .cr-tabs { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-size: 10.5px; color: #67635e; padding-top: 8px; border-top: 1px solid #ece4d6; }
-  .cr-tabs .is-on { color: #a3410f; }
-  .hero .ly-float { width: 270px; }
-  .ly-float__book { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
-  .ly-float__book img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex: none; }
-  .ly-float__meta { font-size: var(--t-small); color: var(--muted); }
-  @media (min-width: 1024px) and (max-width: 1279px) { .device { right: 24px; width: 256px; } .hero .ly-float { width: 236px; } }
-  @media (max-width: 1023px) {
-    .device { top: 24px; translate: none; right: 50%; margin-right: -130px; width: 260px; }
-    .hero .ly-float { display: none; }
-  }
-  @media (max-width: 639px) { .device { width: 232px; margin-right: -116px; top: 20px; } }
-
-  /* ---------- app-frame: Drafts beside the open story ---------- */
-  .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
-  .app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
-  .app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
-  .app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
-  .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
-  @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
-  @media (max-width: 1023px) {
-    .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-    .app > .app__pane--list { max-height: 252px; }
-    .app > .app__pane--list::after { display: none; }
-    .app .ui-win__side { display: none; }
-    .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
-    .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
-  }
-  @media (max-width: 639px) {
-    .app.ui { grid-template-rows: minmax(0, 1fr); }
-    .app > .app__pane--list { display: none; }
-    .app > .app__pane + .app__pane { border-top: 0; }
-  }
-  .app .ui-avatar.is-cover { background: none; overflow: hidden; padding: 0; }
-  .app .ui-avatar.is-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-  .app .ui-doc { width: 100%; max-width: none; padding-right: 232px; }
-  .app .ui-doc__page { border: 0; box-shadow: none; border-radius: 0; }
-  .app .ui-doc__note { right: 16px; top: 24px; }
-  .reader-lead { margin-top: var(--s-5); }
-  @media (max-width: 1279px) { .app .ui-doc { padding-right: 0; } .app .ui-doc__note { display: none; } }
-  .app .ui-doc__cover { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; }
-  .next { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 16px; }
-  .next span { font-size: 12.5px; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--u-line); background: var(--u-bg); }
-  .next span:first-child { border-color: var(--accent); color: var(--accent); }
-  .next__label { font-size: 12px; color: var(--u-muted, var(--muted)); margin-top: 8px; }
-
-  /* ---------- books: the book plan in the split frame ---------- */
-  .bookplan { width: 440px; }
-  .bp__head { padding: 16px 18px 12px; border-bottom: 1px solid var(--u-line); }
-  .bp__head b { display: block; font-weight: 500; font-size: 15px; }
-  .bp__head span { font-size: 12.5px; color: var(--muted); }
-  .bp__list { list-style: none; margin: 0; padding: 8px; display: grid; gap: 6px; }
-  .bp__list > div { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 10px; background: color-mix(in oklab, var(--u-bg) 92%, var(--ink)); font-size: 13.5px; }
-  .bp__list > div small { display: block; font-size: 12px; color: var(--muted); }
-  .bp__n { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; background: var(--u-bg); border: 1px solid var(--u-line); }
-  .bp__list > div.is-on { outline: 1.5px solid var(--accent); }
-  .bp__list > div.is-on .bp__n { background: var(--accent); color: #fff; border-color: transparent; }
-  .bp__st { font-size: 11.5px; color: #9a3c0d; }
-  .bp__list > div.is-add { background: none; outline: 1.5px dashed var(--u-line); }
-
-  /* ---------- play, talk, characters, voice ---------- */
-  #play .panel { --p-h: 336px; }
-  .play { width: 380px; padding: 18px; display: grid; gap: 12px; }
-  .play__tag { font-size: 12px; color: var(--muted); }
-  .play p { margin: 0; font-size: 14.5px; line-height: 1.55; }
-  .play__opts { display: grid; gap: 8px; }
-  .play__opts span { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--u-line); background: var(--u-bg); }
-  .play__opts span.is-on { border-color: var(--accent); }
-  .play__opts em { font-style: normal; font-size: 11.5px; color: #8a6200; background: #fbeccb; padding: 2px 7px; border-radius: 999px; }
-  .ui-chat .ui-agent.is-face { background: none; overflow: hidden; }
-  .ui-chat .ui-agent.is-face img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .char { width: 360px; padding: 18px; display: grid; gap: 14px; }
-  .char__top { display: flex; gap: 14px; align-items: center; }
-  .char__top img { width: 64px; height: 64px; border-radius: 16px; object-fit: cover; }
-  .char__top b { display: block; font-weight: 500; font-size: 16px; }
-  .char__top span { font-size: 13px; color: var(--muted); }
-  .char__line { font-size: 13px; padding: 9px 12px; border-radius: 10px; background: color-mix(in oklab, var(--u-bg) 90%, var(--ink)); }
-  .char__line i { color: var(--muted); font-style: normal; display: block; font-size: 11.5px; }
-  .char__traits { display: flex; flex-wrap: wrap; gap: 6px; }
-  .char__traits span { font-size: 12px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--u-line); }
-  .char p { margin: 0; font-size: 13.5px; line-height: 1.55; }
-  @media (max-width: 639px) { #play .panel { --p-h: 240px; } .play, .char { width: 310px; } }
-
-  /* ---------- covers: the statement and the wall ---------- */
-  #covers .mo-la__type { font: var(--display-weight) clamp(44px, 7.4vw, 112px)/.95 var(--font-display); letter-spacing: var(--display-tracking-xl); max-width: 12ch; margin: 0; }
-  #covers .mo-la__sub { max-width: 52ch; font-size: var(--t-lead); line-height: 1.5; margin-top: var(--s-5); }
-  .wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; margin-top: var(--s-7); border-radius: var(--r-lg); overflow: hidden; }
-  .wall img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
-  @media (max-width: 1023px) { .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 639px) { .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wall img:nth-child(n+5) { display: none; } }
-
-  /* ---------- reader: the two themes ---------- */
-  .phones { display: flex; gap: var(--s-5); justify-content: flex-end; align-items: flex-start; height: 100%; min-height: 0; overflow: hidden; }
-  .phones img { display: block; height: 100%; max-height: 640px; width: auto; aspect-ratio: 640 / 1391; object-fit: cover; object-position: top; border-radius: 36px; border: 6px solid #2b292f; }
-  .phones img + img { margin-top: var(--s-8); }
-  @media (max-width: 1023px) { .phones { justify-content: flex-start; height: auto; } .phones img { height: 520px; } }
-  @media (max-width: 639px) { .phones img { height: auto; width: calc(50% - 8px); max-height: none; border-width: 4px; border-radius: 22px; } .phones { gap: 16px; } .phones img + img { margin-top: var(--s-6); } }
-  .reader-facts { list-style: none; padding: 0; margin: var(--s-6) 0 0; display: grid; gap: var(--s-4); }
-  .reader-facts li { padding-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
-  .reader-facts b { font-weight: 500; display: block; }
-  .reader-facts span { color: var(--muted); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Geist:wght@400..600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/night-book.webp" imagesrcset="images/night-book-half.webp 592w, images/night-book.webp 1185w" imagesizes="(max-width: 860px) 400px, 60vw" fetchpriority="high">
+<link rel="stylesheet" href="landing/scrollcraft.css">
+<link rel="stylesheet" href="landing/landing.css">
 </head>
 <body>
-<!-- type: software (an AI story and book app for iPhone and iPad)
-     deal: hero split, nav nav-cards, close close-word, footer footer-statement, rhythm space (the iris
-     section is the one ground change), buttons tonal, mark: the app's own icon, ground sand (dealt sage, turned against the warm palette),
-     palette: the app's own colours (cream paper #fdf8f2, night ink #171619, an ember from its CTA
-     gradient; its violet left out), type funnel
-     effect: gradient-mesh in the one [data-visual] frame (#books)
-     moments: letters-assemble (#covers, statement), iris-opens (#reader, dark ground) -->
+<!-- Grammar: bound volume. The page is a book: a cover, chapters set as spreads, a ribbon
+     bookmark for contents, and a back cover for the ending. Brief and score live in
+     scrollcraft/builds/novelai/BRIEF.md. -->
+<a class="skip" href="#idea">Skip to the first chapter</a>
+<div class="sc-grain" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="wrap nav__bar">
-    <a class="skip-link" href="#top">Skip to content</a>
-    <a class="nav__logo" href="#top"><img class="logo-icon" src="images/icon-96.webp" alt="" width="28" height="28">Novel AI</a>
-    <nav class="nav__links" aria-label="Main">
-      <div class="nav__item">
-        <a class="nav__link" href="#play">Features <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="nav__menu">
-          <div class="wrap grid">
-            <a class="menu-card span-4" href="ai-book-writer.html">
-              <div class="panel"><img class="frame__img" src="images/cover-arics-eternal-oath.webp" srcset="images/cover-arics-eternal-oath-240.webp 240w, images/cover-arics-eternal-oath.webp 480w" sizes="(max-width: 639px) 342px, 460px" width="480" height="480" alt="A knight in a red cloak in a dark forest" loading="lazy"></div>
-              <span class="t-card">Books</span>
-              <span class="t-small muted">Plan chapters, write them, export to EPUB</span>
-            </a>
-            <a class="menu-card span-4" href="interactive-story-game.html">
-              <div class="panel"><img class="frame__img" src="images/cover-finn-hawke-and-the-sky-vault.webp" srcset="images/cover-finn-hawke-and-the-sky-vault-240.webp 240w, images/cover-finn-hawke-and-the-sky-vault.webp 480w" sizes="(max-width: 639px) 342px, 460px" width="480" height="480" alt="An adventurer on a cliff under a sky ship" loading="lazy"></div>
-              <span class="t-card">Play</span>
-              <span class="t-small muted">Step into your story and choose what happens</span>
-            </a>
-            <a class="menu-card span-4" href="#reader">
-              <div class="panel"><img class="frame__img" src="images/cover-poppy-and-the-sleepy-moon.webp" srcset="images/cover-poppy-and-the-sleepy-moon-240.webp 240w, images/cover-poppy-and-the-sleepy-moon.webp 480w" sizes="(max-width: 639px) 342px, 460px" width="480" height="480" alt="A house roof under a full moon" loading="lazy"></div>
-              <span class="t-card">Reader</span>
-              <span class="t-small muted">Light and dark themes, chapters, translation</span>
-            </a>
-          </div>
-        </div>
+<!-- The ribbon: the only persistent chrome -->
+<button class="ribbon" type="button" aria-haspopup="dialog" aria-controls="contents" aria-expanded="false">
+  <span class="ribbon__label">Contents</span>
+</button>
+
+<main>
+
+  <!-- 1 · THE COVER: wonder. Independent planes driven from --sc-p. -->
+  <section id="top" class="cover" data-sc-act="pin" data-sc-span="1.8" data-chapter="1" aria-labelledby="hero-h">
+    <div data-sc-stage class="cover__stage">
+      <div class="cover__scene">
+        <img class="plane plane--sky" src="images/night-plate.webp" srcset="images/night-plate-1000.webp 1000w, images/night-plate.webp 2000w" sizes="(max-width: 860px) 1000px, 100vw" width="2000" height="862" alt="" fetchpriority="high">
+        <img class="plane plane--moon" src="images/night-moon.webp" srcset="images/night-moon-half.webp 199w, images/night-moon.webp 398w" sizes="(max-width: 860px) 160px, 20vw" width="398" height="308" alt="">
+        <img class="plane plane--ship" src="images/night-ship.webp" srcset="images/night-ship-half.webp 156w, images/night-ship.webp 313w" sizes="(max-width: 860px) 130px, 16vw" width="313" height="293" alt="">
+        <img class="plane plane--book" src="images/night-book.webp" srcset="images/night-book-half.webp 592w, images/night-book.webp 1185w" sizes="(max-width: 860px) 400px, 60vw" width="1185" height="732" alt="An open book on a dark floor with a paper castle rising from its pages, a sailing ship and a moonlit grove floating above it, and a golden quill writing in its margin" fetchpriority="high">
       </div>
-      <div class="nav__item"><a class="nav__link" href="#create">Create</a></div>
-      <div class="nav__item"><a class="nav__link" href="#books">Books</a></div>
-      <div class="nav__item"><a class="nav__link" href="#pricing">Pricing</a></div>
-      <div class="nav__item"><a class="nav__link" href="#faq">FAQ</a></div>
-    </nav>
-    <div class="nav__actions">
-      <a class="nav__link" href="support.html">Contact</a>
-      <a class="btn btn--primary" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI</a>
+      <a class="wordmark" href="#top"><img src="images/icon-96.webp" alt="" width="30" height="30"><span>Novel AI</span></a>
+      <div class="cover__copy">
+        <h1 id="hero-h" class="cover__title">Every idea deserves a story.<span class="cover__kw">An AI story generator and book writer for iPhone and iPad</span></h1>
+        <p class="cover__sub">Say one sentence out loud. Novel AI writes the whole story, paints its cover, then makes it a book.</p>
+        <p class="cover__act"><a class="btn btn--gold" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI</a><span class="cover__note">Free on iPhone and iPad</span></p>
+      </div>
+      <div class="cover__floor" aria-hidden="true"></div>
     </div>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-</header>
-
-<main id="top">
-  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
-    <div class="wrap"><div class="hero-text grid hero__grid">
-      <div class="hero__text span-5">
-        <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Free on iPhone and iPad, 20 creations a day</p>
-        <h1 id="hero-h">AI story generator and book writer</h1>
-        <p class="hero__lead">Say your idea out loud or type it. Novel AI writes the whole story with its own cover, then turns it into a book of chapters when you want more.</p>
-        <div class="btn-row"><a class="btn btn--primary" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#create">See the app</a></div>
-      </div>
-      <div class="hero__media span-6 start-7">
-        <img src="images/key-art.webp" srcset="images/key-art-1000.webp 1000w, images/key-art.webp 2000w" sizes="(max-width: 1023px) 1000px, 1700px" width="2000" height="862" alt="An open book with a paper castle, a sailing ship and a golden quill rising from its pages" style="--ly-pos: 45% 50%" fetchpriority="high" data-source="client" data-subject="the app's key art">
-        <div class="device" role="img" aria-label="The Create screen in Novel AI: a story idea typed in, Fantasy and Medium picked, a character starred, and the Write my story button">
-          <div class="device__screen">
-            <div class="device__status"><span>9:41</span><i></i></div>
-            <div class="cr-title">Create</div>
-            <div class="cr-seg"><span class="is-on">Story</span><span>Book</span></div>
-            <div class="cr-box">
-              <p>A lighthouse keeper’s daughter finds a door in the fog that opens onto yesterday.</p>
-              <div class="cr-box__foot"><span>Type or tap the mic</span><span class="cr-mic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5.5" y="1.5" width="5" height="8.5" rx="2.5"/><path d="M3 8a5 5 0 0 0 10 0M8 13v1.5"/></svg></span></div>
-            </div>
-            <div class="cr-chips"><span class="cr-chip is-on">Fantasy</span><span class="cr-chip is-on">Medium</span><span class="cr-chip">Warm narrator</span><span class="cr-chip">Kids</span></div>
-            <div class="cr-cast"><img src="images/avatar-captain-elara-dune.webp" width="128" height="128" alt=""><div>Captain Elara Dune<span>Starred for this story</span></div></div>
-            <div class="cr-go">Write my story</div>
-            <div class="cr-tabs"><span class="is-on">Create</span><span>Library</span><span>Drafts</span><span>Characters</span></div>
-          </div>
-        </div>
-        <div class="ly-float">
-          <div class="ly-float__row"><span class="ly-live">Story ready</span><span>Cover included</span></div>
-          <div class="ly-float__book"><img src="images/thumb-poppy-and-the-sleepy-moon.webp" alt="" width="96" height="96"><div><div class="ly-float__title">Poppy and the Sleepy Moon</div><div class="ly-float__meta">357 words, 2 min read</div></div></div>
-        </div>
-      </div>
-    </div></div>
   </section>
 
-  <section class="section" id="create" aria-labelledby="create-h">
-    <div class="wrap">
-      <div class="grid">
-        <h2 id="create-h" class="span-5">Your drafts beside the story you just wrote</h2>
-        <p class="span-6 start-7 muted">Every story saves to Drafts by itself. Open one and pick what comes next: make it a book, keep going, play it, talk to its hero or change a line. Every version stays. <a class="link" href="#books">See the book planner</a></p>
+  <!-- 2 · ONE SENTENCE: quiet. The silence before the peak. -->
+  <section id="idea" class="chapter idea" data-sc-act="flow" data-chapter="2" aria-labelledby="idea-h">
+    <div class="spread">
+      <div class="verso" data-sc-in data-sc-stagger="70">
+        <h2 id="idea-h" class="h-chapter">It starts with one sentence.</h2>
+        <p class="prose">Tap the mic and say it the way you would at bedtime. Apple’s speech recognition turns it into text, and no recording is kept. Or type it, or start from a ready-made prompt.</p>
+        <p class="prose prose--soft">Novel AI is an AI story generator for fantasy, mystery, bedtime and 30 more genres, written for kids, teens or adults.</p>
       </div>
-      <div class="ui app fill" role="img" aria-label="Novel AI's Drafts list beside an open story, Poppy and the Sleepy Moon, with its next steps" data-ui-pause-host>
-        <div class="app__pane app__pane--list">
-          <div class="ui ui-panel ui-win" data-ui="window" data-open="Idea" data-work="Writing" data-done="Ready">
-            <div class="ui-win__bar">
-              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="ui-win__crumb">Novel AI <i>/</i> <b>Drafts</b></span>
-              <span class="ui-spacer"></span>
-              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-win__ph">Search</span></span>
-            </div>
-            <div class="ui-win__body">
-              <nav class="ui-win__side" aria-hidden="true">
-                <span class="ui-win__nav is-on"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M4 2.5h5l3 3v8H4z"/><path d="M9 2.5v3h3"/></svg>Drafts<em>12</em></span>
-                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M3 3.5h4.5v9H3zM8.5 3.5H13v9H8.5z"/></svg>Books<em>3</em></span>
-                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3l2 1.5"/></svg>In progress<em>2</em></span>
-                <span class="ui-win__nav"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="8" cy="6" r="2.5"/><path d="M3.5 13.5c.6-2.3 2.4-3.5 4.5-3.5s3.9 1.2 4.5 3.5"/></svg>Characters<em>5</em></span>
-                <span class="ui-win__label">Genres</span>
-                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Fantasy</span>
-                <span class="ui-win__nav"><span class="ui-win__hash">#</span>Mystery</span>
-              </nav>
-              <div class="ui-win__main">
-                <div class="ui-win__cols" aria-hidden="true"><span>Story</span><span>Kind</span><span>Status</span><span>Edited</span></div>
-                <ul class="ui-win__rows">
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-poppy-and-the-sleepy-moon.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Poppy and the Sleepy Moon</span><span class="ui-win__sub">Bedtime story, 2 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">1m</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-finn-hawke-and-the-sky-vault.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Finn Hawke and the Sky Vault</span><span class="ui-win__sub">Adventure, 8 min</span><span class="ui-win__st" data-st>Idea</span><span class="ui-win__age">4m</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-arics-eternal-oath.webp" alt="" width="96" height="96"></span><span class="ui-win__who">The Last Mortal Oath</span><span class="ui-win__sub">Book, 6 chapters</span><span class="ui-win__st" data-st>Idea</span><span class="ui-win__age">12m</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-veil-of-the-silent-graves.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Veil of the Silent Graves</span><span class="ui-win__sub">Horror, 8 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">1h</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-stellar-tides-of-the-unknown.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Stellar Tides of the Unknown</span><span class="ui-win__sub">Sci-fi, 8 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">2h</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-isla-delmar-and-the-drowned-cities.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Isla Delmar and the Drowned Cities</span><span class="ui-win__sub">Book, 3 chapters</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">5h</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-rook-and-the-ghost-in-the-rain.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Rook and the Ghost in the Rain</span><span class="ui-win__sub">Mystery, 6 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">1d</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-the-last-winter-of-the-frost-fair.webp" alt="" width="96" height="96"></span><span class="ui-win__who">The Last Winter of the Frost Fair</span><span class="ui-win__sub">Historical, 8 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">2d</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-timmy-wobble-and-the-runaway-bubble-machine.webp" alt="" width="96" height="96"></span><span class="ui-win__who">Timmy Wobble and the Bubble Machine</span><span class="ui-win__sub">Kids, funny, 4 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">3d</span></li>
-                  <li class="ui-win__row" data-row><span class="ui-avatar is-cover"><img src="images/thumb-the-signal-beyond-the-kuiper-line.webp" alt="" width="96" height="96"></span><span class="ui-win__who">The Signal Beyond the Kuiper Line</span><span class="ui-win__sub">Sci-fi, 8 min</span><span class="ui-win__st is-done" data-st>Ready</span><span class="ui-win__age">4d</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <fieldset class="recto slips" data-sc-in data-sc-stagger="80">
+        <legend class="slips__legend">Pick an idea to try</legend>
+        <label class="slip">
+          <input type="radio" name="seed" value="poppy" checked>
+          <span class="slip__line">Poppy can’t sleep, and finds the moon yawning behind a cloud.</span>
+          <span class="slip__tag">Bedtime, for kids</span>
+        </label>
+        <label class="slip">
+          <input type="radio" name="seed" value="isla">
+          <span class="slip__line">Forty years after the seas rose, a diver surfaces with a chart dated this year.</span>
+          <span class="slip__tag">Adventure</span>
+        </label>
+        <label class="slip">
+          <input type="radio" name="seed" value="aric">
+          <span class="slip__line">An immortal knight hears the bell he swore an oath to, three hundred years ago.</span>
+          <span class="slip__tag">Fantasy</span>
+        </label>
+      </fieldset>
+    </div>
+  </section>
+
+  <!-- 3 · THE WRITING: the peak. Scroll is the quill. -->
+  <section id="create" class="chapter writing" data-sc-act="pin" data-sc-span="3.4" data-chapter="3" aria-labelledby="write-h">
+    <div data-sc-stage class="writing__stage">
+      <h2 id="write-h" class="writing__head h-chapter">Then it writes the whole thing.</h2>
+      <div class="book" data-book>
+        <div class="book__page book__page--left">
+          <figure class="book__cover">
+            <div class="book__art"><img data-story-cover src="images/cover-poppy-and-the-sleepy-moon.webp" srcset="images/cover-poppy-and-the-sleepy-moon-240.webp 240w, images/cover-poppy-and-the-sleepy-moon.webp 480w" sizes="(max-width: 860px) 96px, 340px" width="480" height="480" alt="Story cover: a house roof under a full moon"></div>
+            <figcaption>A cover, painted for this story</figcaption>
+          </figure>
         </div>
-        <div class="app__pane app__pane--open" data-ui-loop>
-          <div class="ui ui-doc" data-ui="doc">
-            <article class="ui-doc__page">
-              <img class="ui-doc__cover" src="images/cover-poppy-and-the-sleepy-moon.webp" srcset="images/cover-poppy-and-the-sleepy-moon-240.webp 240w, images/cover-poppy-and-the-sleepy-moon.webp 480w" sizes="(max-width: 639px) 342px, 460px" width="480" height="480" alt="">
-              <div class="ui-doc__label">Version 2 of 2, 357 words</div>
-              <div class="ui-doc__title">Poppy and the Sleepy Moon</div>
-              <div class="next__label">What next?</div>
-              <div class="next"><span>Make it a book</span><span>Keep going</span><span>Play as Poppy</span><span>Talk to Poppy</span><span>Change it</span></div>
-              <div class="ui-doc__text">Poppy had counted forty-one sheep, then <mark class="ui-doc__mark is-on">a duck by mistake</mark>, and now she was wide awake. So she climbed onto the window seat and pushed the curtain aside.</div>
-              <div class="ui-doc__text">The moon was yawning.</div>
-              <div class="ui-doc__text">It was a very small yawn, half hidden behind a cloud, the way you yawn in class when you hope nobody sees. But Poppy saw.</div>
-              <div class="ui-doc__text">“Are you tired?” she whispered.</div>
-              <div class="ui-doc__text">“A little,” said the moon, in a voice like a faraway bell. <mark class="ui-doc__mark" data-kind="Keep going" data-msg="Adds the next part in the same style." data-where="Writes about 300 more words">“I have been up since the dinosaurs.”</mark></div>
-              <div class="ui-doc__text">Poppy thought that sounded like far too long. “Doesn’t anyone put you to bed?”</div>
-              <div class="ui-doc__text">The moon was quiet for a moment. “There are the stars, but they are always busy twinkling.”</div>
-            </article>
-            <aside class="ui-doc__note ui-panel is-on" aria-live="polite">
-              <div class="ui-doc__kind"><span class="ui-doc__dot"></span><span data-doc-kind>Change it</span></div>
-              <div class="ui-doc__msg" data-doc-msg>“Make the duck a goose named Gerald.”</div>
-              <div class="ui-doc__where" data-doc-where>Saved as version 2; version 1 is kept</div>
-            </aside>
+        <div class="book__page book__page--right">
+          <p class="book__run"><span>Example story</span><span data-story-genre>Bedtime, for kids</span></p>
+          <h3 class="book__title" data-story-title>Poppy and the Sleepy Moon</h3>
+          <div class="book__text" data-story-text>
+            <p>Poppy had counted forty-one sheep, then a duck by mistake, and now she was wide awake. So she climbed onto the window seat and pushed the curtain aside.</p>
+            <p>The moon was yawning.</p>
+            <p>It was a very small yawn, half hidden behind a cloud, the way you yawn in class when you hope nobody sees. But Poppy saw.</p>
+            <p>“Are you tired?” she whispered.</p>
+            <p>“A little,” said the moon, in a voice like a faraway bell. “I have been up since the dinosaurs.”</p>
+            <p>Poppy thought that sounded like far too long. “Doesn’t anyone put you to bed?”</p>
+            <p>The moon was quiet for a moment. “There are the stars, but they are always busy twinkling.”</p>
           </div>
+          <span class="nib" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22 6.5 11 12 2l5.5 9z"/><path class="nib__slit" d="M12 22V11"/><circle class="nib__hole" cx="12" cy="10.2" r="1.3"/></svg></span>
+          <p class="book__done" data-sc-cue="0.86 1 0.08 0"><span class="book__dot"></span>Story ready, saved to Drafts</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="books" aria-labelledby="books-h">
-    <div class="wrap">
-      <div class="grid fill">
-        <div class="span-5 split-col">
-          <h2 id="books-h">Turn any story into a book with chapters</h2>
-          <p class="t-lead">Book mode plans the chapters first, a title and a short summary for each. Rename, reorder or drop them, then Novel AI writes one at a time in your story’s style.</p>
-          <ul class="reader-facts">
-            <li><b>Up to 25 chapters</b><span>Free books stop at 3 written chapters</span></li>
-            <li><b>PDF and EPUB export</b><span>Opens in Apple Books and Kindle</span></li>
-          </ul>
-          <a class="link split-col__end" href="ai-book-writer.html">Read how the book writer works</a>
+  <!-- 4 · A BOOK OF CHAPTERS: ambition. -->
+  <section id="books" class="chapter bookplan" data-sc-act="flow" data-chapter="4" aria-labelledby="books-h">
+    <div class="spread">
+      <div class="verso" data-sc-in data-sc-stagger="70">
+        <h2 id="books-h" class="h-chapter">When a story wants more, make it a book.</h2>
+        <p class="prose">Story mode writes a complete story in one go. Book mode plans the chapters first, each with a title and a short summary. Rename them, reorder them or drop one, then Novel AI writes them one at a time in your story’s voice.</p>
+        <dl class="facts">
+          <div><dt>Up to 25 chapters</dt><dd>Free books stop at 3 written chapters</dd></div>
+          <div><dt>PDF and EPUB export</dt><dd>Opens in Apple Books and Kindle</dd></div>
+        </dl>
+        <a class="link" href="ai-book-writer.html">How the book writer works</a>
+      </div>
+      <div class="recto plan" data-sc-in>
+        <p class="plan__kicker">Book plan, example</p>
+        <h3 class="plan__title" data-plan-title>Poppy and the Sleepy Moon</h3>
+        <ol class="plan__list" data-plan-list>
+          <li class="is-done"><span class="plan__t">The Yawn Behind the Cloud</span><span class="plan__st">Written</span></li>
+          <li class="is-done"><span class="plan__t">Forty-One Sheep and a Duck</span><span class="plan__st">Written</span></li>
+          <li class="is-now"><span class="plan__t">The Softest Blanket</span><span class="plan__st">Writing</span></li>
+          <li><span class="plan__t">Along the Rooftops</span><span class="plan__st">Planned</span></li>
+          <li><span class="plan__t">A Bed Behind the Hills</span><span class="plan__st">Planned</span></li>
+        </ol>
+        <p class="plan__add">Add a chapter, and it continues the story</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · THE SHELF: abundance. Lateral travel reads as range. -->
+  <section id="covers" class="shelf" data-sc-act="pan" data-sc-span="3" data-chapter="5" aria-labelledby="covers-h">
+    <div data-sc-stage class="shelf__stage">
+      <div class="shelf__rail" data-sc-pan="0.04">
+        <div class="shelf__lead">
+          <h2 id="covers-h" class="h-chapter">Every story gets its own cover.</h2>
+          <p class="prose">Novel AI paints one for each story it writes. The Library keeps ready-made stories with theirs, for nights when you have no idea yet.</p>
         </div>
-        <div class="frame frame--split frame--fill span-6 start-7" data-visual data-fx="gradient-mesh" data-fx-seed="31" data-fx-params='{"calmX":0.4,"calmY":0.5}'>
-          <div class="stage stage--fade-br">
-            <div class="at-corner to-edge" style="--ax:56px;--ay:56px">
-              <div class="ui ui-panel bookplan" role="img" aria-label="The book plan for The Last Mortal Oath: six chapters with titles and reading times, chapter 6 being read, and a button to add chapter 7">
-                <div class="bp__head"><b>The Last Mortal Oath</b><span>6 chapters, 36 min read</span></div>
-                <div class="bp__list">
-                  <div><span class="bp__n">1</span><span>The Wound in Time<small>6 min</small></span><span></span></div>
-                  <div><span class="bp__n">2</span><span>The Key in the Wreckage<small>6 min</small></span><span></span></div>
-                  <div><span class="bp__n">3</span><span>A Dance of Ash<small>6 min</small></span><span></span></div>
-                  <div><span class="bp__n">4</span><span>The Physician’s Refusal<small>6 min</small></span><span></span></div>
-                  <div><span class="bp__n">5</span><span>The Hollow Meridian<small>6 min</small></span><span></span></div>
-                  <div class="is-on"><span class="bp__n">6</span><span>The Oath Beyond Freedom<small>6 min</small></span><span class="bp__st">Reading</span></div>
-                  <div class="is-add"><span class="bp__n">+</span><span>Add chapter 7<small>Continues the story with AI</small></span><span></span></div>
-                </div>
-              </div>
-            </div>
+        <figure class="vol"><img src="images/cover-yuki-amano-and-the-last-cherry-blossom-duel.webp" srcset="images/cover-yuki-amano-and-the-last-cherry-blossom-duel-240.webp 240w, images/cover-yuki-amano-and-the-last-cherry-blossom-duel.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A girl with a sword on a path under pink cherry trees" loading="lazy"><figcaption><b>Yuki Amano and the Last Cherry Blossom Duel</b><span>Young adult</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-the-last-winter-of-the-frost-fair.webp" srcset="images/cover-the-last-winter-of-the-frost-fair-240.webp 240w, images/cover-the-last-winter-of-the-frost-fair.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A snowy street with a cathedral at the end" loading="lazy"><figcaption><b>The Last Winter of the Frost Fair</b><span>Historical</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-rook-and-the-ghost-in-the-rain.webp" srcset="images/cover-rook-and-the-ghost-in-the-rain-240.webp 240w, images/cover-rook-and-the-ghost-in-the-rain.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A man in a hat walking down a rainy street at night" loading="lazy"><figcaption><b>Rook and the Ghost in the Rain</b><span>Mystery</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-cassidy-rell-and-the-last-train-to-perdition-flats.webp" srcset="images/cover-cassidy-rell-and-the-last-train-to-perdition-flats-240.webp 240w, images/cover-cassidy-rell-and-the-last-train-to-perdition-flats.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A rider on horseback in a dusty western town at sunset" loading="lazy"><figcaption><b>Cassidy Rell and the Last Train to Perdition Flats</b><span>Western</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-the-signal-beyond-the-kuiper-line.webp" srcset="images/cover-the-signal-beyond-the-kuiper-line-240.webp 240w, images/cover-the-signal-beyond-the-kuiper-line.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A swirling blue nebula above a lone figure" loading="lazy"><figcaption><b>The Signal Beyond the Kuiper Line</b><span>Sci-fi</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-finn-hawke-and-the-sky-vault.webp" srcset="images/cover-finn-hawke-and-the-sky-vault-240.webp 240w, images/cover-finn-hawke-and-the-sky-vault.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="An adventurer on a cliff under a sky ship" loading="lazy"><figcaption><b>Finn Hawke and the Sky Vault</b><span>Adventure</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-isla-delmar-and-the-drowned-cities.webp" srcset="images/cover-isla-delmar-and-the-drowned-cities-240.webp 240w, images/cover-isla-delmar-and-the-drowned-cities.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A diver above a sunken city" loading="lazy"><figcaption><b>Isla Delmar and the Drowned Cities</b><span>Adventure</span></figcaption></figure>
+        <figure class="vol"><img src="images/cover-arics-eternal-oath.webp" srcset="images/cover-arics-eternal-oath-240.webp 240w, images/cover-arics-eternal-oath.webp 480w" sizes="(max-width: 860px) 220px, 300px" width="480" height="480" alt="A knight in a red cloak in a dark forest" loading="lazy"><figcaption><b>Aric’s Eternal Oath</b><span>Fantasy</span></figcaption></figure>
+        <div class="shelf__end">
+          <p class="prose">Your own stories join them in Drafts, each with the cover Novel AI painted for it. Every version stays.</p>
+          <a class="link" href="bedtime-story-generator.html">Bedtime stories, made tonight</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · AFTER THE LAST LINE: play. Real choices, real answers. -->
+  <section id="play" class="chapter beyond" data-sc-act="flow" data-chapter="6" aria-labelledby="play-h">
+    <div class="spread spread--wide">
+      <div class="beyond__lead" data-sc-in data-sc-stagger="70">
+        <h2 id="play-h" class="h-chapter">The last line isn’t the end.</h2>
+        <p class="prose">Step into your story as its hero and choose what happens. Each scene ends with three choices, or type a move of your own.</p>
+      </div>
+      <div class="scene" data-sc-in>
+        <p class="scene__tag"><span data-play-tag>Play as Poppy, scene 2 of 5</span><span>Example scene</span></p>
+        <p class="scene__text" data-play-text>The moon is far too big to carry, and the rooftops are slippery with dew. Somewhere below, the night train whistles twice.</p>
+        <div class="scene__choices" role="group" aria-label="Choose what happens next" data-play-choices>
+          <button type="button" class="choice" data-choice="0">Ask the owls for help</button>
+          <button type="button" class="choice" data-choice="1">Wave down the night train</button>
+          <button type="button" class="choice" data-choice="2">Hum grandmother’s song<em>Premium path</em></button>
+        </div>
+        <p class="scene__out" data-play-out aria-live="polite"></p>
+      </div>
+      <div class="beyond__side" data-sc-in data-sc-stagger="80">
+        <div class="aside">
+          <h3 class="h-aside">Talk to its people</h3>
+          <p class="prose prose--sm">Chat with a character inside their own world. Tap a topic to ask about their past.</p>
+          <div class="talk">
+            <p class="talk__me">Why did you leave the capital?</p>
+            <p class="talk__them"><img src="images/avatar-aric-thorne.webp" alt="" width="128" height="128"><span><b>Aric Thorne</b>Because the bell rang for me, not for the dead. I swore an oath I could not keep.</span></p>
+          </div>
+        </div>
+        <div class="aside">
+          <h3 class="h-aside">Make a character from one line</h3>
+          <p class="prose prose--sm">Type “a retired pirate who runs a bakery” and get a name, traits, a backstory and a way of talking.</p>
+          <div class="person">
+            <img src="images/avatar-captain-elara-dune.webp" alt="" width="128" height="128">
+            <p><b>Captain Elara Dune</b><span>Gruff, generous, superstitious. Gave up the sea after a storm took her ship. Still bakes a loaf for every crew that docks.</span></p>
+          </div>
+        </div>
+        <a class="link" href="interactive-story-game.html">How Play works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · READING IN THE DARK: calm. A wipe from paper to night. -->
+  <section id="reader" class="reader" data-sc-act="pin" data-sc-span="1.7" data-chapter="7" aria-labelledby="reader-h">
+    <div data-sc-stage class="reader__stage">
+      <div class="spread reader__spread">
+        <div class="verso reader__copy">
+          <h2 id="reader-h" class="h-chapter">Read it on warm paper, or in the dark.</h2>
+          <p class="prose">Jump between chapters and pick up where you stopped. Translate a story and send it to someone in their own language.</p>
+          <dl class="facts">
+            <div><dt>11 languages</dt><dd>English, Spanish, French, German, Japanese, Korean, Chinese and more</dd></div>
+            <div><dt>Kids to Adult</dt><dd>Content rules for younger readers in every mode</dd></div>
+            <div><dt>Kept on your device</dt><dd>Stories do not sync. Export the ones you want to keep</dd></div>
+          </dl>
+        </div>
+        <div class="recto reader__phone">
+          <div class="phone">
+            <img class="phone__img" src="images/reader-light.webp" srcset="images/reader-light-360.webp 360w, images/reader-light.webp 640w" sizes="(max-width: 860px) 200px, 300px" width="640" height="1391" alt="Poppy and the Sleepy Moon in the reader's light theme, with its moonlit cover" loading="lazy">
+            <div class="phone__dark" data-sc-reveal="down" data-sc-reveal-at="0.22 0.7"><img class="phone__img" src="images/reader-dark.webp" srcset="images/reader-dark-360.webp 360w, images/reader-dark.webp 640w" sizes="(max-width: 860px) 200px, 300px" width="640" height="1391" alt="The same story in the reader's dark theme" loading="lazy"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section g2" id="play" aria-labelledby="play-h">
-    <div class="wrap">
-      <div class="group">
-        <div class="section-head">
-          <h2 id="play-h">Your story keeps going after the last line. <span class="muted">Play it, talk to its people, or start from your voice.</span></h2>
-        </div>
-        <div class="grid">
-          <article class="card card--row card--open span-6">
-            <h3>Plays your story as a game</h3>
-            <p>Step in as the hero. Each scene ends with three choices, or type your own move.</p>
-            <div class="panel">
-              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:380px;--ax:max(24px, 50% - 190px);--ay:48px;--ay-sm:16px">
-                <div class="ui ui-panel play" role="img" aria-label="A Play scene from The Last Mortal Oath with three choices, one a Premium path">
-                  <span class="play__tag">Chapter 2, scene 3 of 5</span>
-                  <p>The bell stops. Somewhere below the tower, a door you sealed three hundred years ago swings open.</p>
-                  <div class="play__opts">
-                    <span class="is-on">Go down to the door</span>
-                    <span>Ring the bell again</span>
-                    <span>Follow the ash trail <em>Premium path</em></span>
-                  </div>
-                </div>
-              </div></div>
-            </div>
-          </article>
-          <article class="card card--row card--open span-6">
-            <h3>Lets you talk to your characters</h3>
-            <p>Chat with a character inside their own world. Tap a topic to ask about their past.</p>
-            <div class="panel">
-              <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:400px;--ax:max(24px, 50% - 200px);--ay:48px;--ay-sm:16px" data-ui-loop>
-                <div class="ui ui-panel ui-chat" data-ui="chat">
-                  <div class="ui-head"><span class="ui-agent is-face" aria-hidden="true"><img src="images/avatar-aric-thorne.webp" alt="" width="128" height="128"></span><div class="ui-title">Aric Thorne</div><span class="ui-chat__online">AI character</span><span class="ui-spacer"></span></div>
-                  <div class="ui-chat__body">
-                    <div class="ui-msg ui-msg--me" data-chat-q><span class="ui-msg__text">Why did you leave the capital?</span></div>
-                    <div class="ui-msg ui-msg--bot" data-chat-a>
-                      <span class="ui-agent ui-msg__av is-face" aria-hidden="true"><img src="images/avatar-aric-thorne.webp" alt="" width="128" height="128"></span>
-                      <span class="ui-msg__col">
-                        <span class="ui-chat__typing" aria-hidden="true"><i></i><i></i><i></i></span>
-                        <span class="ui-chat__answer">Because the bell rang for me, not for the dead. I swore <b>an oath I could not keep</b>.</span>
-                        <span class="ui-chat__srcs"><span class="ui-chat__src">Ask about his past</span><span class="ui-chat__src">Turn this into a story</span></span>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="ui-chat__input"><span class="ui-chat__ph">Say something to Aric</span><span class="ui-chat__send" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 13V3.5M3.8 7.5 8 3.3l4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-                </div>
-              </div></div>
-            </div>
-          </article>
-        </div>
+  <!-- 8 · THE BACK COVER: resolve. It holds. -->
+  <section id="pricing" class="back" data-chapter="8" aria-labelledby="back-h">
+    <div class="back__cover">
+      <div data-sc-in data-sc-stagger="70">
+      <h2 id="back-h" class="back__blurb">“A lighthouse keeper’s daughter finds a door in the fog that opens onto yesterday.”</h2>
+      <p class="back__lede">Say a sentence like that before bed, and Novel AI, the AI story generator for iPhone and iPad, has it written with its own cover by the time you have tucked in. By the weekend, it could be a book.</p>
       </div>
-      <div class="grid">
-        <article class="card card--row card--open span-6">
-          <h3>Makes a character from one line</h3>
-          <p>Type “a retired pirate who runs a bakery” and get a name, traits, a backstory and a way of talking.</p>
-          <div class="panel">
-            <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:360px;--ax:max(24px, 50% - 180px);--ay:48px;--ay-sm:16px">
-              <div class="ui ui-panel char" role="img" aria-label="A character card made from one line: Captain Elara Dune, a retired pirate who bakes">
-                <div class="char__line"><i>Your line</i>a retired pirate who runs a bakery</div>
-                <div class="char__top"><img src="images/avatar-captain-elara-dune.webp" width="128" height="128" alt=""><div><b>Captain Elara Dune</b><span>Retired pirate, harbour baker</span></div></div>
-                <div class="char__traits"><span>Gruff</span><span>Generous</span><span>Superstitious</span></div>
-                <p>Gave up the sea after a storm took her ship. Still bakes a loaf for every crew that docks.</p>
-              </div>
-            </div></div>
-          </div>
-        </article>
-        <article class="card card--row card--open span-6">
-          <h3>Writes from your voice</h3>
-          <p>Tap the big mic and say your idea. Apple’s speech recognition turns it into text, and no recording is kept.</p>
-          <div class="panel">
-            <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max:264px;--ax:max(24px, 50% - 132px);--ay:32px;--ay-sm:16px">
-              <div class="ui ui-panel ui-voice" data-ui="voice" data-ui-opts='{"orb":false}'>
-                <div class="ui-voice__top">
-                  <span class="ui-chip ui-chip--ink">Listening</span>
-                  <span class="ui-spacer"></span>
-                  <span class="ui-voice__time" data-voice-time>00:06</span>
-                </div>
-                <div class="ui-voice__orb" data-voice-orb></div>
-                <div class="ui-voice__who"><span class="ui-voice__name">Your idea</span><span class="ui-voice__with">Story, Fantasy</span></div>
-                <div class="ui-voice__cap" data-voice-cap>A lighthouse keeper’s daughter finds a door in the fog.</div>
-                <div class="ui-voice__bar">
-                  <span class="ui-voice__btn" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><rect x="6" y="2" width="4" height="8" rx="2"/><path d="M3.5 8a4.5 4.5 0 0 0 9 0M8 12.5V14"/></svg></span>
-                  <span class="ui-voice__wave" aria-hidden="true"><i style="--h:4"></i><i style="--h:7"></i><i style="--h:12"></i><i style="--h:9"></i><i style="--h:16"></i><i style="--h:11"></i><i style="--h:20"></i><i style="--h:14"></i><i style="--h:8"></i><i style="--h:17"></i><i style="--h:12"></i><i style="--h:6"></i><i style="--h:10"></i><i style="--h:18"></i><i style="--h:13"></i><i style="--h:7"></i><i style="--h:15"></i><i style="--h:9"></i><i style="--h:5"></i><i style="--h:11"></i><i style="--h:7"></i><i style="--h:4"></i></span>
-                  <span class="ui-voice__btn ui-voice__end" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><rect x="4.5" y="4.5" width="7" height="7" rx="1.5"/></svg></span>
-                </div>
-              </div>
-            </div></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="covers" data-moment="letters-assemble" aria-labelledby="covers-h">
-    <div class="wrap">
-      <h2 id="covers-h" class="mo-la__type">Every story gets a cover</h2>
-      <p class="mo-la__sub">Novel AI paints one for each story it writes. The Library keeps ready-made stories with theirs, for nights when you have no idea yet.</p>
-      <div class="wall">
-        <img src="images/cover-yuki-amano-and-the-last-cherry-blossom-duel.webp" srcset="images/cover-yuki-amano-and-the-last-cherry-blossom-duel-240.webp 240w, images/cover-yuki-amano-and-the-last-cherry-blossom-duel.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A girl with a sword on a path under pink cherry trees" loading="lazy" data-source="client" data-subject="story cover">
-        <img src="images/cover-the-last-winter-of-the-frost-fair.webp" srcset="images/cover-the-last-winter-of-the-frost-fair-240.webp 240w, images/cover-the-last-winter-of-the-frost-fair.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A snowy street with a cathedral at the end" loading="lazy" data-source="client" data-subject="story cover">
-        <img src="images/cover-cassidy-rell-and-the-last-train-to-perdition-flats.webp" srcset="images/cover-cassidy-rell-and-the-last-train-to-perdition-flats-240.webp 240w, images/cover-cassidy-rell-and-the-last-train-to-perdition-flats.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A rider on horseback in a dusty western town at sunset" loading="lazy" data-source="client" data-subject="story cover">
-        <img src="images/cover-isla-delmar-and-the-drowned-cities.webp" srcset="images/cover-isla-delmar-and-the-drowned-cities-240.webp 240w, images/cover-isla-delmar-and-the-drowned-cities.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A diver above a sunken city" loading="lazy" data-source="client" data-subject="story cover">
-        <img src="images/cover-rook-and-the-ghost-in-the-rain.webp" srcset="images/cover-rook-and-the-ghost-in-the-rain-240.webp 240w, images/cover-rook-and-the-ghost-in-the-rain.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A man in a hat walking down a rainy street at night" loading="lazy" data-source="client" data-subject="story cover">
-        <img src="images/cover-the-signal-beyond-the-kuiper-line.webp" srcset="images/cover-the-signal-beyond-the-kuiper-line-240.webp 240w, images/cover-the-signal-beyond-the-kuiper-line.webp 480w" sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 215px" width="480" height="480" alt="A swirling blue nebula above a lone figure" loading="lazy" data-source="client" data-subject="story cover">
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="pricing" aria-labelledby="pricing-h">
-    <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-4 stack-4">
-          <h2 id="pricing-h">Free and Premium plans</h2>
-          <p class="t-lead">Both plans write stories and books, play and talk, read in every theme and work in 11 languages.</p>
-          <a class="link" href="#faq">Read the questions</a>
-        </div>
-        <article class="card card--plan span-4 start-5">
-          <h3>Free</h3>
-          <p class="muted">For a story at bedtime</p>
-          <p class="price"><span class="t-stat">20</span><span class="muted">creations a day</span></p>
-          <ul class="checks">
+      <div class="editions" data-sc-in>
+        <div class="edition">
+          <h3 class="edition__name">Free edition</h3>
+          <p class="edition__price">20 creations a day</p>
+          <ul>
             <li>30 creations on your first day</li>
             <li>Books up to 3 written chapters</li>
             <li>2 characters of your own</li>
             <li>PDF export, with a small “Made with Novel AI” line</li>
             <li>Auto, Warm and Funny narrator styles</li>
           </ul>
-        </article>
-        <article class="card card--plan is-featured span-4 start-9">
-          <h3>Premium</h3>
-          <p class="muted">Or $9.99 a month, $29.99 a year</p>
-          <p class="price"><span class="t-stat">$3.99</span><span class="muted">a week</span></p>
-          <ul class="checks">
+        </div>
+        <div class="edition edition--premium">
+          <h3 class="edition__name">Premium edition</h3>
+          <p class="edition__price">$3.99 a week<span>or $9.99 a month, $29.99 a year</span></p>
+          <ul>
             <li>Unlimited creations</li>
             <li>Books up to 25 chapters, and Write all chapters in one tap</li>
             <li>Premium paths in Play</li>
-            <li>EPUB export and PDFs without the line</li>
+            <li>EPUB export, and PDFs without the line</li>
             <li>All six narrator styles, Long stories and Improve my idea</li>
             <li>Unlimited characters</li>
           </ul>
-        </article>
+        </div>
+      </div>
+      <p class="back__both">Both editions write stories and books, play and talk, read in every theme and work in 11 languages. A creation is any AI result, and the count resets at midnight.</p>
+      <div class="back__imprint" data-sc-in>
+        <a class="btn btn--gold btn--lg" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI</a>
+        <p class="back__small">Free on the App Store<br>iPhone and iPad, iOS 18 or later</p>
+        <p class="back__publisher"><img src="images/icon-96.webp" alt="" width="40" height="40"><span><i>Novel AI</i><br>Published by Bitmesh</span></p>
       </div>
     </div>
+    <footer class="colophon">
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="bedtime-story-generator.html">Bedtime stories</a></li>
+          <li><a href="ai-book-writer.html">Book writer</a></li>
+          <li><a href="interactive-story-game.html">Interactive stories</a></li>
+          <li><a href="support.html">Contact</a></li>
+          <li><a href="mailto:contact.appsnow@gmail.com?subject=Novel%20AI">Email us</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Apple EULA</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Bitmesh. Kids, Pre-teen and Teen stories avoid romance, graphic violence and sensitive themes; report anything that slips through from the ••• menu.</p>
+    </footer>
   </section>
 
-  <section class="section ground-inverse" id="reader" data-moment="iris-opens" data-moment-opts='{"from": "base"}' aria-labelledby="reader-h">
-    <div class="wrap">
-      <div class="grid fill">
-        <div class="span-5">
-          <h2 id="reader-h">A reader for bedtime and long books</h2>
-          <p class="t-lead reader-lead">Read on warm paper or in the dark, jump between chapters and pick up where you stopped.</p>
-          <ul class="reader-facts">
-            <li><b>Translate and share</b><span>Send a story to someone in their language</span></li>
-            <li><b>Age groups from Kids to Adult</b><span>Content rules for younger readers in every mode</span></li>
-            <li><b>11 languages</b><span>English, Spanish, French, German, Japanese, Korean, Chinese and more</span></li>
-          </ul>
-        </div>
-        <div class="span-6 start-7 phones">
-          <img src="images/reader-light.webp" srcset="images/reader-light-360.webp 360w, images/reader-light.webp 640w" sizes="(max-width: 639px) 170px, 300px" width="640" height="1391" alt="Poppy and the Sleepy Moon in the reader's light theme, with its moonlit cover" loading="lazy" data-source="client" data-subject="app screenshot">
-          <img src="images/reader-dark.webp" srcset="images/reader-dark-360.webp 360w, images/reader-dark.webp 640w" sizes="(max-width: 639px) 170px, 300px" width="640" height="1391" alt="The same story in the reader's dark theme" loading="lazy" data-source="client" data-subject="app screenshot">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq" aria-labelledby="faq-h">
-    <div class="wrap">
-      <div class="grid">
-        <div class="span-5 stack-4">
-          <h2 id="faq-h">Questions</h2>
-          <p class="muted">Anything else, write to us and a person answers.</p>
-          <a class="link" href="support.html">Contact support</a>
-        </div>
-        <div class="faq span-6 start-7">
-          <div class="faq__item"><h3>What is the difference between Story and Book?</h3><p>Story writes a complete story in one go. Book plans chapters first, which you can change, then writes them one at a time.</p></div>
-          <div class="faq__item"><h3>Is my voice recorded?</h3><p>No. Apple’s speech recognition turns it into text, on your device when your language supports it. Only that text is sent.</p></div>
-          <div class="faq__item"><h3>What counts as a creation?</h3><p>Any AI result: a story, a change, a chapter, a Play scene, a Talk reply or a character. The count resets at midnight.</p></div>
-          <div class="faq__item"><h3>Where are my stories saved?</h3><p>On your device only. They do not sync, so deleting the app deletes them. Export books you want to keep.</p></div>
-          <div class="faq__item"><h3>Is it safe for kids?</h3><p>Kids, Pre-teen and Teen stories avoid romance, graphic violence and sensitive themes. Report anything that slips through from the ••• menu.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
-  <div class="wrap">
-    <div class="closing__cta close--word">
-      <div class="section-head--split">
-        <div><h2 id="close-h">Write your first story tonight</h2><p class="t-lead">Free to download, with 20 creations a day.</p></div>
-        <a class="btn btn--primary" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
-      </div>
-      <p class="close__word" aria-hidden="true">Novel AI</p>
-    </div>
-    <div class="closing__links">
-      <div class="grid">
-        <div class="span-4 stack-4">
-          <a class="nav__logo" href="#top"><img class="logo-icon" src="images/icon-96.webp" alt="" width="28" height="28">Novel AI</a>
-          <p class="footer__lede">Stories and books from one idea, for iPhone and iPad.</p>
-        </div>
-        <div class="span-2 footer__col"><h3>App</h3><ul><li><a href="#create">Create</a></li><li><a href="#books">Books</a></li><li><a href="#play">Play and Talk</a></li><li><a href="#reader">Reader</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Help</h3><ul><li><a href="support.html">Contact</a></li><li><a href="#faq">FAQ</a></li><li><a href="#pricing">Pricing</a></li><li><a href="mailto:contact.appsnow@gmail.com?subject=Novel%20AI">Email us</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Guides</h3><ul><li><a href="bedtime-story-generator.html">Bedtime stories</a></li><li><a href="ai-book-writer.html">Book writer</a></li><li><a href="interactive-story-game.html">Interactive stories</a></li></ul></div>
-        <div class="span-2 footer__col"><h3>Legal</h3><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Apple EULA</a></li></ul></div>
-              </div>
-      <div class="footer__legal">
-        <span>&copy; 2026 Bitmesh</span>
-        <div class="socials"></div>
-      </div>
-    </div>
+<!-- Contents: opened by the ribbon; placed after main so the h1 leads the outline -->
+<dialog class="contents" id="contents" aria-labelledby="contents-h">
+  <div class="contents__head">
+    <p class="contents__mark"><img src="images/icon-96.webp" alt="" width="28" height="28"><span>Novel AI</span></p>
+    <button class="contents__close" type="button" aria-label="Close contents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
   </div>
-</footer>
+  <h2 id="contents-h" class="contents__title">Contents</h2>
+  <ol class="contents__list">
+    <li><a href="#top"><span class="contents__n">1</span><span class="contents__t">The cover</span><span class="contents__st"></span></a></li>
+    <li><a href="#idea"><span class="contents__n">2</span><span class="contents__t">One sentence</span><span class="contents__st"></span></a></li>
+    <li><a href="#create"><span class="contents__n">3</span><span class="contents__t">The writing</span><span class="contents__st"></span></a></li>
+    <li><a href="#books"><span class="contents__n">4</span><span class="contents__t">A book of chapters</span><span class="contents__st"></span></a></li>
+    <li><a href="#covers"><span class="contents__n">5</span><span class="contents__t">The shelf</span><span class="contents__st"></span></a></li>
+    <li><a href="#play"><span class="contents__n">6</span><span class="contents__t">After the last line</span><span class="contents__st"></span></a></li>
+    <li><a href="#reader"><span class="contents__n">7</span><span class="contents__t">Reading in the dark</span><span class="contents__st"></span></a></li>
+    <li><a href="#pricing"><span class="contents__n">8</span><span class="contents__t">The back cover</span><span class="contents__st"></span></a></li>
+  </ol>
+  <a class="btn btn--gold contents__cta" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328">Download Novel AI</a>
+  <p class="contents__foot"><a href="support.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></p>
+</dialog>
 
-<script type="module" src="assets/system.js"></script>
-<script type="module" src="assets/motion/motion.js"></script>
-<script type="module" src="assets/layout/layout.js"></script>
+<script src="landing/scrollcraft.js"></script>
+<script src="landing/landing.js"></script>
 </body>
 </html>

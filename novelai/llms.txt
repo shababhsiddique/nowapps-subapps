@@ -9,7 +9,7 @@
 
 ## Pages
 
-- [Home](https://novelai.nowapps.cc/): what the app does, plans and questions
+- [Home](https://novelai.nowapps.cc/): what the app does: one spoken idea written into a story with its own cover, books of chapters, Play and Talk, the reader, and the Free and Premium plans
 - [AI bedtime story generator](https://novelai.nowapps.cc/bedtime-story-generator.html): bedtime stories for kids from a child's idea, with age-group content rules
 - [AI book writer](https://novelai.nowapps.cc/ai-book-writer.html): chapter plans, writing chapters, up to 25 chapters, PDF and EPUB export
 - [Interactive story game](https://novelai.nowapps.cc/interactive-story-game.html): play a story as its hero with three choices a scene, and talk to characters
