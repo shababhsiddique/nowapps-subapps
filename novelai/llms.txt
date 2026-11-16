@@ -1,0 +1,18 @@
+# Novel AI
+
+> Novel AI is an AI story generator and book writer for iPhone and iPad, published by Bitmesh (bitmesh.ai). You say or type an idea and it writes a complete story with its own cover, then can turn it into a book with chapters, play it as an interactive story, or let you talk to its characters.
+
+- App Store: https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328
+- Price: free to download with 20 creations a day (30 on the first day). Premium is $3.99 a week, $9.99 a month or $29.99 a year, with no free trial, and removes the daily limit.
+- Platforms: iPhone and iPad, iOS 18 or later. 11 languages.
+- No account. Stories, books and chats are stored on the device.
+
+## Pages
+
+- [Home](https://novelai.nowapps.cc/): what the app does, plans and questions
+- [AI bedtime story generator](https://novelai.nowapps.cc/bedtime-story-generator.html): bedtime stories for kids from a child's idea, with age-group content rules
+- [AI book writer](https://novelai.nowapps.cc/ai-book-writer.html): chapter plans, writing chapters, up to 25 chapters, PDF and EPUB export
+- [Interactive story game](https://novelai.nowapps.cc/interactive-story-game.html): play a story as its hero with three choices a scene, and talk to characters
+- [Contact](https://novelai.nowapps.cc/support.html): contact.appsnow@gmail.com
+- [Privacy Policy](https://novelai.nowapps.cc/privacy.html)
+- [Terms of Use](https://novelai.nowapps.cc/terms.html)

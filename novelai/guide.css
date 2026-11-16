@@ -1,0 +1,57 @@
+/* Guide pages (bedtime stories, book writer, interactive stories): legal.css's base plus a hero,
+   steps, pictures and a closing call. Loaded after legal.css. */
+.guide { padding-top: 64px; }
+@media (max-width: 639px) { .guide { padding-top: 32px; } }
+
+.g-hero { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 48px; align-items: center; }
+.g-hero h1 { font: 400 clamp(38px, 3.6vw + 14px, 64px)/1.04 var(--font-display); letter-spacing: -0.035em; margin: 0 0 20px; }
+.g-hero .lead { font-size: 19px; line-height: 1.6; margin: 0 0 28px; max-width: 34em; }
+.g-hero .note { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+.g-hero figure { margin: 0; border-radius: 24px; overflow: hidden; background: var(--surface); }
+.g-hero figure img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) { .g-hero { grid-template-columns: 1fr; gap: 32px; } }
+
+.g-body { max-width: 760px; margin-top: 96px; }
+@media (max-width: 639px) { .g-body { margin-top: 56px; } }
+.g-body h2 { font: 400 clamp(28px, 1.4vw + 20px, 38px)/1.15 var(--font-display); letter-spacing: -0.025em; margin: 72px 0 16px; }
+.g-body h2:first-child { margin-top: 0; }
+.g-body h3 { font-size: 18px; font-weight: 500; margin: 28px 0 6px; }
+.g-body p, .g-body ul, .g-body ol { margin: 0 0 16px; font-size: 17px; line-height: 1.7; }
+.g-body ul, .g-body ol { padding-left: 22px; }
+.g-body li { margin-bottom: 8px; }
+.g-body a { text-decoration-color: color-mix(in oklab, var(--ink) 35%, transparent); text-underline-offset: 3px; }
+.g-body a:hover { color: var(--accent); }
+
+.steps { list-style: none; padding: 0 !important; display: grid; gap: 16px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 4px 16px; padding: 20px; border-radius: 16px; background: var(--surface); margin: 0 !important; }
+.steps li::before { content: counter(s); grid-row: span 2; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); font-size: 15px; }
+.steps b { font-weight: 500; }
+
+.excerpt { margin: 24px 0 28px; padding: 28px 32px; border-radius: 16px; background: #fffdf9; border: 1px solid var(--line); font-family: "Tinos", Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.7; }
+.excerpt p { font-size: inherit; }
+.excerpt p:last-child { margin-bottom: 0; }
+.excerpt cite { display: block; font: 500 13px/1.4 var(--font-text); color: var(--muted); font-style: normal; margin-bottom: 14px; }
+
+.pics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 28px 0; }
+.pics img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; }
+.pics--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.pics--2 img { aspect-ratio: auto; }
+@media (max-width: 520px) { .pics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pics img:nth-child(3) { display: none; } }
+
+.ideas { columns: 2; column-gap: 32px; }
+@media (max-width: 639px) { .ideas { columns: 1; } }
+.ideas li { break-inside: avoid; }
+
+.chapters { list-style: none; padding: 0 !important; border-top: 1px solid var(--line); }
+.chapters li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); margin: 0 !important; }
+.chapters span { color: var(--muted); white-space: nowrap; }
+
+.qa h3 { margin-top: 32px; }
+
+.g-cta { margin-top: 96px; padding: 48px; border-radius: 24px; background: var(--ink); color: var(--bg); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.g-cta h2 { font: 400 clamp(26px, 1.6vw + 18px, 40px)/1.15 var(--font-display); letter-spacing: -0.025em; margin: 0 0 8px; }
+.g-cta p { margin: 0; color: #c9c5c0; }
+@media (max-width: 639px) { .g-cta { padding: 32px 24px; margin-top: 64px; } .g-cta .btn { width: 100%; } }
+
+.related { margin-top: 48px; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; }
+.related a { font-weight: 500; }
