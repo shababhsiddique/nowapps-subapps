@@ -281,7 +281,19 @@
     $('#reader').setAttribute('data-sc-span', '1.2');
   }
 
+  // ------------------------------------------------- cover art clearance --
+  // The key art is sized in CSS to sit below the headline block. Its height
+  // depends on fonts and wrapping, so measure it (untransformed) and hand it over.
+  var coverStage = $('.cover__stage'), coverCopy = $('.cover__copy');
+  function fitCover() {
+    if (!coverStage || !coverCopy) return;
+    var b = coverCopy.offsetTop + coverCopy.offsetHeight + 16;
+    coverStage.style.setProperty('--copy-b', b + 'px');
+  }
+  fitCover();
+  addEventListener('resize', fitCover);
+
   ScrollCraft.mount(document.body);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paintWords(true); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paintWords(true); fitCover(); });
   requestAnimationFrame(loop);
 })();
