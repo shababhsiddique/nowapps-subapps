@@ -94,10 +94,26 @@
   var words = [];
   var shown = -1;
 
+  // A page holds what fits on it. Paragraphs that would run past the page's foot are set
+  // aside, so the story never spills out of the book on short or narrow screens.
+  function fitPage() {
+    var ps = $$('p', textEl);
+    ps.forEach(function (p) {
+      p.classList.remove('is-over');
+      if (p.querySelector('.w')) p.textContent = p.textContent; // undo an earlier split
+    });
+    var shown = ps.filter(function (p) { return getComputedStyle(p).display !== 'none'; });
+    var limit = textEl.getBoundingClientRect().bottom + 0.5;
+    while (shown.length > 1 && shown[shown.length - 1].getBoundingClientRect().bottom > limit) {
+      shown.pop().classList.add('is-over');
+    }
+  }
+
   function splitWords() {
     words = [];
+    fitPage();
     $$('p', textEl).forEach(function (p) {
-      if (getComputedStyle(p).display === 'none') return; // phones set fewer paragraphs
+      if (getComputedStyle(p).display === 'none') return; // phones and short pages set fewer paragraphs
       var parts = p.textContent.split(/(\s+)/);
       p.textContent = '';
       parts.forEach(function (t) {
@@ -282,6 +298,14 @@
   }
 
   ScrollCraft.mount(document.body);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { paintWords(true); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(splitWords);
+  // refit the page when the window changes shape
+  var fitW = innerWidth, fitH = innerHeight, fitT = 0;
+  addEventListener('resize', function () {
+    if (innerWidth === fitW && innerHeight === fitH) return;
+    fitW = innerWidth; fitH = innerHeight;
+    clearTimeout(fitT);
+    fitT = setTimeout(splitWords, 150);
+  });
   requestAnimationFrame(loop);
 })();
