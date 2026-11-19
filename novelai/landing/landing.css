@@ -160,11 +160,10 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
 /* ---------------------------------------------------------- 1 the cover -- */
 .cover__stage {
   /* the scene box: the key art's own frame, bottom-anchored, never under the copy */
-  /* --copy-b: bottom of the headline block, measured in landing.js; the art shrinks to fit below it */
-  --sw: min(100vw, 150svh, max(45vw, calc((100svh - var(--copy-b, 0px)) / 0.431)));
+  --sw: min(100vw, 150svh);
   --sh: calc(var(--sw) * 0.431);
   --sx: calc((100vw - var(--sw)) / 2);
-  --sy: max(42svh, var(--copy-b, 0px), calc(100svh - var(--sh)));
+  --sy: max(34svh, calc(100svh - var(--sh)));
   --p: var(--sc-p, 0);
   background: linear-gradient(to top, #2f2f4f 0%, #22264a 22%, #171a3a 55%, #10142f 100%);
 }
@@ -212,18 +211,6 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
   font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.5; color: var(--gold); text-shadow: none; }
 .cover__sub { font-family: var(--serif); font-size: clamp(1.08rem, 0.98rem + 0.4vw, 1.32rem); line-height: 1.5;
   color: color-mix(in oklab, var(--ink) 86%, var(--ink-soft)); max-width: 40ch; margin: 1.1rem auto 0; text-wrap: balance; }
-.cover__act { margin: 1.5rem 0 0; display: flex; flex-direction: column; align-items: center; gap: 0.7rem; }
-/* Apple's official badge, used as supplied: only the frame around it moves */
-.store-badge { display: inline-block; line-height: 0; border-radius: 12px; padding: 0;
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 0%, transparent), 0 10px 28px -12px hsl(236 60% 4% / .8);
-  transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease; }
-.store-badge img { height: 54px; width: auto; display: block; }
-.store-badge:hover { transform: translateY(-2px);
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 55%, transparent), 0 14px 34px -10px color-mix(in oklab, var(--gold) 45%, transparent); }
-.store-badge:active { transform: translateY(0) scale(0.985); }
-.store-badge:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
-@media (max-width: 860px) { .store-badge img { height: 50px; } }
-.cover__note { font-family: var(--serif); font-style: italic; font-size: 0.98rem; color: var(--ink-soft); }
 
 /* ------------------------------------------------------- 2 one sentence -- */
 .idea { background: var(--night); padding-top: clamp(4rem, 8vw, 8rem); }
@@ -453,7 +440,6 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
   .cover__kw { display: block; margin-top: 0.7rem; font-family: var(--sans); font-size: clamp(0.82rem, 0.78rem + 0.2vw, 0.95rem);
   font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.5; color: var(--gold); text-shadow: none; }
 .cover__sub { font-size: 1.06rem; }
-  .cover__act { flex-direction: column; gap: 0.75rem; margin-top: 1.4rem; }
 
   .ribbon { width: 36px; padding: 14px 0 22px; }
   .ribbon__label { font-size: 0.62rem; letter-spacing: 0.14em; }
@@ -487,7 +473,6 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
   .cover__title { font-size: 2.15rem; }
   .cover__kw { font-size: 0.72rem; }
   .cover__sub { font-size: 0.98rem; margin-top: 0.8rem; }
-  .cover__act { margin-top: 1rem; gap: 0.55rem; }
   .plane--moon { top: 64svh; width: 26vw; }
   .plane--ship { top: 66svh; width: 22vw; }
   .writing__head { min-height: 5.6rem; font-size: 1.3rem; }
@@ -497,41 +482,24 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
   .book__text p:nth-child(n+4) { display: none; }
 }
 
-@media (max-width: 860px) and (max-height: 600px) {
-  .cover__note { display: none; }
-}
-
 /* -------------------------------------------------------------- the dock -- */
-/* Floating download link. Shown by landing.js only after the cover has gone and
-   only while nothing readable sits under it, so it never covers content. */
+/* Floating download link, always in view: Apple's badge as supplied. */
 .dock {
-  position: fixed; z-index: var(--sc-z-chrome);
+  position: fixed; z-index: var(--sc-z-chrome); line-height: 0; border-radius: 10px;
   right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
-  display: flex; align-items: center; gap: 0.7rem; padding: 7px 7px 7px 10px;
-  border-radius: 16px; text-decoration: none; color: var(--ink);
-  background: color-mix(in oklab, var(--plum) 86%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
-  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
-  box-shadow: 0 18px 40px -16px hsl(236 60% 3% / .85), inset 0 1px 0 hsl(40 60% 90% / .06);
-  opacity: 0; visibility: hidden; transform: translate3d(0, 14px, 0) scale(0.98);
-  transition: opacity 220ms var(--sc-ease-out), transform 320ms var(--sc-ease-out), visibility 0s linear 320ms,
-    border-color 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 14px 32px -12px hsl(236 60% 3% / .9);
+  transition: transform 200ms var(--sc-ease-out), box-shadow 200ms ease;
 }
-.dock.is-on { opacity: 1; visibility: visible; transform: none;
-  transition: opacity 220ms var(--sc-ease-out), transform 320ms var(--sc-ease-out), visibility 0s,
-    border-color 200ms ease, box-shadow 200ms ease; }
-.dock__icon { width: 32px; height: 32px; border-radius: 8px; flex: none; box-shadow: 0 2px 8px hsl(236 55% 4% / .5); }
-.dock__name { font-family: var(--serif); font-style: italic; font-size: 1.12rem; letter-spacing: -0.01em; white-space: nowrap; }
-.dock__badge { height: 40px; width: auto; flex: none; display: block; }
+.dock__badge { height: 50px; width: auto; display: block; }
 @media (hover: hover) and (pointer: fine) {
-  .dock.is-on:hover { border-color: color-mix(in oklab, var(--gold) 60%, transparent);
-    box-shadow: 0 18px 40px -14px color-mix(in oklab, var(--gold) 35%, transparent), inset 0 1px 0 hsl(40 60% 90% / .06); }
+  .dock:hover { transform: translateY(-2px);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 55%, transparent), 0 16px 34px -12px color-mix(in oklab, var(--gold) 40%, transparent); }
 }
 .dock:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 @media (max-width: 860px) {
   .dock { left: 0; right: 0; width: max-content; margin-inline: auto; }
+  .dock__badge { height: 48px; }
 }
-@media (max-width: 340px) { .dock__name { display: none; } }
 
 /* ------------------------------------------------------- reduced motion -- */
 @media (prefers-reduced-motion: reduce) {
@@ -540,6 +508,6 @@ body { background: var(--night); font-family: var(--serif); font-optical-sizing:
   .reader__stage { --p: 1; }
   .nib { display: none; }
   .contents { transition: none; }
-  .dock, .dock.is-on { transition: opacity 160ms linear, visibility 0s linear 160ms; }
-  .dock.is-on { transition: opacity 160ms linear, visibility 0s; }
+  .dock { transition: box-shadow 200ms ease; }
+  .dock:hover { transform: none; }
 }

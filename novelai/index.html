@@ -84,7 +84,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Geist:wght@400..600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/night-book.webp" imagesrcset="images/night-book-half.webp 592w, images/night-book.webp 1185w" imagesizes="(max-width: 860px) 400px, 60vw" fetchpriority="high">
 <link rel="stylesheet" href="landing/scrollcraft.css">
-<link rel="stylesheet" href="landing/landing.css?v=5">
+<link rel="stylesheet" href="landing/landing.css?v=8">
 </head>
 <body>
 <!-- Grammar: bound volume. The page is a book: a cover, chapters set as spreads, a ribbon
@@ -113,7 +113,6 @@
       <div class="cover__copy">
         <h1 id="hero-h" class="cover__title">Every idea deserves a story.<span class="cover__kw">An AI story generator and book writer for iPhone and iPad</span></h1>
         <p class="cover__sub">Say one sentence out loud. Novel AI writes the whole story, paints its cover, then makes it a book.</p>
-        <p class="cover__act"><a class="store-badge" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328"><img src="images/app-store-badge.svg" width="120" height="40" alt="Download Novel AI on the App Store"></a><span class="cover__note">Free on iPhone and iPad</span></p>
       </div>
       <div class="cover__floor" aria-hidden="true"></div>
     </div>
@@ -349,10 +348,8 @@
 
 </main>
 
-<!-- The dock: a floating download link once the cover has gone; landing.js keeps it off content -->
-<a class="dock" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328" aria-label="Download Novel AI on the App Store" aria-hidden="true" tabindex="-1">
-  <img class="dock__icon" src="images/icon-96.webp" alt="" width="32" height="32">
-  <span class="dock__name">Novel AI</span>
+<!-- The dock: the page's download link, always in view -->
+<a class="dock" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328" aria-label="Download Novel AI on the App Store">
   <img class="dock__badge" src="images/app-store-badge.svg" alt="" width="120" height="40">
 </a>
 
@@ -378,6 +375,6 @@
 </dialog>
 
 <script src="landing/scrollcraft.js"></script>
-<script src="landing/landing.js?v=3"></script>
+<script src="landing/landing.js?v=4"></script>
 </body>
 </html>
