@@ -1,0 +1,439 @@
+/* Bitmesh apps: the page's own styles. scrollcraft.css is the floor and is
+   never edited; everything here is markup this page owns. */
+
+:root {
+  --sc-canvas:     #EEF3F6;   /* cool mist, the icons carry the colour */
+  --sc-surface:    #FBFDFE;
+  --sc-ink:        #0B1A33;   /* the wordmark's navy */
+  --sc-ink-soft:   #46566C;
+  --sc-accent:     #00727E;   /* the ".ai" teal, darkened to hold 5:1 on mist */
+  --sc-accent-ink: #FFFFFF;
+
+  --sc-font-display: "Ubuntu Sans", system-ui, sans-serif;
+  --sc-font-text:    "Ubuntu Sans", system-ui, sans-serif;
+  --sc-font-mono:    "Ubuntu Sans Mono", ui-monospace, monospace;
+
+  --sc-shadow-color: 215 45% 18%;
+
+  /* Brand mesh colours, from the logo's nodes. Lines and dots only. */
+  --mesh-line:  #2F86D3;
+  --mesh-green: #2EBF7A;
+  --mesh-mint:  #4FD8C4;
+  --mesh-sky:   #7CC8F0;
+  --mesh-peach: #FF9466;
+  --mesh-sun:   #F2D27A;
+
+  --bar-h: 72px;
+  --ico: 40px;
+  --ico-gap: 10px;
+  --r-card: 20px;
+  --r-ctl: 14px;
+}
+
+/* Tablets: brand, twelve icons and Contact must share one row. */
+@media (max-width: 1080px) {
+  :root { --ico: 30px; --ico-gap: 6px; }
+}
+@media (max-width: 760px) {
+  :root {
+    --bar-h: 60px;
+    --ico-gap: 5px;
+    /* twelve icons and eleven gaps across the phone, inside a 16px gutter */
+    --ico: clamp(20px, calc((100vw - 32px - 55px) / 12), 34px);
+  }
+}
+
+body { font-weight: 400; }
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: fixed; left: 16px; top: 12px; z-index: 100;
+  padding: 10px 16px; border-radius: var(--r-ctl);
+  background: var(--sc-ink); color: var(--sc-canvas);
+  transform: translateY(-160%);
+  transition: transform var(--sc-d-fast) var(--sc-ease-out);
+}
+.skip:focus-visible { transform: none; }
+
+/* ------------------------------------------------------------ buttons -- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 0 22px;
+  border-radius: var(--r-ctl);
+  background: var(--sc-accent); color: var(--sc-accent-ink);
+  font-weight: 600; font-size: var(--sc-t-base); letter-spacing: 0;
+  text-decoration: none; white-space: nowrap;
+  box-shadow: var(--sc-e1);
+  transition: background-color var(--sc-d-fast) var(--sc-ease-out),
+              transform 120ms var(--sc-ease-out),
+              box-shadow var(--sc-d-fast) var(--sc-ease-out);
+}
+.btn:hover { background: #005C66; box-shadow: var(--sc-e2); }
+.btn:active { transform: scale(0.97); }
+
+/* ---------------------------------------------------------------- bar -- */
+.bar {
+  position: fixed; inset: 0 0 auto; z-index: var(--sc-z-chrome);
+  height: var(--bar-h);
+  --dock: 0;
+}
+/* The ground arrives only as the icons do, so the hero has no bar on it. */
+.bar::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--sc-canvas);
+  border-bottom: 1px solid var(--sc-hairline);
+  opacity: var(--dock);
+}
+.bar__inner {
+  position: relative; height: 100%;
+  max-width: var(--sc-maxw); margin-inline: auto; padding-inline: var(--sc-gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sc-5);
+}
+.bar__brand { display: block; flex: none; border-radius: var(--sc-r-sm); }
+.bar__brand img { width: auto; height: 30px; }
+.bar__contact {
+  flex: none; display: inline-flex; align-items: center; min-height: 44px;
+  padding-inline: 4px;
+  font-weight: 600; text-decoration: none; color: var(--sc-ink);
+}
+.bar__contact:hover { text-decoration: underline; }
+
+.index__list {
+  display: flex; gap: var(--ico-gap);
+  list-style: none; margin: 0; padding: 0;
+}
+.index__app {
+  position: relative; display: block;
+  width: var(--ico); height: var(--ico);
+  border-radius: 23%;
+  transform-origin: 0 0;
+  --lift: 0;
+}
+.index__app img {
+  width: 100%; height: 100%;
+  border-radius: 23%;
+  box-shadow:
+    0 1px 2px hsl(var(--sc-shadow-color) / 0.18),
+    0 calc(2px + var(--lift) * 2px) calc(4px + var(--lift) * 6px) hsl(var(--sc-shadow-color) / calc(0.14 + var(--lift) * 0.06));
+}
+/* Hidden until mesh.js has put each icon on its node, then they arrive. */
+.index__app { opacity: 0; }
+.mesh-ready .index__app {
+  opacity: 1;
+  transition: opacity 520ms var(--sc-ease-out) calc(120ms + var(--i, 0) * 45ms);
+}
+.mesh-settled .index__app { transition-delay: 0ms; }
+.mesh-ready .is-swapping .index__app { opacity: 0; transition: opacity 180ms var(--sc-ease-out); }
+.index__app:focus-visible { outline-offset: 3px; border-radius: 23%; }
+/* Which app the reader is on. */
+.index__app::before {
+  content: ""; position: absolute; left: 50%; bottom: -8px;
+  width: 4px; height: 4px; margin-left: -2px; border-radius: 50%;
+  background: var(--sc-accent);
+  opacity: 0; transition: opacity var(--sc-d-fast) var(--sc-ease-out);
+}
+.index__app[aria-current="true"]::before { opacity: 1; }
+/* Name on hover and focus, once docked. */
+.index__app::after {
+  content: attr(data-name);
+  position: absolute; left: 50%; top: calc(100% + 12px);
+  translate: -50% 0;
+  padding: 5px 9px; border-radius: 8px;
+  background: var(--sc-ink); color: var(--sc-canvas);
+  font: 500 0.78rem/1.2 var(--sc-font-mono); letter-spacing: 0.02em;
+  white-space: nowrap; pointer-events: none;
+  opacity: 0; transform: translateY(-3px);
+  transition: opacity 140ms var(--sc-ease-out), transform 140ms var(--sc-ease-out);
+}
+.is-docked .index__app:is(:hover, :focus-visible)::after { opacity: 1; transform: none; }
+
+@media (max-width: 760px) {
+  .bar__inner { justify-content: center; padding-inline: 16px; }
+  /* On a phone the brand and the contact link hold the bar while the hero is
+     up, then step aside for the index as it docks. */
+  .bar__brand, .bar__contact {
+    position: absolute; top: 50%; translate: 0 -50%;
+    opacity: calc(1 - var(--arrive, 0));
+  }
+  .bar__brand { left: 16px; }
+  .bar__brand img { height: 26px; }
+  .bar__contact { right: 12px; }
+  .is-arriving .bar__brand, .is-arriving .bar__contact { visibility: hidden; }
+  .index__app::after { display: none; }
+}
+
+/* --------------------------------------------------------------- hero -- */
+.hero {
+  position: relative;
+  height: calc(100svh + 125svh);   /* the held span: mesh, then untangle */
+}
+.hero__stage {
+  position: sticky; top: 0;
+  height: 100vh; height: 100svh;
+  overflow: clip;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: var(--sc-6);
+  padding: calc(var(--bar-h) + 2vh) var(--sc-gutter) 4vh;
+  max-width: calc(var(--sc-maxw) + 4rem); margin-inline: auto;
+}
+/* Far plane: the mesh's graph paper. Moves least. */
+.hero__grid {
+  position: absolute; inset: -12% -6%;
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--mesh-line) 30%, transparent) 1.3px, transparent 1.8px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(70% 60% at 62% 50%, #000 30%, transparent 78%);
+          mask-image: radial-gradient(70% 60% at 62% 50%, #000 30%, transparent 78%);
+  pointer-events: none;
+}
+.hero__copy { position: relative; z-index: 2; display: grid; justify-items: start; gap: var(--sc-5); }
+.hero__title {
+  margin: 0;
+  font-family: var(--sc-font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.5rem + 3.4vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+  max-width: 11ch;
+  text-wrap: balance;
+}
+.hero__lede {
+  margin: 0;
+  font-size: var(--sc-t-lg);
+  line-height: 1.45;
+  color: var(--sc-ink-soft);
+  max-width: 30ch;
+  text-wrap: pretty;
+}
+.hero__copy .btn { margin-top: var(--sc-2); }
+
+.mesh {
+  position: relative; z-index: 1;
+  width: min(100%, calc((100svh - var(--bar-h) - 8vh) * 1.2));
+  aspect-ratio: 12 / 10;
+  justify-self: center;
+}
+.mesh__lines {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  overflow: visible;
+}
+.mesh__lines path {
+  /* user units: the mesh box is 12 wide, so 0.035 is about 2px on desktop.
+     No non-scaling-stroke: it moves dashes to screen space and breaks the
+     pathLength-based draw. */
+  fill: none; stroke: var(--mesh-line); stroke-width: 0.035;
+  stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0.6;
+}
+.mesh__node {
+  position: absolute;
+  left: calc((var(--x) - var(--s) / 2) / 12 * 100%);
+  top: calc((var(--y) - var(--s) / 2) / 10 * 100%);
+  width: calc(var(--s) / 12 * 100%);
+  aspect-ratio: 1;
+}
+.mesh__after {
+  position: absolute; left: 50%; top: 50%;
+  translate: -50% -50%;
+  width: min(30ch, 90%);
+  margin: 0;
+  text-align: center;
+  font-size: var(--sc-t-lg); line-height: 1.4;
+  color: var(--sc-ink);
+  text-wrap: balance;
+  opacity: 0;
+}
+
+@media (max-width: 860px) {
+  .hero__stage {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    gap: var(--sc-5);
+    padding: calc(var(--bar-h) + 20px) 16px 16px;
+  }
+  .hero__copy { gap: var(--sc-4); }
+  .hero__title { font-size: clamp(2.1rem, 1.2rem + 4.6vw, 3rem); max-width: 13ch; }
+  .hero__lede { font-size: var(--sc-t-base); }
+  .mesh {
+    width: min(100%, calc((100svh - 380px) * 1.2));
+    align-self: center;
+  }
+}
+
+/* ---------------------------------------------------------- catalogue -- */
+.apps { padding-block: var(--sc-9) var(--sc-section); }
+.apps__head { margin-bottom: var(--sc-7); }
+.apps__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--sc-t-2xl);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.apps__lede { margin: var(--sc-3) 0 0; color: var(--sc-ink-soft); max-width: 52ch; text-wrap: pretty; }
+
+.apps__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1080px) { .apps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px)  { .apps__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+
+.app {
+  scroll-margin-top: calc(var(--bar-h) + 20px);
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-areas:
+    "icon name"
+    "icon sub"
+    "facts facts"
+    "links links";
+  grid-template-rows: auto 1fr auto auto;
+  column-gap: 16px;
+  padding: 22px 22px 14px;
+  border-radius: var(--r-card);
+  background: var(--sc-surface);
+  box-shadow: var(--sc-e1), inset 0 0 0 1px color-mix(in oklab, var(--sc-ink) 6%, transparent);
+}
+.app__icon {
+  grid-area: icon; align-self: start;
+  width: 64px; height: 64px;
+  border-radius: 23%;
+  box-shadow: 0 1px 2px hsl(var(--sc-shadow-color) / 0.18), 0 4px 10px -2px hsl(var(--sc-shadow-color) / 0.22);
+}
+.app__name {
+  grid-area: name; margin: 2px 0 0;
+  font-weight: 700; font-size: var(--sc-t-xl);
+  line-height: 1.1; letter-spacing: -0.02em;
+}
+.app__sub {
+  grid-area: sub; margin: 6px 0 0;
+  color: var(--sc-ink-soft); font-size: var(--sc-t-sm); line-height: 1.5;
+  text-wrap: pretty;
+}
+.app__facts {
+  grid-area: facts; margin: 18px 0 0; padding-top: 12px;
+  border-top: 1px solid var(--sc-hairline);
+  display: grid; gap: 4px;
+}
+.app__facts div, .plate__facts div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.app__facts dt, .plate__facts dt {
+  font-family: var(--sc-font-mono); font-size: var(--sc-t-xs);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--sc-ink-soft);
+}
+.app__facts dd, .plate__facts dd { margin: 0; font-size: var(--sc-t-sm); }
+.app__links {
+  grid-area: links; margin: 10px 0 0;
+  display: flex; flex-wrap: wrap; gap: 4px 20px;
+}
+.app__links a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-weight: 600; font-size: var(--sc-t-sm);
+}
+.app__store { color: var(--sc-accent); text-decoration: none; }
+.app__store::after {
+  content: ""; width: 0.6em; height: 0.6em; margin-left: 0.4em;
+  border-top: 2px solid currentColor; border-right: 2px solid currentColor;
+  transform: translateY(1px) rotate(45deg) scale(0.8);
+}
+.app__store:hover { text-decoration: underline; }
+.app__site { color: var(--sc-ink); text-decoration: underline; text-decoration-color: var(--sc-hairline-strong); }
+.app__site:hover { text-decoration-color: currentColor; }
+.app:target { box-shadow: var(--sc-e2), inset 0 0 0 2px var(--sc-accent); }
+
+@media (hover: hover) and (pointer: fine) {
+  .app { transition: opacity 620ms var(--sc-ease-out), transform var(--sc-d-base) var(--sc-ease-out), box-shadow var(--sc-d-base) var(--sc-ease-out); }
+  .app__icon { transition: transform var(--sc-d-base) var(--sc-ease-out); }
+  .app:hover { transform: translateY(-3px); box-shadow: var(--sc-e2), inset 0 0 0 1px color-mix(in oklab, var(--sc-ink) 8%, transparent); }
+  .app:hover .app__icon { transform: rotate(-4deg) scale(1.05); }
+}
+
+/* ------------------------------------------------------------ contact -- */
+.contact { padding-block: 0 var(--sc-section); scroll-margin-top: calc(var(--bar-h) + 24px); }
+.plate {
+  --sc-ink: #EAF2F7; --sc-ink-soft: #A9BCCD; --sc-accent: #5ED3DE; --sc-accent-ink: #08263A;
+  --sc-hairline: color-mix(in oklab, #EAF2F7 16%, transparent);
+  color: var(--sc-ink);
+  background: #0B1A33;
+  border-radius: var(--r-card);
+  padding: clamp(28px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-areas:
+    "mark mark"
+    "title facts"
+    "body facts"
+    "body cta";
+  column-gap: clamp(24px, 6vw, 96px);
+  box-shadow: var(--sc-e3);
+}
+.plate__mark { grid-area: mark; margin-bottom: var(--sc-6); }
+.plate__mark img { width: 32px; height: 32px; }
+.plate__title {
+  grid-area: title; margin: 0;
+  font-weight: 700; font-size: var(--sc-t-3xl);
+  line-height: 1; letter-spacing: -0.035em;
+}
+.plate__body {
+  grid-area: body; margin: var(--sc-4) 0 0;
+  color: var(--sc-ink-soft); max-width: 40ch;
+  font-size: var(--sc-t-lg); line-height: 1.5;
+  text-wrap: pretty;
+}
+.plate__facts {
+  grid-area: facts; align-self: end;
+  margin: 0; padding-top: 14px;
+  border-top: 1px solid var(--sc-hairline);
+  display: grid; gap: 8px;
+}
+.plate__facts dd { font-size: var(--sc-t-base); }
+.plate .btn { grid-area: cta; justify-self: start; align-self: start; margin-top: var(--sc-5); }
+.plate .btn:hover { background: #8BE3EA; }
+
+@media (max-width: 760px) {
+  .plate {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "mark" "title" "body" "facts" "cta";
+  }
+  .plate__mark { margin-bottom: var(--sc-5); }
+  .plate__facts { margin-top: var(--sc-6); }
+  .plate__facts div { grid-template-columns: 6rem minmax(0, 1fr); }
+}
+
+/* ------------------------------------------------------------- footer -- */
+.foot { border-top: 1px solid var(--sc-hairline); padding-block: var(--sc-7); }
+.foot__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--sc-5) var(--sc-7);
+}
+.foot__brand { display: block; border-radius: var(--sc-r-sm); }
+.foot__brand img { width: auto; height: 26px; }
+.foot__nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 28px; }
+.foot__nav a, .foot__small a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  text-decoration: none; font-weight: 500;
+}
+.foot__nav a:hover, .foot__small a:hover { text-decoration: underline; }
+.foot__small {
+  margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px;
+  font-size: var(--sc-t-sm); color: var(--sc-ink-soft);
+}
+.foot__small a { color: var(--sc-ink); }
+@media (max-width: 760px) {
+  .foot__inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ------------------------------------------------------ reduced motion -- */
+@media (prefers-reduced-motion: reduce) {
+  /* No held span: the hero is one screen, and the icons dock by fading. */
+  .hero { height: auto; }
+  .hero__stage { position: relative; }
+  .app, .app__icon { transition: none; }
+}
