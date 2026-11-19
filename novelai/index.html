@@ -84,7 +84,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Geist:wght@400..600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/night-book.webp" imagesrcset="images/night-book-half.webp 592w, images/night-book.webp 1185w" imagesizes="(max-width: 860px) 400px, 60vw" fetchpriority="high">
 <link rel="stylesheet" href="landing/scrollcraft.css">
-<link rel="stylesheet" href="landing/landing.css?v=4">
+<link rel="stylesheet" href="landing/landing.css?v=5">
 </head>
 <body>
 <!-- Grammar: bound volume. The page is a book: a cover, chapters set as spreads, a ribbon
@@ -349,6 +349,13 @@
 
 </main>
 
+<!-- The dock: a floating download link once the cover has gone; landing.js keeps it off content -->
+<a class="dock" href="https://apps.apple.com/us/app/novel-ai-ai-stories-generator/id6756558328" aria-label="Download Novel AI on the App Store" aria-hidden="true" tabindex="-1">
+  <img class="dock__icon" src="images/icon-96.webp" alt="" width="32" height="32">
+  <span class="dock__name">Novel AI</span>
+  <img class="dock__badge" src="images/app-store-badge.svg" alt="" width="120" height="40">
+</a>
+
 <!-- Contents: opened by the ribbon; placed after main so the h1 leads the outline -->
 <dialog class="contents" id="contents" aria-labelledby="contents-h">
   <div class="contents__head">
@@ -371,6 +378,6 @@
 </dialog>
 
 <script src="landing/scrollcraft.js"></script>
-<script src="landing/landing.js?v=2"></script>
+<script src="landing/landing.js?v=3"></script>
 </body>
 </html>
